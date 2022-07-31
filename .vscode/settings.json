@@ -1,0 +1,18 @@
+{
+    "version": 1.1,
+    "tags": [
+        {
+            "name": "frameset",
+            "description": "The foo element",
+            "references": [
+              {
+                "name": "My foo element reference",
+                "url": "https://www.foo.com/element/foo"
+              }
+            ]
+          }
+    ],
+    "html.customData": [
+        "./.vscode/settings.json"
+    ]
+  }
