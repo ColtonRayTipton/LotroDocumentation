@@ -1,40 +1,4 @@
 {
-    "Example": {
-        "Title": "Turbine Package",
-        "Description": "The core Turbine API package.",
-        "Remarks": "The Turbine package provides access to core game functionality.",
-        "Classes": {
-            "Name": "Description"
-        },
-        "Enumerations": {
-            "Name": "Description"
-        },
-        "Fields": {
-            "Name": "Description"
-        },
-        "Inheritance Hierarchy": [
-            {"Spaces": "Parent.Child"},
-            {"1": "Turbine.Object"},
-            {"2": "Turbine.Chat"},
-            {"2": "Turbine.Gameplay.Backpack"}
-        ],
-        "Syntax": {
-            "Returns": [
-                "Type",
-                "Description"
-            ],
-            "Parameters": {
-                "sender": [
-                    "Type",
-                    "Description"
-                ]
-            }
-        },
-        "See Also": [
-            "Chat",
-            "Turbine"
-        ]
-    },
     "Turbine": {
         "Title": "Turbine Package",
         "Remarks": "The Turbine package provides access to core game functionality.",
@@ -71,6 +35,42 @@
                 "Children": {
                     
                 }
+            },
+            "Example": {
+                "Title": "Turbine Package",
+                "Description": "The core Turbine API package.",
+                "Remarks": "The Turbine package provides access to core game functionality.",
+                "Classes": {
+                    "Name": "Description"
+                },
+                "Enumerations": {
+                    "Name": "Description"
+                },
+                "Fields": {
+                    "Name": "Description"
+                },
+                "Inheritance Hierarchy": [
+                    {"Spaces": "Parent.Child"},
+                    {"1": "Turbine.Object"},
+                    {"2": "Turbine.Chat"},
+                    {"2": "Turbine.Gameplay.Backpack"}
+                ],
+                "Syntax": {
+                    "Returns": [
+                        "Type",
+                        "Description"
+                    ],
+                    "Parameters": {
+                        "sender": [
+                            "Type",
+                            "Description"
+                        ]
+                    }
+                },
+                "See Also": [
+                    "Chat",
+                    "Turbine"
+                ]
             }
         }
     }
