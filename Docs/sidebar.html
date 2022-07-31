@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head><
+    <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>API Documentation</title>        
@@ -24,26 +24,29 @@
         <script type="application/javascript">
 
         function addChildren(data, parent, key, value){
+            console.log("key: " + key)
             children = data[key].Children
-            $(`<li id='`+key+`'>`+key+`<ul id="`+key+`-children" class="nested"></ul></li>`).appendTo("#"+parent+"-children")
+            li = `<li id='`+key+`'><a href="#`+key+`">`+key+`</a><ul id="`+key+`-children" class="nested"></ul></li>`
+            $(li).appendTo("#"+parent+"-children")
             if (Object.keys(children).length > 0){
                 $.each(children, (child, val) => {
                     addChildren(Children, key, child, val)
                 })
             }else{
                 $.each(value, (child, val) => {
+                    li2 = `<li id='`+parent+' '+child+`'><a href="#`+child+`">`+key+` `+child+`</a><ul id="`+child+`-children" class="nested"></ul></li>`
                     switch(child) {
                         case "Members":
-                            $(`<li>`+key+` Members</li>`).appendTo("#"+key+"-children")
+                            $(li2).appendTo("#"+key+"-children")
                         case "Events":
-                            $(`<li>`+key+` Events</li>`).appendTo("#"+key+"-children")
+                            $(li2).appendTo("#"+key+"-children")
                     }
                 })
             }
         }
 
         // had to put in a gist in order to bypass CORS
-        $.getJSON("https://raw.githubusercontent.com/ColtonRayTipton/lotro/main/tree.jsonp",
+        $.getJSON("https://raw.githubusercontent.com/ColtonRayTipton/LotroDocumentation/master/Docs/resources/json/tree.jsonp",
         function(data){
             $.each(data, (key, val) => {
                 if (key != "Example"){
@@ -53,9 +56,12 @@
                         <ul id="`+key+`-children" class="nested"></ul>
                     </li>
                     `)
-                    $.each(data[key].Children, (child, val) => {
-                        addChildren(data[key].Children, key, child, val)
-                    })
+                    children = data[key].Children
+                    if (Object.keys(children).length > 0){
+                        $.each(children, (child, val) => {
+                            addChildren(children, key, child, val)
+                        })
+                    }
                 }
             })
         });

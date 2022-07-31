@@ -38,3 +38,44 @@ body {
 	width: 5px;
 	background: #aaa;
 }
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0
+}
+
+.Tree ul {
+    min-height: 20px;
+    height: fit-content;
+}
+
+.Tree li {
+    height: 100%;
+}
+
+.Tree a {
+    width: calc(100% - 25px);
+    display: block;
+    color:
+    black;
+    text-decoration:
+    none;
+    padding-left:25px;
+    cursor: pointer;
+    height: 20px;
+}
+
+.Tree a:before {
+    content: '';
+    background:
+    url('../Icons/collapse.gif');
+    background-size:
+    cover;
+    
+    width:10px;
+    height: 10px;
+    margin-left: -18px;
+    margin-top: 4px;
+    position: absolute;
+}
