@@ -34,25 +34,23 @@
 
         }
 
-        function addChildren(parent, key, value){
-            children = parent[key].Children
-            console.log(parent, key, value)
-            li = `<li id='`+key+`'><a href="#`+key+`">`+key+`</a><ul id="`+key+`-children" class="nested"></ul></li>`
-            $(li).appendTo("#"+key+"-children")
-            console.log(value)
-            if (Object.keys(children).length > 0){
-                $.each(children, (child, val) => {
-                    addChildren(Children, key, child)
-                })
-            }
+        function addChildren(parent, parentName){
+            $.each(parent, (key, value) => {    
+                parentName = parentName || key 
+                console.log(key, value)       
+                if (parent[key].constructor == Object){
+                    li = $(`<li id='`+key+`'><a href="#`+key+`">`+key+`</a><ul id="`+parentName+`-children" class="nested"></ul></li>`)
+                    li.appendTo("#" + parentName + "-children")
+                    setTimeout(function(){ addChildren(parent[key], key, value)}, 1);
+                }
+            })
         }
 
         // had to put in a gist in order to bypass CORS
         $.getJSON("https://raw.githubusercontent.com/ColtonRayTipton/LotroDocumentation/master/Docs/resources/json/tree.jsonp",
         function(data){
-            $.each(data, (key, value) => {
-                addChildren(data, key, value)
-            })
+            console.log(data.Turbine)
+            addChildren(data.Turbine)
         });
         </script>
         
