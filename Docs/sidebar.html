@@ -36,7 +36,7 @@
             loop++
             $.each(parent, (key, value) => {   
                 parentName = parentName || key 
-                console.log(parent["Title"])
+                console.log(parent, parentName)
                 if (!isNaN(parent["Title"]) || $.inArray(key, WhiteList) >= 0 && Object.keys(parent[key]).length > 0){
                     li = $(`<li id='`+key+`'><a href="#`+key+`">`+key+`</a><ul id="`+parentName+`-children" class="nested"></ul></li>`)
                     $("#" + parentName + "-children").append(li)
