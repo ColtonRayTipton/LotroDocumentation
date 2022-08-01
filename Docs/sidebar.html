@@ -54,9 +54,12 @@
         }
 
         // had to put in a gist in order to bypass CORS
-        $.getJSON("https://raw.githubusercontent.com/ColtonRayTipton/LotroDocumentation/master/Docs/resources/json/tree.jsonp",
-        function(data){
-            addChildren(data, "Turbine")
+        fetch("https://raw.githubusercontent.com/ColtonRayTipton/LotroDocumentation/master/Docs/resources/json/tree.jsonp")
+        .then(data=>{
+            return data.json();
+        })
+        .then(post=>{
+            addChildren(post, "Turbine")
         });
         </script>
         
