@@ -6,7 +6,7 @@
         <title>API Documentation</title>        
 
         <!-- Stylesheets -->
-        <link rel="stylesheet" type="text/css" href="resources/css/main.css">
+        <link rel="stylesheet" content-type="text/css; charset=utf-8" href="resources/css/main.css">
 
         <!-- Scripts -->
         <script
@@ -18,33 +18,39 @@
     </head>
     <body>
 
-        <ul class="Turbine">
+        <ul class="Turbine" id="Turbine">
             <ul id="Turbine-children" class="nested"></ul>
         </ul>
 
         
-        <script type="application/javascript">
+        <script content-type="text/javascript">
 
-        WhiteList = [
-            "Children",
-            "Events",
-            "Methods"
+        BlackList = [
+            "Title",
+            "Remarks",
+            "Classes",
+            "Enumerations",
+            "Example",
+            "Inheritance Hierarchy",
+            "See Also",
+            "Received"
         ]
         
-        loop = 1
+        loop = 0
         function addChildren(parent, parentName){
-            loop++
-            $.each(parent, (key, value) => {   
-                parentName = parentName || key 
-                console.log(parent, parentName)
-                if (!isNaN(parent["Title"]) || $.inArray(key, WhiteList) >= 0 && Object.keys(parent[key]).length > 0){
-                    li = $(`<li id='`+key+`'><a href="#`+key+`">`+key+`</a><ul id="`+parentName+`-children" class="nested"></ul></li>`)
-                    $("#" + parentName + "-children").append(li)
-                    console.log(parentName, key)
-                    addChildren(parent[key])
-                    console.log(loop)
+            $.each(parent, (key, value) => {
+                if ($.inArray(key, BlackList) < 0 && Object.keys(value).length > 0){
+                    li = $(`<li id='`+key+`'><a href="#`+key+`"><span class="icon"></span><span>`+key+`</span></a><ul id="`+parentName+`-children" class="nested"></ul></li>`)
+                    console.log(key, parentName)
+                    if (key != "Children"){
+                        $("#"+parentName).append(li)
+                        addChildren(value, key)
+                    }else{
+                        addChildren(value, parentName)
+                    }
                 }
             })
+            loop++
         }
 
         // had to put in a gist in order to bypass CORS
