@@ -66,14 +66,21 @@ ul {
     display: block;
 }
 
+.Turbine li:hover {
+    background-color: #cccccc;
+    border-bottom: solid 1px #999999;
+    border-right: solid 1px #999999
+}
+
 .Turbine a {
-    width: 25px;
     color:
     black;
     text-decoration:
     none;
     padding-left:25px;
+    width: calc(100% - 25px);
     cursor: pointer;
+    display: block;
     height: 100%;
     text-align: left;
 }

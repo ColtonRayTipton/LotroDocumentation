@@ -15,6 +15,7 @@
         <script src="resources/js/splitter.js" type="text/javascript"></script>
         <script src="resources/js/main.js" type="text/javascript"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch-jsonp/1.0.6/fetch-jsonp.min.js"></script>
+        <script src="resources/json/tree.js" type="text/javascript"></script>
     </head>
     <body>
 
@@ -24,6 +25,8 @@
 
         
         <script content-type="text/javascript">
+
+        data = JSON.parse(data)
 
         BlackList = [
             "Title",
@@ -36,7 +39,6 @@
             "Received"
         ]
         
-        loop = 0
         function addChildren(parent, parentName){
             $.each(parent, (key, value) => {
                 if ($.inArray(key, BlackList) < 0 && Object.keys(value).length > 0){
@@ -53,14 +55,7 @@
             loop++
         }
 
-        // had to put in a gist in order to bypass CORS
-        fetch("https://raw.githubusercontent.com/ColtonRayTipton/LotroDocumentation/master/Docs/resources/json/tree.jsonp")
-        .then(data=>{
-            return data.json();
-        })
-        .then(post=>{
-            addChildren(post, "Turbine")
-        });
+        addChildren(data, "Turbine")
         </script>
         
     </body>
