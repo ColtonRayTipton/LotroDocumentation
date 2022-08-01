@@ -103,10 +103,16 @@ ul {
     vertical-align: middle;
 }
 
+.icon-Children:before {
+    background: url('../Icons/Collapsed.gif');
+}
+
+.icon-Enumerations:before {
+    background: url('../Icons/Item.gif');
+}
+
 .icon:before {
     content: '';
-    background:
-    url('../Icons/Collapsed.gif');
     width: 10px;
     height: 10px;
     background-size: cover;

@@ -39,60 +39,50 @@
             "Fields",
             "Parameters",
             "Syntax",
-            "Returns"
+            "Returns",
+            "Children"
         ]
         
+  
+        function addChildren(table, parent, type){
 
-        //$("#"+parentName+"-children").append(li)
-        function addChildren(parent, Name){
+            type = type || "Children"
 
-            Options = {
-                "name": "Undefined",
-                "parent": "",
-                "skip": false,
-                "id": ""
-            }
-
-            $.each(parent, (key, value) => {
-                Options.skip = false
+            $.each(table, (key, value) => {
                 if ($.inArray(key, BlackList) < 0 && Object.keys(value).length > 0){
-                    if (Name == key){
-                        Options.name = Name
-                        Options.parent = "Tree"
-                        Options.Id = Options.parent
-                    }
-                    else
-                    {
-                        if (key == "Children"){
-                            Options.skip = true
-                            Options.parent = Name
-                            Options.Id = Options.parent + '-children'
-                            console.log(Options.parent, key, value)
-                        } else {
-                            Options.skip = false
-                            Options.name = key
-                            Options.parent = parentName
-                            Options.Id = Options.parent
-                            console.log(Options.parent, key, value)
-                        }
-                    }
 
-                console.log(Options.parent, value)
-                  if (!Options.skip) {
-                        console.log(Options.parent, Options.name, Options.Id)
-                        li = $(`<li id='`+Options.name+`'>
-                                    <span id="link">
-                                        <a href="#`+Options.name+`">
-                                            <span class="icon"></span>
-                                            <span>`+Options.name+`</span>
-                                        </a>
-                                    </span>
-                                    <ul id="`+Options.name+`-children" class="nested"></ul>
-                                </li>`)
+                    li = $(`<li id='`+key+`'>
+                        <span id="link">
+                            <a href="#`+key+`">
+                                <span class="icon icon-`+type+`"></span>
+                                <span>`+key+`</span>
+                            </a>
+                            </span>
+                        <li id="`+key+`-children" class="nested"></li>
+                    </li>`)
 
-                        $("#" + Options.Id).append(li)
-                        addChildren(value, Options.name)
+                    li2 = $(`<li id='`+key+`'>
+                        <span id="link">
+                            <a href="#`+key+`">
+                                <span class="icon icon-`+type+`"></span>
+                                <span>`+key+`</span>
+                            </a>
+                            </span>
+                    </li>`)
+
+                    if (parent == key){
+                        $(".Tree").append(li)
+                        addChildren(value, key)
+                    }else if (value.constructor == Object){
+                        $("#"+parent+"-children").append(li)
+                        addChildren(value, key)
+                    }else{
+                        $("#"+parent+"-children").append(li2)
                     }
+                }
+
+                if (key == "Children" || key == "Enumerations"){
+                    addChildren(value, parent, key)
                 }
             })
         }
