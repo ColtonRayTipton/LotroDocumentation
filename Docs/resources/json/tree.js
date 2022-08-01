@@ -36,6 +36,51 @@ var data = `{
                     
                 }
             },
+            "Engine": {
+                "Title": "Engine Class",
+                "Description": "Provides engine level information to user plugins.",
+                "Remarks": "The engine class provides information about the current state of the game engine.",
+                "Methods": {
+                    "Name": {
+                        "Title": "Title",
+                        "Description": "Description",
+                        "Remarks": "Remarks",
+                        "Syntax": {
+                            "Returns": [
+                                "Type",
+                                "Description"
+                            ],
+                            "Parameters": {
+                                "sender": [
+                                    "Type",
+                                    "Description"
+                                ]
+                            }
+                        },
+                        "See Also": [
+                            "Turbine"
+                        ]
+                    }
+                },
+                "Inheritance Hierarchy": [
+                    {"1": "Turbine.Engine"},
+                ],
+                "Syntax": {
+                    "Returns": [
+                        "Type",
+                        "Description"
+                    ],
+                    "Parameters": {
+                        "sender": [
+                            "Type",
+                            "Description"
+                        ]
+                    }
+                },
+                "See Also": [
+                    "Turbine"
+                ]
+            },
             "Example": {
                 "Title": "Turbine Package",
                 "Description": "The core Turbine API package.",

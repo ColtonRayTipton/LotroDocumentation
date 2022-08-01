@@ -40,7 +40,8 @@
             "Parameters",
             "Syntax",
             "Returns",
-            "Children"
+            "Children",
+            "Methods"
         ]
         
   
@@ -76,12 +77,12 @@
                     }else if (value.constructor == Object){
                         $("#"+parent+"-children").append(li)
                         addChildren(value, key)
-                    }else{
+                    }else if (type == "Enumerations" || type == "Methods"){
                         $("#"+parent+"-children").append(li2)
                     }
                 }
 
-                if (key == "Children" || key == "Enumerations"){
+                if (key == "Children" || key == "Enumerations" || key == "Methods"){
                     addChildren(value, parent, key)
                 }
             })
