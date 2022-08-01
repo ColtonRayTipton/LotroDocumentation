@@ -4,7 +4,7 @@ body {
     height: 100vh;
     margin-left: -25px;
     font-family: verdana, arial, sans-serif;
-    font-size: 8.5pt;
+    font-size: 11px;
 }
 
 .frameset {
@@ -48,31 +48,35 @@ ul {
     padding: 0;
 }
 
-.Turbine {
+.Tree {
     height: 100%;
     min-width: max-content;
 }
 
-.Turbine ul {
+.Tree ul {
     min-height: 20px;
     height: 100%;
     width: 100%;
 }
 
-.Turbine li {
+.Tree li {
     height: 20px;
     min-width: max-content;
     padding-left: 15px;
     display: block;
 }
 
-.Turbine li:hover {
-    background-color: #cccccc;
-    border-bottom: solid 1px #999999;
-    border-right: solid 1px #999999
+.Tree li span#link {
+    height: 100%;
+    width: 100%;
+    display: block;
 }
 
-.Turbine a {
+.Tree li span#link:hover {
+    background-color: #cccccc;
+}
+
+.Tree a {
     color:
     black;
     text-decoration:
@@ -85,21 +89,31 @@ ul {
     text-align: left;
 }
 
+.Tree a span {vertical-align: middle;}
+
 .icon {
     margin-left: 15px;
     width: 10px;
-    padding-right: 5px;
+    padding-right: 2px;
     display: inline-block;
     height: 100%;
+}
+
+.icon::after {
+    vertical-align: middle;
 }
 
 .icon:before {
     content: '';
     background:
     url('../Icons/Collapsed.gif');
-    width:10px;
+    width: 10px;
     height: 10px;
+    background-size: cover;
     display: inline-block;
+    text-align: center;
+    margin-top: 5px;
+    vertical-align: middle;
 }
 
 .nested {

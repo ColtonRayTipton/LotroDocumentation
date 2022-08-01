@@ -1,4 +1,4 @@
-data = `{
+var data = `{
     "Turbine": {
         "Title": "Turbine Package",
         "Remarks": "The Turbine package provides access to core game functionality.",
