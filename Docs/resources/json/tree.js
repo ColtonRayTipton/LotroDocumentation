@@ -1,4 +1,14 @@
 var data = `{
+    "Packages": {
+        "Title": "Packages List",
+        "Packages": {
+            "Turbine": "The core Turbine API package.",
+            "Turbine.Gameplay": "Provides classes for accessing game related information.",
+            "Turbine.Gameplay.Attributes": "Provides classes for accessing game related information.",
+            "Turbine.UI": "The core UI package that allows users to create low level controls.",
+            "Turbine.UI.Lotro": "The Lord of the Rings UI package."
+        }
+    },
     "Turbine": {
         "Title": "Turbine Package",
         "Remarks": "The Turbine package provides access to core game functionality.",
@@ -20,7 +30,6 @@ var data = `{
         },
         "Children": {
             "Chat": {
-                "Title": "Chat",
                 "Remarks": "This is a class used to get messages",
                 "Events": {
                     "Received": {
@@ -55,7 +64,6 @@ var data = `{
                 }
             },
             "Engine": {
-                "Title": "Engine",
                 "Description": "Provides engine level information to user plugins.",
                 "Remarks": "The engine class provides information about the current state of the game engine.",
                 "Methods": {
@@ -136,7 +144,6 @@ var data = `{
                 }
             },
             "Example": {
-                "Title": "Turbine Package",
                 "Description": "The core Turbine API package.",
                 "Remarks": "The Turbine package provides access to core game functionality.",
                 "Classes": {

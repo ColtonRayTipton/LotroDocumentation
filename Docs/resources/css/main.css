@@ -2,9 +2,9 @@
 body {
     margin: 0;
     height: 100vh;
-    margin-left: -25px;
-    font-family: verdana, arial, sans-serif;
+    font-family: Verdana;
     font-size: 11px;
+    color: #000000;
 }
 
 .frameset {
@@ -20,7 +20,7 @@ body {
 
 .frame#sidebar {
     max-width: 50vw;
-    min-width: 20vw;
+    min-width: 15vw;
     overflow: auto;
     font-family: verdana, arial, sans-serif;
     font-size: 8.5pt;
@@ -30,11 +30,6 @@ body {
 
 .frame#content {
     background: #FFFFFF;
-    color: #000000;
-    font-family: Verdana;
-    font-size: medium;
-    font-style: normal;
-    font-weight: normal;
 }
 
 .splitter-bar {
@@ -51,6 +46,7 @@ ul {
 .Tree {
     height: 100%;
     min-width: max-content;
+    margin-left: -5vw;
 }
 
 .Tree ul {
@@ -91,7 +87,7 @@ ul {
     margin-left: 15px;
     width: 10px;
     display: inline-block;
-    height: 100%;
+    height: 10px;
 }
 
 .icon-Children:before {
@@ -106,14 +102,126 @@ ul {
     content: '';
     background: url('../Icons/Expanded.gif');
     width: 10px;
-    height: 10px;
     background-size: cover;
     text-align: center;
     display: block;
-    margin-top: -9px;
+    height: inherit;
+    margin-top: 1px;
     position: absolute;
 }
 
 .nested {
     display: none;
+}
+
+/** content.html **/
+
+.content-body {}
+
+
+table {
+    border-spacing: 0;
+}
+.mainContainer {
+    width: 100%;
+    height: 100%;
+}
+
+.mainContainer tr {
+    vertical-align: top;
+}
+
+.mainContainer #head {
+    width: 100%;
+    height: 8vh;
+    box-shadow: 0px -16px 10px -20px rgb(0 0 0 / 75%) inset;
+}
+
+.mainContainer #body {
+    background: white;
+    padding: 15px;
+}
+
+#head > table {
+    height: 100%;
+    width: calc(100% - 1vw);
+    margin-left: 1vw;
+    border-collapse: collapse;
+    white-space: nowrap;
+    margin-top: .5vw;
+}
+
+#head .icon {
+    margin-left: 1vw;
+}
+
+#head tr:nth-child(2) td {
+    padding-left: 5vw;
+    padding-top: 2vw;
+}
+
+#head tr:nth-child(3) td {
+    padding-left: 5vw;
+    padding-bottom: 1.5vw;
+}
+
+.header {
+    font-size: 16px !important;
+    font-weight: bold;
+}
+
+.CollapseContent .icon {
+    margin-left: 0;
+}
+
+.CollapseContent .icon:before {
+    margin-top: -1px;
+}
+
+/** #BODY DIV **/
+#body table {
+    width: 100%;
+    height: 100%;
+}
+
+#body table tr {display: table;width: 100%;}
+
+#body table > tr:nth-child(1) {
+    padding-bottom: 5vh;
+}
+
+#body table table {
+    width: calc(100% - 4vh);
+    margin-top: 2vh;
+    margin-left: 4vh;
+    height: max-content;
+    text-align: left;
+    border: none;
+    box-sizing: border-box;
+    border-spacing: 2px;
+    border-collapse: separate;
+}
+
+#body table table tr {
+    background-color: #F7F7FF;
+    vertical-align: middle;
+}
+
+#body table table tr img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#body table table tr th {
+    height: 15px;
+    padding: 5px;
+    border-bottom: 1px solid #D5D5D3;
+    border-left: 1px none #D5D5D3;
+}
+
+#body table table tr td {
+    padding: 5px;
+    border-bottom: 1px solid #D5D5D3;
+    border-left: 1px none #D5D5D3;
 }

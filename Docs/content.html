@@ -15,9 +15,172 @@
         type="text/javascript"
         crossorigin="anonymous"
         ></script>
-
+        <script src="resources/json/tree.js" type="text/javascript"></script>
     </head>
-    <body>
-        
+    <body class="content-body">
+
+        <table class="mainContainer">
+            <tr>
+                <td id="head">
+                    <table>
+                        <tr>
+                            <td>
+                                <a href="#Packages">Index</a>
+                                <a class='Children'>
+                                    <span class="icon"></span>
+                                    Collapse All
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td id="Title" class="header">Title</td>
+                        </tr>
+                        <tr>
+                            <td id="SubLinks">Sub Links</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td id="body">
+                    <table>
+                        <tr>
+                            <td id="Description">Description</td>
+                        </tr>
+                        <tr id="Classes">
+                            <td>
+                                <a class='CollapseContent header'>
+                                    <span class="icon"></span>
+                                    Classes
+                                </a>
+                                <table>
+                                    <colgroup>
+                                        <col width="25px">
+                                    </colgroup>
+                                    <tr>
+                                        <th></th>
+                                        <th>Name</th>
+                                        <th>Description</th>
+                                    </tr>
+                                    <tr>
+                                        <td><img title="Class" src="resources/Icons/pubclass.gif"></td>
+                                        <td>Name</td>
+                                        <td>Description</td>
+                                    </tr>
+                                    <tr>
+                                        <td><img title="Class" src="resources/Icons/pubclass.gif"></td>
+                                        <td>Name</td>
+                                        <td>Description</td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr id="Enumerations">
+                            <td>
+                                <a class='CollapseContent header'>
+                                    <span class="icon"></span>
+                                    Enumerations
+                                </a>
+                                <table>
+                                    <colgroup>
+                                        <col width="25px">
+                                    </colgroup>
+                                    <tr>
+                                        <th></th>
+                                        <th>Name</th>
+                                        <th>Description</th>
+                                    </tr>
+                                    <tr>
+                                        <td><img title="Class" src="resources/Icons/pubenum.gif"></td>
+                                        <td>Name</td>
+                                        <td>Description</td>
+                                    </tr>
+                                    <tr>
+                                        <td><img title="Class" src="resources/Icons/pubenum.gif"></td>
+                                        <td>Name</td>
+                                        <td>Description</td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr id="Fields">
+
+                        </tr>
+                        <tr id="Inheritance Hierarchy">
+
+                        </tr>
+                        <tr id="Syntax">
+
+                        </tr>
+                        <tr id="See Also">
+
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+
+
+        <script type="text/javascript">
+
+            var data = JSON.parse(data)
+            query = window.location.search
+            params = new URLSearchParams(query)
+
+            type = params.get('type')
+
+            function getValueFromKey(table, Name){
+                if (!Name){ return }
+                parent=""
+                t = {}
+                function recursive(table, Name, newParent){
+                    for (var Key in table){
+                        if (Name == Key){
+                            parent = newParent
+                            if (table[Key].constructor == Object) {
+                                t = table[Key]
+                            }
+                        }else if (table[Key].constructor == Object){
+                            if (Key == "Methods"){
+                                newParent = "Methods"
+                            }else{
+                                if (newParent != "Methods"){
+                                    newParent = Key
+                                }
+                            }
+                            t = recursive(table[Key], Name, newParent)
+                        }
+                    }
+                    return t
+                }
+
+                return parent, recursive(table, Name, parent)
+            }
+
+            parent, info = getValueFromKey(data, type)
+
+            if (info){
+
+                parent = parent == "Children" ? "Class" : parent
+
+                if (["Enumerations", "Events", "Methods"].includes(parent)){
+                    parent = parent.substring(0, parent.length-1)
+                    $("#Title").text(type + " " + parent)
+                }else if (["Events", "Methods"].includes(type)){
+                    $("#Title").text(parent + " " + type)
+                }else if (info.Title){
+                    $("#Title").text(info.Title)
+                }else{
+                    $("#Title").text(type + " " + parent)
+                }
+
+                
+                
+            }
+            
+
+
+        </script>
+
     </body>
 </html>

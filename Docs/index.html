@@ -16,44 +16,18 @@
         crossorigin="anonymous"
         ></script>
         <script src="resources/js/splitter.js" type="text/javascript"></script>
-
+        <script src="resources/js/main.js" type="text/javascript"></script>
+        <script src="resources/json/tree.js" type="text/javascript"></script>
     </head>
     <body>
-        <div class="frameset"></div>
+        <div class="frameset">
+            <div class="frame" id="sidebar" src="sidebar.html" loading="eager" title="sidebar">
+                <ul class="Tree"></ul>
+            </div>
+            <iframe class="frame" id="content" src="content.html" loading="eager" title="content"></iframe>
+        </div>
 
-        <script type="text/javascript">
-            $(document).ready(function(){
-
-                $(".frameset").append(`
-                    <iframe class="frame" id="sidebar" referrerpolicy="unsafe-url" loading="eager" title="sidebar"></iframe>
-                    <iframe class="frame" id="content" referrerpolicy="unsafe-url" loading="eager" title="content"></iframe>
-                `)
-
-                var sideBar = $("#sidebar")
-                var content = $("#content")
-
-                sideBar.attr('src', 'sidebar.html')
-                content.attr('src', 'content.html')
-
-                $(".frameset").splitter({
-                    splitVertical: true,
-                    reizeToWidth: true,
-                    sizeLeft: 0,
-                });
-
-                content.onload = null
-                content.attr('onload', '')
-
-                var tree = content.contents().find('body')
-                tree.append("Hello")
-
-                var iframe = document.querySelector('#content');
-                var content = iframe.contentDocument || iframe.contentWindow.document;
-
-                console.log(content)
-                
-
-            })
-        </script>
+        <!-- SIDEBAR INIT -->
+        <script src="resources/js/sidebar.js" type="text/javascript"></script>
     </body>
 </html>
