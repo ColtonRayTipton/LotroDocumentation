@@ -27,28 +27,22 @@ function addChildren(table, parent, type){
         if (parent != "Events" ? $.inArray(key, BlackList) < 0 : true){
             li = $(`<li title='`+key+`' id='`+key+`'>
                 <span id="link">
-                    <a class='Children' onclick='myFunction("`+key+`")'>
-                        <span class="icon icon-Children"></span>
-                        `+key+`
-                    </a>
-                    </span>
+                    <a class='Children icon icon-Children' onclick='myFunction("`+key+`")'>`+key+`</a>
+                </span>
                 <ul id="`+key+`-children" class="children nested"></ul>
             </li>`)
 
             li2 = $(`<li title='`+key+`' id='`+key+`'>
                 <span id="link">
-                    <a class='Children' onclick='myFunction("`+key+`")'>
-                        <span class="icon icon-Methods"></span>
-                        `+key+`
-                    </a>
-                    </span>
+                    <a class='Children icon icon-blackbox' onclick='myFunction("`+key+`")'>`+key+`</a>
+                </span>
             </li>`)
 
             if (parent == key){
                 $(".Tree").append(li)
                 var child = document.getElementById(key)
                 child.childNodes[3].classList.remove("nested")
-                child.childNodes[1].childNodes[1].childNodes[1].classList.toggle("icon-Children")
+                child.childNodes[1].childNodes[1].classList.toggle("icon-Children")
                 addChildren(value, key)
             }else if (value.constructor == Object && parent != "Methods" && parent != "Events"){
                 $("#"+parent+"-children").append(li)
@@ -67,14 +61,15 @@ function addChildren(table, parent, type){
 
 addChildren(data, "Turbine")
 
-var buttons = document.getElementsByClassName("Children");
+var buttons = document.getElementsByClassName("icon");
 
 for (i=0; i < buttons.length; i++){
     buttons[i].addEventListener('click', function(){
+        this.classList.toggle("icon-Children")
         var children = this.parentElement.parentElement.querySelector(".children")
         if (children){
             children.classList.toggle('nested')
         }
-        this.childNodes[1].classList.toggle("icon-Children")
+        
     })
 }

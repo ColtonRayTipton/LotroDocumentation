@@ -26,10 +26,7 @@
                         <tr>
                             <td>
                                 <a href="#Packages">Index</a>
-                                <a class='Children'>
-                                    <span class="icon"></span>
-                                    Collapse All
-                                </a>
+                                <a id='CollapseAll' class="icon-selectall">Collapse All</a>
                             </td>
                         </tr>
                         <tr>
@@ -49,11 +46,8 @@
                         </tr>
                         <tr id="Classes">
                             <td>
-                                <a class='CollapseContent header'>
-                                    <span class="icon"></span>
-                                    Classes
-                                </a>
-                                <table>
+                                <a class='header icon'>Classes</a>
+                                <table class="children">
                                     <colgroup>
                                         <col width="25px">
                                     </colgroup>
@@ -77,11 +71,8 @@
                         </tr>
                         <tr id="Enumerations">
                             <td>
-                                <a class='CollapseContent header'>
-                                    <span class="icon"></span>
-                                    Enumerations
-                                </a>
-                                <table>
+                                <a class='header icon'>Enumerations</a>
+                                <table class="children">
                                     <colgroup>
                                         <col width="25px">
                                     </colgroup>
@@ -104,16 +95,76 @@
                             </td>
                         </tr>
                         <tr id="Fields">
-
+                            <td>
+                                <a class='header icon'>Fields</a>
+                                <table class="children">
+                                    <tr>
+                                        <th></th>
+                                        <th>Name</th>
+                                        <th>Description</th>
+                                    </tr>
+                                    <tr>
+                                        <td><img title="Class" src="resources/Icons/pubfield.gif"></td>
+                                        <td>Name</td>
+                                        <td>Description</td>
+                                    </tr>
+                                    <tr>
+                                        <td><img title="Class" src="resources/Icons/pubfield.gif"></td>
+                                        <td>Name</td>
+                                        <td>Description</td>
+                                    </tr>
+                                </table>
+                            </td>
                         </tr>
                         <tr id="Inheritance Hierarchy">
-
+                            <td>
+                                <a class='header icon'>Inheritance Hierarchy</a>
+                                <ul class="Tree children">
+                                    <li>
+                                        <a>Test1</a>
+                                        <ul id="Tree-Children">
+                                            <li><a>Test2</a></li>
+                                        </ul>
+                                    </li>
+                                    
+                                </ul>
+                            </td>
                         </tr>
                         <tr id="Syntax">
-
+                            <td>
+                                <a class='header icon'>Syntax</a>
+                                <table class="children">
+                                    <tr>
+                                        <td>Lua</td>
+                                    </tr>
+                                    <tr>
+                                        <td id="Code">
+                                            Code
+                                        </td>
+                                    </tr>
+                                    <tr id="Returns">
+                                        <td>
+                                            <ul>
+                                                <li class="subheader">Returns</li>
+                                                <li>Type: Object</li>
+                                                <li>Description</li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
                         </tr>
                         <tr id="See Also">
-
+                            <td>
+                                <a class='header icon'>See Also</a>
+                                <ul id="see-also" class="children">
+                                    <li title='Turbine'>
+                                        <span id="link">
+                                            <a class='Children icon icon-blackbox'>Turbine</a>
+                                        </span>
+                                    </li>
+                                </ul>
+                            </td>
                         </tr>
                     </table>
                 </td>
@@ -176,6 +227,36 @@
 
                 
                 
+            }
+            
+
+            var buttons = document.getElementsByClassName("icon");
+            var SelectAll = document.getElementById("CollapseAll")
+
+
+            SelectAll.addEventListener('click', function(){
+                SelectAll.classList.toggle("icon-Children")
+                for (i=0; i < buttons.length; i++){
+                    buttons[i].classList.toggle("icon-Children")
+                    var children = buttons[i].parentElement.parentElement.querySelector(".children")
+                    console.log(children)
+                    if (children){
+                        children.classList.toggle('nested')
+                    }
+                }
+            })
+            
+
+            for (i=0; i < buttons.length; i++){
+                buttons[i].addEventListener('click', function(){
+                    this.classList.toggle("icon-Children")
+                    var children = this.parentElement.parentElement.querySelector(".children")
+                    console.log(children)
+                    if (children){
+                        children.classList.toggle('nested')
+                    }
+                    
+                })
             }
             
 
