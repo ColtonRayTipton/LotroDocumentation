@@ -20,10 +20,28 @@ var data = `{
         },
         "Children": {
             "Chat": {
-                "Title": "Chat Class",
+                "Title": "Chat",
                 "Remarks": "This is a class used to get messages",
                 "Events": {
-                    "Received": "This event is fired whenever a chat message is received."
+                    "Received": {
+                        "Title": "Received",
+                        "Description": "This event is fired whenever a chat message is received.",
+                        "Remarks": "This event is fired whenever any chat message is received from the game or other users. The arguments for this event will contain a combination of a Sender, a ChatType, and the Message itself. The ChatType enumeration can be used to determine what kind of message was received.",
+                        "Syntax": {
+                            "Function": "function Turbine.Engine.GetGameTime();",
+                            "Returns": [
+                                "number",
+                                "Returns a relative game time in seconds."
+                            ]
+                        },
+                        "Examples": {
+                            "Description": "This example demonstrates using GetGameTime to calculate the delta time over multiple updates for performing animations."
+                        },
+                        "See Also": [
+                            "Engine",
+                            "Turbine"
+                        ]
+                    }
                 },
                 "Inheritance Hierarchy": [
                     {"1": "Turbine.Object"},
@@ -37,49 +55,85 @@ var data = `{
                 }
             },
             "Engine": {
-                "Title": "Engine Class",
+                "Title": "Engine",
                 "Description": "Provides engine level information to user plugins.",
                 "Remarks": "The engine class provides information about the current state of the game engine.",
                 "Methods": {
-                    "Name": {
-                        "Title": "Title",
-                        "Description": "Description",
-                        "Remarks": "Remarks",
+                    "GetCallStack": {
+                        "Title": "GetCallStack",
+                        "Description": "Gets the current callstack",
+                        "Remarks": "This method is equivalent to debug.traceback, return the callback",
                         "Syntax": {
-                            "Returns": [
-                                "Type",
-                                "Description"
-                            ],
+                            "Function": "function Turbine.Engine.GetCallStack([thread,][message [, level]])",
                             "Parameters": {
-                                "sender": [
-                                    "Type",
-                                    "Description"
-                                ]
-                            }
+                                "thread": {
+                                    "Type": "thread",
+                                    "Description": "The thread which get call stack"
+                                },
+                                "message": {
+                                    "Type": "string",
+                                    "Description": "An optional 'message' string that is appended at the beginning of the traceback"
+                                },
+                                "level": {
+                                    "Type": "integer",
+                                    "Description": "An optional 'level' number tells at which level to start the traceback (default is 1, the function calling 'traceback'"
+                                }
+                            },
+                            "Returns": [
+                                "string",
+                                "The current callstack"
+                            ]
                         },
                         "See Also": [
+                            "Engine",
+                            "Turbine"
+                        ]
+                    },
+                    "GetDate": {
+                        "Title": "GetDate",
+                        "Description": "Gets the current date",
+                        "Remarks": "Gets the current date",
+                        "Syntax": {
+                            "Function": "function Turbine.Engine.GetDate();",
+                            "Returns": [
+                                "Object",
+                                "Returns a table containing information about the current date. The following fields are available: Year, Month, Day, Hour, Minute, Second, DayOfWeek, DayOfYear, and IsDST."
+                            ]
+                        },
+                        "See Also": [
+                            "Engine",
+                            "Turbine"
+                        ]
+                    },
+                    "GameTime": {
+                        "Title": "GameTime",
+                        "Description": "Gets the current relative game time.",
+                        "Remarks": "Gets the current game time as a relative value that can be used for delta time processing.",
+                        "Syntax": {
+                            "Function": "function Turbine.Engine.GetGameTime();",
+                            "Returns": [
+                                "number",
+                                "Returns a relative game time in seconds."
+                            ]
+                        },
+                        "Examples": {
+                            "Description": "This example demonstrates using GetGameTime to calculate the delta time over multiple updates for performing animations.",
+                            "Code": [
+                                "local currentGameTime = Turbine.Engine.GetGameTime();",
+                                "local delta = currentGameTime - previousGameTime;",
+                                "previousGameTime = currentGameTime;",
+                                "",
+                                "-- Performing a translation from one position to another over a 5",
+                                "-- second period.",
+                                "self:SetLeft( self.startLeft + ( self.endLeft - self.StartLeft ) * ( delta / 5 ) );"                
+                            ]
+                        },
+                        "See Also": [
+                            "Engine",
                             "Turbine"
                         ]
                     }
-                },
-                "Inheritance Hierarchy": [
-                    {"1": "Turbine.Engine"}
-                ],
-                "Syntax": {
-                    "Returns": [
-                        "Type",
-                        "Description"
-                    ],
-                    "Parameters": {
-                        "sender": [
-                            "Type",
-                            "Description"
-                        ]
-                    }
-                },
-                "See Also": [
-                    "Turbine"
-                ]
+                }
             },
             "Example": {
                 "Title": "Turbine Package",

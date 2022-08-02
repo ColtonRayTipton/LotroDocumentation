@@ -12,8 +12,6 @@
         <script
         src="https://code.jquery.com/jquery-3.6.0.js"
         crossorigin="anonymous"></script>
-        <script src="resources/js/splitter.js" type="text/javascript"></script>
-        <script src="resources/js/main.js" type="text/javascript"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch-jsonp/1.0.6/fetch-jsonp.min.js"></script>
         <script src="resources/json/tree.js" type="text/javascript"></script>
     </head>
@@ -45,57 +43,59 @@
         
   
         function addChildren(table, parent, type){
-
-            type = type || parent == "Methods" ? "Methods" : "Children"
-
             $.each(table, (key, value) => {
-                if ($.inArray(key, BlackList) < 0 && Object.keys(value).length > 0){
-
+                if (parent != "Events" ? $.inArray(key, BlackList) < 0 : true){
                     li = $(`<li id='`+key+`'>
                         <span id="link">
                             <a class='Children' href="#`+key+`">
-                                <span class="icon icon-`+type+`"></span>
-                                <span>`+key+`</span>
+                                <span class="icon icon-Children"></span>
+                                `+key+`
                             </a>
                             </span>
-                        <li id="`+key+`-children" class="nested"></li>
+                        <ul id="`+key+`-children" class="children nested"></ul>
                     </li>`)
 
                     li2 = $(`<li id='`+key+`'>
                         <span id="link">
                             <a href="#`+key+`">
-                                <span class="icon icon-`+type+`"></span>
-                                <span>`+key+`</span>
+                                <span class="icon icon-Methods"></span>
+                                `+key+`
+                            </a>
                             </span>
                     </li>`)
 
                     if (parent == key){
                         $(".Tree").append(li)
+                        var child = document.getElementById(key)
+                        child.childNodes[3].classList.remove("nested")
+                        child.childNodes[1].childNodes[1].childNodes[1].classList.toggle("icon-Children")
                         addChildren(value, key)
-                    }else if (value.constructor == Object){
+                    }else if (value.constructor == Object && parent != "Methods" && parent != "Events"){
                         $("#"+parent+"-children").append(li)
                         addChildren(value, key)
-                    }else if (type == "Enumerations" || type == "Methods"){
+                    }else{
                         $("#"+parent+"-children").append(li2)
                     }
                 }
 
-                if (key == "Children" || key == "Enumerations"){
+                if (key == "Children" || key == "Enumerations" || key == "Events"){
+                    //console.log(key, value)
                     addChildren(value, parent, key)
                 }
             })
         }
 
         addChildren(data, "Turbine")
-
-
         
-        $(".Children").click(()=>{
+        var buttons = document.getElementsByClassName("Children");
 
-            $(this).parent().children(".nested").toggleClass("active")
-            $(this).children(".icon").toggleClass("icon-Children")
+        for (i=0; i < buttons.length; i++){
+            buttons[i].addEventListener('click', function(){
+                this.parentElement.parentElement.querySelector(".children").classList.toggle('nested')
+                this.childNodes[1].classList.toggle("icon-Children")
+            })
+        }
 
-        })
         </script>
         
     </body>

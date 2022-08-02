@@ -20,7 +20,7 @@ body {
 
 .frame#sidebar {
     max-width: 50vw;
-    min-width: 15vw;
+    min-width: 20vw;
     overflow: auto;
     font-family: verdana, arial, sans-serif;
     font-size: 8.5pt;
@@ -54,13 +54,12 @@ ul {
 }
 
 .Tree ul {
-    min-height: 20px;
     height: 100%;
     width: 100%;
 }
 
 .Tree li {
-    height: 20px;
+    height: max-content;
     min-width: max-content;
     padding-left: 15px;
     display: block;
@@ -81,30 +80,22 @@ ul {
     black;
     text-decoration:
     none;
-    padding-left:25px;
+    padding-left: 25px;
     width: calc(100% - 25px);
     cursor: pointer;
     display: block;
-    height: 100%;
-    text-align: left;
+    line-height: 18px;
 }
-
-.Tree a span {vertical-align: middle;}
 
 .icon {
     margin-left: 15px;
     width: 10px;
-    padding-right: 2px;
     display: inline-block;
     height: 100%;
 }
 
-.icon::after {
-    vertical-align: middle;
-}
-
-.icon-Open:before {
-    background: url('../Icons/Expanded.gif');
+.icon-Children:before {
+    background: url('../Icons/Collapsed.gif') !important;
 }
 
 .icon-Enumerations:before, .icon-Methods:before {
@@ -113,14 +104,14 @@ ul {
 
 .icon:before {
     content: '';
-    background: url('../Icons/Collapsed.gif');
+    background: url('../Icons/Expanded.gif');
     width: 10px;
     height: 10px;
     background-size: cover;
-    display: inline-block;
     text-align: center;
-    margin-top: 5px;
-    vertical-align: middle;
+    display: block;
+    margin-top: -9px;
+    position: absolute;
 }
 
 .nested {
