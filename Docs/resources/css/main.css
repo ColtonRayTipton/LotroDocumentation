@@ -103,16 +103,17 @@ ul {
     vertical-align: middle;
 }
 
-.icon-Children:before {
-    background: url('../Icons/Collapsed.gif');
+.icon-Open:before {
+    background: url('../Icons/Expanded.gif');
 }
 
-.icon-Enumerations:before {
-    background: url('../Icons/Item.gif');
+.icon-Enumerations:before, .icon-Methods:before {
+    background: url('../Icons/Item.gif') !important;
 }
 
 .icon:before {
     content: '';
+    background: url('../Icons/Collapsed.gif');
     width: 10px;
     height: 10px;
     background-size: cover;

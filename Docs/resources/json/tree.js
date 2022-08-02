@@ -63,7 +63,7 @@ var data = `{
                     }
                 },
                 "Inheritance Hierarchy": [
-                    {"1": "Turbine.Engine"},
+                    {"1": "Turbine.Engine"}
                 ],
                 "Syntax": {
                     "Returns": [

@@ -41,20 +41,19 @@
             "Syntax",
             "Returns",
             "Children",
-            "Methods"
         ]
         
   
         function addChildren(table, parent, type){
 
-            type = type || "Children"
+            type = type || parent == "Methods" ? "Methods" : "Children"
 
             $.each(table, (key, value) => {
                 if ($.inArray(key, BlackList) < 0 && Object.keys(value).length > 0){
 
                     li = $(`<li id='`+key+`'>
                         <span id="link">
-                            <a href="#`+key+`">
+                            <a class='Children' href="#`+key+`">
                                 <span class="icon icon-`+type+`"></span>
                                 <span>`+key+`</span>
                             </a>
@@ -67,7 +66,6 @@
                             <a href="#`+key+`">
                                 <span class="icon icon-`+type+`"></span>
                                 <span>`+key+`</span>
-                            </a>
                             </span>
                     </li>`)
 
@@ -82,13 +80,22 @@
                     }
                 }
 
-                if (key == "Children" || key == "Enumerations" || key == "Methods"){
+                if (key == "Children" || key == "Enumerations"){
                     addChildren(value, parent, key)
                 }
             })
         }
 
         addChildren(data, "Turbine")
+
+
+        
+        $(".Children").click(()=>{
+
+            $(this).parent().children(".nested").toggleClass("active")
+            $(this).children(".icon").toggleClass("icon-Children")
+
+        })
         </script>
         
     </body>
