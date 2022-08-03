@@ -23,7 +23,7 @@ var data = `{
             "PluginManager": "Provides access to plugin management methods.",
             "Shell": "Provides programmer extensibility to the chat window.",
             "ShellCommand": "A command that can be register for use in the chat window."
-        },
+        }, 
         "Enumerations": {
             "ChatType": {
                 "Description": "Defines the type of chat data.",
