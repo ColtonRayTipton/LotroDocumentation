@@ -40,8 +40,8 @@
             </tr>
             <tr>
                 <td id="body">
-                    <table>
-                        <tr>
+                    <table id="body-content">
+                        <tr id="Description">
                             <td id="Description">Description</td>
                         </tr>
                         <tr id="Classes">
@@ -63,6 +63,37 @@
                                     </tr>
                                     <tr>
                                         <td><img title="Class" src="resources/Icons/pubclass.gif"></td>
+                                        <td>Name</td>
+                                        <td>Description</td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr id="Methods">
+                            <td>
+                                <a class='header icon'>Classes</a>
+                                <table class="children">
+                                    <colgroup>
+                                        <col width="25px">
+                                    </colgroup>
+                                    <tr>
+                                        <th></th>
+                                        <th>Name</th>
+                                        <th>Description</th>
+                                    </tr>
+                                    <tr id="icon-two">
+                                        <td>
+                                            <img title="Static" src="resources/Icons/static.gif">
+                                            <img title="Method" src="resources/Icons/pubmethod.gif">
+                                        </td>
+                                        <td>Name</td>
+                                        <td>Description</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <img title="Class" src="resources/Icons/static.gif">
+                                            <img title="Class" src="resources/Icons/pubmethod.gif">
+                                        </td>
                                         <td>Name</td>
                                         <td>Description</td>
                                     </tr>
@@ -135,7 +166,7 @@
                                 <a class='header icon'>Syntax</a>
                                 <table class="children">
                                     <tr>
-                                        <td>Lua</td>
+                                        <td id="Title">Lua</td>
                                     </tr>
                                     <tr>
                                         <td id="Code">
@@ -145,14 +176,35 @@
                                     <tr id="Returns">
                                         <td>
                                             <ul>
-                                                <li class="subheader">Returns</li>
-                                                <li>Type: Object</li>
-                                                <li>Description</li>
+                                                <li id="Title" class="subheader">Returns</li>
+                                                <li id="Type">Type: Object</li>
+                                                <li id="Description">Description</li>
                                             </ul>
                                         </td>
                                     </tr>
                                 </table>
                             </td>
+                        </tr>
+                        <tr id="Examples">
+                            <td>
+                                <a class='header icon'>Examples</a>
+                                <table class="children">
+                                    <tr>
+                                        <td id="Description" style="background-color: transparent; border: 0;">Description</td>
+                                    </tr>
+                                    <tr>
+                                        <td id="Title" style="font-weight: bold; background-color: #EFEFF7;">Title</td>
+                                    </tr>
+                                    <tr>
+                                        <td id="Code">
+                                            Code
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr id="Remarks">
+                            <td id="Description">Description</td>
                         </tr>
                         <tr id="See Also">
                             <td>
@@ -163,6 +215,13 @@
                                             <a class='Children icon icon-blackbox'>Turbine</a>
                                         </span>
                                     </li>
+                                    <ul id="see-also" class="children">
+                                        <li title='Turbine'>
+                                            <span id="link">
+                                                <a class='Children icon icon-blackbox'>Turbine</a>
+                                            </span>
+                                        </li>
+                                    </ul>
                                 </ul>
                             </td>
                         </tr>
@@ -225,25 +284,65 @@
                     $("#Title").text(type + " " + parent)
                 }
 
+
+                $("#body-content > tbody > tr").each((index, value)=>{
+                    element = $(value)
+                    element.hide()
+                    $.each(info, (key, value)=>{
+                        console.log(key, value)
+                        if (key == element.attr('id')){
+                            element.show()
+                        }
+                    })
+                })
                 
                 
             }
-            
+
+
+
+
+
+
+
+
+
+
+
+            // SELECT ALL AND BUTTON HANDLER
 
             var buttons = document.getElementsByClassName("icon");
             var SelectAll = document.getElementById("CollapseAll")
 
 
+            function collapseButtons(button){
+                button.classList.add("icon-Children")
+                var children = button.parentElement.parentElement.querySelector(".children")
+                console.log(children)
+                if (children){
+                    children.classList.add('nested')
+                }
+            }
+
+            function expandButtons(button){
+                button.classList.remove("icon-Children")
+                var children = button.parentElement.parentElement.querySelector(".children")
+                console.log(children)
+                if (children){
+                    children.classList.remove('nested')
+                }
+            }
+            
             SelectAll.addEventListener('click', function(){
                 SelectAll.classList.toggle("icon-Children")
                 for (i=0; i < buttons.length; i++){
-                    buttons[i].classList.toggle("icon-Children")
-                    var children = buttons[i].parentElement.parentElement.querySelector(".children")
-                    console.log(children)
-                    if (children){
-                        children.classList.toggle('nested')
+                    if ($(SelectAll).text() == "Collapse All"){
+                        collapseButtons(buttons[i])
+                    }else if ($(SelectAll).text() == "Expand All"){
+                        expandButtons(buttons[i])
                     }
                 }
+                $(SelectAll).text($(this).text() == "Collapse All" ? "Expand All" : "Collapse All")
             })
             
 
@@ -251,7 +350,6 @@
                 buttons[i].addEventListener('click', function(){
                     this.classList.toggle("icon-Children")
                     var children = this.parentElement.parentElement.querySelector(".children")
-                    console.log(children)
                     if (children){
                         children.classList.toggle('nested')
                     }

@@ -274,9 +274,7 @@ table {
     background-color: #F7F7FF;
 }
 
-#body > table table tr td:first-child {
-    width: 25px;
-}
+#body > table table tr td:first-child {width: 10px;}
 #body > table table tr th:first-child {
     width: 25px;
 }
@@ -304,10 +302,22 @@ table {
 }
 
 #body #see-also {
-    margin-top: 5px;
+    margin-top: 1vh;
+    margin-left: 4vh;
 }
 
 #body #see-also a {
     width: 100%;
     height: max-content;
+}
+
+#body #see-also .icon:before {
+    margin-right: 0;
+    margin-bottom: 0;
+}
+
+#icon-two tr td:first-child { width: 40px !important; }
+
+#icon-two td > img {
+    display: inline-block !important;
 }

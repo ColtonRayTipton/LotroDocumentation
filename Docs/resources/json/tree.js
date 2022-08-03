@@ -126,6 +126,7 @@ var data = `{
                         },
                         "Examples": {
                             "Description": "This example demonstrates using GetGameTime to calculate the delta time over multiple updates for performing animations.",
+                            "Title": "Calculating Delta Time",
                             "Code": [
                                 "local currentGameTime = Turbine.Engine.GetGameTime();",
                                 "local delta = currentGameTime - previousGameTime;",
@@ -172,6 +173,19 @@ var data = `{
                             "Description"
                         ]
                     }
+                },
+                "Examples": {
+                    "Description": "This example demonstrates using GetGameTime to calculate the delta time over multiple updates for performing animations.",
+                    "Title": "Calculating Delta Time",
+                    "Code": [
+                        "local currentGameTime = Turbine.Engine.GetGameTime();",
+                        "local delta = currentGameTime - previousGameTime;",
+                        "previousGameTime = currentGameTime;",
+                        "",
+                        "-- Performing a translation from one position to another over a 5",
+                        "-- second period.",
+                        "self:SetLeft( self.startLeft + ( self.endLeft - self.StartLeft ) * ( delta / 5 ) );"                
+                    ]
                 },
                 "See Also": [
                     "Chat",
