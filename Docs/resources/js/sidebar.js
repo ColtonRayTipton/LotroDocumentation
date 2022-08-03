@@ -22,7 +22,7 @@ function myFunction(id) {
     $("#content").attr('src', 'content.html?type='+id)
 }
 
-function addChildren(table, parent, type){
+function addChildren(table, parent, childParent){
     $.each(table, (key, value) => {
         if (parent != "Events" ? $.inArray(key, BlackList) < 0 : true){
             li = $(`<li title='`+key+`' id='`+key+`'>
@@ -44,17 +44,22 @@ function addChildren(table, parent, type){
                 child.childNodes[3].classList.remove("nested")
                 child.childNodes[1].childNodes[1].classList.toggle("icon-Children")
                 addChildren(value, key)
-            }else if (value.constructor == Object && parent != "Methods" && parent != "Events"){
+            }else if (value.constructor == Object && parent != "Enumerations" && parent != "Methods" && parent != "Events"){
                 $("#"+parent+"-children").append(li)
                 addChildren(value, key)
-            }else{
+            } else if (childParent) {
+                $("#"+childParent+"-children").append(li2)
+            } else {
                 $("#"+parent+"-children").append(li2)
             }
         }
 
-        if (key == "Children" || key == "Enumerations" || key == "Events"){
+        if (key == "Children" || key == "Events"){
             //console.log(key, value)
             addChildren(value, parent, key)
+        }
+        if (key == "Enumerations"){
+            addChildren(value, key, parent)
         }
     })
 }

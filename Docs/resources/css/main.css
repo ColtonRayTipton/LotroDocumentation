@@ -7,6 +7,11 @@ body {
     color: #000000;
 }
 
+a {
+    text-decoration: none;
+    color: black;
+}
+
 a:hover {
     color:rgb(0 0 0 / 50%) !important;
     cursor: pointer;
@@ -29,7 +34,7 @@ a:hover {
 
 .frame#sidebar {
     max-width: 50vw;
-    min-width: 15vw;
+    min-width: 100px;
     overflow: auto;
     font-family: verdana, arial, sans-serif;
     font-size: 8.5pt;
@@ -55,7 +60,7 @@ ul {
 .Tree {
     height: 100%;
     min-width: max-content;
-    margin-left: -5vw;
+    margin-left: -50px;
 }
 
 .Tree ul {
@@ -65,7 +70,6 @@ ul {
 
 .Tree li {
     height: max-content;
-    min-width: max-content;
     padding-left: 15px;
     display: block;
 }
@@ -85,14 +89,10 @@ ul {
     padding-left: 25px;
     color: black;
     height: max-content;
-    width: calc(100% - 25px);
+    width: calc(100% - 40px);
     cursor: pointer;
     display: block;
     line-height: 18px;
-}
-
-.Tree a:hover {
-    color: black !important;
 }
 
 .icon {
@@ -209,15 +209,15 @@ table {
 .CollapseContent .icon:before {position: absolute;}
 
 /** #BODY DIV **/
+
 #body table {
     width: 100%;
-    height: 100%;
 }
 
 #body .icon {
     width: 100%;
     margin-left: 0;
-    height: m;
+    height: max-content;
 }
 
 #body .icon:before {
@@ -238,17 +238,19 @@ table {
     color: initial;
 }
 
-#body > table tr {display: table;width: 100%;}
+#body > table tr {width: 100%;}
 
 #body > table > tbody > tr {
-    padding-bottom: 5vh;
+    display: table;
+    padding-bottom: 4vh;
+}
+
+#body .children {
+    padding-top: 2vh;
 }
 
 #body > table table {
-    width: calc(100% - 4vh);
-    margin-top: 2vh;
-    margin-left: 4vh;
-    height: max-content;
+    width: calc(100% - 4vw);
     text-align: left;
     border: none;
     box-sizing: border-box;
@@ -258,32 +260,38 @@ table {
 
 #body > table table tr {
     vertical-align: middle;
+    /* text-indent: 2vw; */
+    padding-left: 2vw;
 }
 
 #body > table table tr img {
-    display: block;
     margin-left: auto;
     margin-right: auto;
+    display: block;
+}
+
+#body > table table tr td:first-child {width: 25px;}
+#body > table table tr th:first-child {
+    width: 25px;
+    padding: 5px;
 }
 
 #body > table table tr th {
     height: 15px;
-    padding: 5px;
     border-bottom: 1px solid #D5D5D3;
     border-left: 1px none #D5D5D3;
     background-color: #F7F7FF;
-}
-
-#body > table table tr td:first-child {width: 10px;}
-#body > table table tr th:first-child {
-    width: 25px;
+    padding-left: 2vw;
+    padding-right: 2vw;
 }
 
 #body > table table tr td {
-    padding: 5px;
     border-bottom: 1px solid #D5D5D3;
     border-left: 1px none #D5D5D3;
     background-color: #F7F7FF;
+    padding: 5px;
+    padding-left: 2vw;
+    padding-right: 2vw;
 }
 
 #body #Syntax table tr:nth-child(1) td:nth-child(1){
@@ -291,9 +299,13 @@ table {
     font-weight: bold;
 }
 
-#body #Returns td {
+#body #Returns td, #body #Parameters td {
     background-color: transparent;
     border: none;
+}
+
+#body #Parameters td {
+    padding-top: 3vh;
 }
 
 #body #Returns li:nth-child(2), #body #Returns li:nth-child(3){
@@ -301,9 +313,9 @@ table {
     margin-top: 5px;
 }
 
-#body #see-also {
-    margin-top: 1vh;
-    margin-left: 4vh;
+#body #see-also ul{
+    margin: 0;
+    margin-left: 15px;
 }
 
 #body #see-also a {
@@ -316,8 +328,34 @@ table {
     margin-bottom: 0;
 }
 
-#icon-two tr td:first-child { width: 40px !important; }
+#body #SeeAlso .children {
+    padding-top: 1vh !important;
+    background: transparent !important;
+    border: 0 !important;
+}
 
-#icon-two td > img {
+#body #InheritanceHierarchy .children {
+    padding-top: 1vh !important;
+    background: transparent !important;
+    border: 0 !important;
+    padding-left: 2px;
+}
+
+#body-content > tbody > tr:nth-child(1) {
+    height: 100%;
+    width: 100%;
+    line-height: 10vh;
+    padding-bottom: 0;
+}
+
+.icon-two:first-child, .icon-two th:first-child {
+    text-indent: 0; width: 40px !important;
+}
+
+.icon-two tr td:nth-child(1) {
+    text-indent: 0;
+}
+
+.icon-two tr td img {
     display: inline-block !important;
 }

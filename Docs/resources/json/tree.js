@@ -11,6 +11,7 @@ var data = `{
     },
     "Turbine": {
         "Title": "Turbine Package",
+        "Description": "The core Turbine API package.",
         "Remarks": "The Turbine package provides access to core game functionality.",
         "Classes": {
             "Chat": "This class provides events for when messages are received through the game. This includes player chat, tells, in game messages, and announcements.",
@@ -24,20 +25,44 @@ var data = `{
             "ShellCommand": "A command that can be register for use in the chat window."
         },
         "Enumerations": {
-            "ChatType": "Defines the type of chat data.",
-            "DataScope": "Defines the scope of plugin data.",
-            "Language": "Defines the client languages."
+            "ChatType": {
+                "Description": "Defines the type of chat data.",
+                "Fields": {
+                    "Name": "Description"
+                },
+                "See Also": [
+                    "Turbine"
+                ]     
+            },
+            "DataScope": {
+                "Description": "Defines the scope of plugin data.",
+                "Fields": {
+                    "Name": "Description"
+                },
+                "See Also": [
+                    "Turbine"
+                ]     
+            },
+            "Language": {
+                "Description": "Defines the client languages.",
+                "Fields": {
+                    "Name": "Description"
+                },
+                "See Also": [
+                    "Turbine"
+                ]     
+            }
         },
         "Children": {
             "Chat": {
+                "Description": "This class provides events for when messages are received through the game. This includes player chat, tells, in game messages, and announcements.",
                 "Remarks": "This is a class used to get messages",
                 "Events": {
                     "Received": {
-                        "Title": "Received",
                         "Description": "This event is fired whenever a chat message is received.",
                         "Remarks": "This event is fired whenever any chat message is received from the game or other users. The arguments for this event will contain a combination of a Sender, a ChatType, and the Message itself. The ChatType enumeration can be used to determine what kind of message was received.",
                         "Syntax": {
-                            "Function": "function Turbine.Engine.GetGameTime();",
+                            "Function": "function Chat:Recieved(sender, args)\n\nend",
                             "Returns": [
                                 "number",
                                 "Returns a relative game time in seconds."
@@ -53,8 +78,8 @@ var data = `{
                     }
                 },
                 "Inheritance Hierarchy": [
-                    {"1": "Turbine.Object"},
-                    {"2": "Turbine.Chat"}
+                    "Turbine.Object",
+                    "Turbine.Chat"
                 ],
                 "See Also": [
                     "Turbine"
@@ -68,7 +93,6 @@ var data = `{
                 "Remarks": "The engine class provides information about the current state of the game engine.",
                 "Methods": {
                     "GetCallStack": {
-                        "Title": "GetCallStack",
                         "Description": "Gets the current callstack",
                         "Remarks": "This method is equivalent to debug.traceback, return the callback",
                         "Syntax": {
@@ -98,7 +122,6 @@ var data = `{
                         ]
                     },
                     "GetDate": {
-                        "Title": "GetDate",
                         "Description": "Gets the current date",
                         "Remarks": "Gets the current date",
                         "Syntax": {
@@ -114,7 +137,6 @@ var data = `{
                         ]
                     },
                     "GameTime": {
-                        "Title": "GameTime",
                         "Description": "Gets the current relative game time.",
                         "Remarks": "Gets the current game time as a relative value that can be used for delta time processing.",
                         "Syntax": {
@@ -142,7 +164,13 @@ var data = `{
                             "Turbine"
                         ]
                     }
-                }
+                },
+                "Inheritance Hierarchy": [
+                    {"Spaces": "Parent.Child"},
+                    {"1": "Turbine.Object"},
+                    {"2": "Turbine.Chat"},
+                    {"2": "Turbine.Gameplay.Backpack"}
+                ]
             },
             "Example": {
                 "Description": "The core Turbine API package.",
