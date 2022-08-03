@@ -147,13 +147,13 @@ var data = `{
                             "Description": "This example demonstrates using GetGameTime to calculate the delta time over multiple updates for performing animations.",
                             "Title": "Calculating Delta Time",
                             "Code": [
-                                "        local currentGameTime = Turbine.Engine.GetGameTime();",
-                                "        local delta = currentGameTime - previousGameTime;",
-                                "        previousGameTime = currentGameTime;",
-                                "     ",
-                                "        -- Performing a translation from one position to another over a 5",
-                                "        -- second period.",
-                                "        self:SetLeft( self.startLeft + ( self.endLeft - self.StartLeft ) * ( delta / 5 ) );"
+                                "local currentGameTime = Turbine.Engine.GetGameTime();",
+                                "local delta = currentGameTime - previousGameTime;",
+                                "previousGameTime = currentGameTime;",
+                                "",
+                                "-- Performing a translation from one position to another over a 5",
+                                "-- second period.",
+                                "self:SetLeft( self.startLeft + ( self.endLeft - self.StartLeft ) * ( delta / 5 ) );"
                             ]
                         },
                         "See Also": [
@@ -163,10 +163,10 @@ var data = `{
                     }
                 },
                 "Inheritance Hierarchy": [
-                    {"Spaces": "Parent.Child"},
-                    {"1": "Turbine.Object"},
-                    {"2": "Turbine.Chat"},
-                    {"2": "Turbine.Gameplay.Backpack"}
+                    "Parent.Child",
+                    "Turbine.Object",
+                    "Turbine.Chat",
+                    "Turbine.Gameplay.Backpack"
                 ]
             },
             "Example": {

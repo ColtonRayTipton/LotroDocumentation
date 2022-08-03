@@ -26,7 +26,7 @@
                     <table>
                         <tr>
                             <td>
-                                <a href="#Packages">Index</a>
+                                <a href="?type=Packages">Index</a>
                                 <a id='CollapseAll' class="icon-selectall">Collapse All</a>
                             </td>
                         </tr>
@@ -44,6 +44,28 @@
                     <table id="body-content">
                         <tr id="Description">
                             <td>Description</td>
+                        </tr>
+                        <tr id="Packages">
+                            <td>
+                                <a class='header icon'>Packages</a>
+                                <table class="children">
+                                    <tr>
+                                        <th></th>
+                                        <th>Name</th>
+                                        <th>Description</th>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Name</td>
+                                        <td>Description</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Name</td>
+                                        <td>Description</td>
+                                    </tr>
+                                </table>
+                            </td>
                         </tr>
                         <tr id="Classes">
                             <td>
@@ -216,7 +238,7 @@
                                 <a class='header icon'>Examples</a>
                                 <table class="children">
                                     <tr>
-                                        <td id="Description" style="background-color: transparent; border: 0;">Description</td>
+                                        <td id="Description" style="background-color: transparent; border: 0; padding-left: 14px;">Description</td>
                                     </tr>
                                     <tr>
                                         <td id="Title" style="font-weight: bold; background-color: #EFEFF7;"><span>Title</span> <a id="copyToClipboard" class="icon icon-copy">Copy Code</a></td>
@@ -366,6 +388,30 @@
                     $("#Title").text(parent + " " + type)
                 } else {
                     $("#Title").text(type + " " + parent)
+                }
+
+                function Packages(data, parent){
+                    var element = $("#body-content #"+parent+" .children")
+                    element.empty()
+                    element.append(`
+                        <tr>
+                            <th></th>
+                            <th title="Name">Name</th>
+                            <th title="Description">Description</th>
+                        </tr>
+                    `)
+                    insertHtml = function(key, value){
+                        return element.append(`
+                            <tr>
+                                <td></td>
+                                <td><a href='?type=`+key+`'>`+key+`</a></td>
+                                <td>`+value+`</td>
+                            </tr>
+                            `)
+                    }
+
+                    $.each(data, (key, value) => insertHtml(key, value))
+
                 }
 
                 function Classes(data, parent){
@@ -561,6 +607,9 @@
                             break;
                         case "Classes":
                             Classes(value, key)
+                            break;
+                        case "Packages":
+                            Packages(value, key)
                             break;
                         case "Methods":
                             Methods(value, key)

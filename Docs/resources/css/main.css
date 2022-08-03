@@ -255,7 +255,7 @@ table {
 }
 
 #body .children {
-    padding-top: 2vh;
+    padding-top: 1vh;
     width: calc(100% - 2vw);
     padding-left: 2vw;
 }
@@ -325,7 +325,7 @@ table {
 }
 
 #body #see-also ul{
-    margin: 0;
+    margin: 5px;
 }
 
 #body #see-also a {
@@ -339,7 +339,7 @@ table {
 }
 
 #body #SeeAlso .children {
-    padding-top: 1vh !important;
+    padding: 0vh 0px 0px 2vh !important;
     background: transparent !important;
     border: 0 !important;
 }
