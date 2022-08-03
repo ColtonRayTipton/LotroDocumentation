@@ -117,14 +117,23 @@ ul {
     background: url('../Icons/Item.gif') !important;
 }
 
+.icon-copy:before {
+    background: url('../Icons/copycode.gif') !important;
+    height: 15px !important;
+    width: 15px !important;
+    margin: -2px 0 0 -18px !important;
+    vertical-align: baseline;
+    display: block !important;
+    position: absolute;
+}
+
 .icon:before {
     content: '';
     background: url('../Icons/Expanded.gif');
-    width: 10px;
+    width: 9px;
     text-align: center;
     display: inline-block;
     height: 9px;
-    margin-right: 2px;
 }
 
 .icon-selectall:before {
@@ -247,6 +256,8 @@ table {
 
 #body .children {
     padding-top: 2vh;
+    width: calc(100% - 2vw);
+    padding-left: 2vw;
 }
 
 #body > table table {
@@ -260,7 +271,6 @@ table {
 
 #body > table table tr {
     vertical-align: middle;
-    /* text-indent: 2vw; */
     padding-left: 2vw;
 }
 
@@ -306,6 +316,7 @@ table {
 
 #body #Parameters td {
     padding-top: 3vh;
+    padding-left: 0;
 }
 
 #body #Returns li:nth-child(2), #body #Returns li:nth-child(3){
@@ -315,7 +326,6 @@ table {
 
 #body #see-also ul{
     margin: 0;
-    margin-left: 15px;
 }
 
 #body #see-also a {
@@ -358,4 +368,21 @@ table {
 
 .icon-two tr td img {
     display: inline-block !important;
+}
+
+#Parameters li#Parameter{
+    padding-top: 5px;
+}
+
+#body #Returns td {
+    padding-left: 0 !important;
+}
+
+#Syntax li:not(:nth-child(1)){
+    padding-left: 1vw;
+}
+
+#Examples #Title a {
+    float: right;
+    width: max-content !important;
 }

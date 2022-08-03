@@ -195,10 +195,7 @@
                                     <tr id="Parameters">
                                         <td>
                                             <ul>
-                                                <li id="Title" class="subheader">Parameters</li>
-                                                <li style="font-style: italic;">arguments</li>
-                                                <li id="Type">Type: (Unrecognized)</li>
-                                                <li id="Description">Description</li>
+                                                
                                             </ul>
                                         </td>
                                     </tr>
@@ -222,7 +219,7 @@
                                         <td id="Description" style="background-color: transparent; border: 0;">Description</td>
                                     </tr>
                                     <tr>
-                                        <td id="Title" style="font-weight: bold; background-color: #EFEFF7;">Title</td>
+                                        <td id="Title" style="font-weight: bold; background-color: #EFEFF7;"><span>Title</span> <a id="copyToClipboard" class="icon icon-copy">Copy Code</a></td>
                                     </tr>
                                     <tr>
                                         <td id="Code">
@@ -287,6 +284,29 @@
 
         <script type="text/javascript">
 
+            jQuery.fn.selectText = function(){
+                this.find('input').each(function() {
+                    if($(this).prev().length == 0 || !$(this).prev().hasClass('p_copy')) { 
+                        $('<p class="p_copy" style="position: absolute; z-index: -1;"></p>').insertBefore($(this));
+                    }
+                    $(this).prev().html($(this).val());
+                });
+                var doc = document;
+                var element = this[0];
+                console.log(this, element);
+                if (doc.body.createTextRange) {
+                    var range = document.body.createTextRange();
+                    range.moveToElementText(element);
+                    return range.select();
+                } else if (window.getSelection) {
+                    var selection = window.getSelection();        
+                    var range = document.createRange();
+                    range.selectNodeContents(element);
+                    selection.removeAllRanges();
+                    return selection.addRange(range);
+                }
+            };
+
             var data = JSON.parse(data)
             query = window.location.search
             params = new URLSearchParams(query)
@@ -303,7 +323,6 @@
                     for (var Key in table){
                         Value = table[Key]
                         if (Key == Name && table[Key].constructor == Object){
-                            //console.log(parent, Key)
                             found = true
                             t = Value
 
@@ -333,7 +352,6 @@
                     $.each(info, (key, value)=>{
                         key = key.replace(" ", "")
                         if (key == element.attr('id') || type == element.attr('id')){
-                            //console.log("type", type, "key", key)
                             element.show()
                         }
                     })
@@ -502,7 +520,6 @@
                     }
 
                     for (i = 0; i < data.length; i++){
-                        console.log(data[i])
                         insertHtml(data[i])
                     }
 
@@ -538,7 +555,6 @@
                 
                 $.each(info, (key, value) =>{
                     key = key.replace(" ", "")
-                    console.log(type, key)
                     switch(key){
                         case "Description":
                             $("#body-content #"+key+" td").text(info["Description"])
@@ -559,12 +575,66 @@
                             Fields(value, key)
                             break;
                         case "Syntax":
-                            func = value.Function || ""
-                            code = Prism.highlight(func, Prism.languages['lua']);
-                                                    
+                            code = Prism.highlight(value.Function, Prism.languages['lua']);
                             $("#"+key+" #Code").append(code)
+                            $("#"+key+" #Parameters").hide()
+                            if (value.Parameters){
+                                $("#"+key+" #Parameters").show()
+                                $("#"+key+" #Parameters ul").empty()
+                                $("#"+key+" #Parameters ul").append(`<li id="Title" class="subheader">Parameters</li>`)
+                                $.each(value.Parameters, (Name, value) => {
+
+                                    content = `
+                                        <li id="Parameter" style="font-style: italic;">`+Name+`</li>
+                                        <li id="Type" id="type">Type: `+value.Type+`</li>
+                                        <li id="Description">`+value.Description+`</li>
+                                    `
+
+                                    $("#"+key+" #Parameters ul").append(content)
+                                    
+                                })
+                                console.log(value.Parameters)
+                                $("#"+key+" #Returns #Type").text("Type: " + value.Returns[0])
+                                $("#"+key+" #Returns #Description").text(value.Returns[1])
+                            }
+
                             break;
                         case "Examples":
+                            pId = "#body-content #"+key+ " "
+
+                            desc = $(pId + "#Description")
+                            title = $(pId + "#Title span")
+                            code = $(pId + "#Code")
+                            code.empty()
+
+                            desc.text(value.Description)
+                            title.text(value.Title)
+                            codestring = ``
+                            copystring = ``
+
+                            for (i=0; i<value.Code.length; i++){
+                                codestring += value.Code[i]+"\\n"
+                            }
+                            for (i=0; i<value.Code.length; i++){
+                                copystring += value.Code[i]+"\r"
+                            }
+
+                            code.append(`<code id="Code">`+Prism.highlight(codestring, Prism.languages['lua'])+`</code>`)
+                            replace = code.html().replaceAll('\\n', '<br>')
+                            code.html(replace)
+
+                            copyBtn = $(pId + "#Title #copyToClipboard")
+
+                            copyBtn.click(async function(){
+                                await navigator.clipboard.writeText(copystring)
+                                .then(()=>{
+                                    alert("Successfully copied to clipboard")
+                                })
+                                .catch(err=>{
+                                    alert("Error in copying to clipboard: ", err)
+                                })
+                            })
+
                             break;
                         case "InheritanceHierarchy":
                             InheritanceHierarchy(value, key)

@@ -23,7 +23,7 @@ var data = `{
             "PluginManager": "Provides access to plugin management methods.",
             "Shell": "Provides programmer extensibility to the chat window.",
             "ShellCommand": "A command that can be register for use in the chat window."
-        }, 
+        },
         "Enumerations": {
             "ChatType": {
                 "Description": "Defines the type of chat data.",
@@ -62,14 +62,11 @@ var data = `{
                         "Description": "This event is fired whenever a chat message is received.",
                         "Remarks": "This event is fired whenever any chat message is received from the game or other users. The arguments for this event will contain a combination of a Sender, a ChatType, and the Message itself. The ChatType enumeration can be used to determine what kind of message was received.",
                         "Syntax": {
-                            "Function": "function Chat:Recieved(sender, args)\n\nend",
+                            "Function": "function Turbine.Engine.GetGameTime();",
                             "Returns": [
                                 "number",
                                 "Returns a relative game time in seconds."
                             ]
-                        },
-                        "Examples": {
-                            "Description": "This example demonstrates using GetGameTime to calculate the delta time over multiple updates for performing animations."
                         },
                         "See Also": [
                             "Engine",
@@ -104,11 +101,11 @@ var data = `{
                                 },
                                 "message": {
                                     "Type": "string",
-                                    "Description": "An optional 'message' string that is appended at the beginning of the traceback"
+                                    "Description": "An optional *message* string that is appended at the beginning of the traceback"
                                 },
                                 "level": {
                                     "Type": "integer",
-                                    "Description": "An optional 'level' number tells at which level to start the traceback (default is 1, the function calling 'traceback'"
+                                    "Description": "An optional *level* number tells at which level to start the traceback (default is 1, the function calling *traceback*"
                                 }
                             },
                             "Returns": [
@@ -150,13 +147,13 @@ var data = `{
                             "Description": "This example demonstrates using GetGameTime to calculate the delta time over multiple updates for performing animations.",
                             "Title": "Calculating Delta Time",
                             "Code": [
-                                "local currentGameTime = Turbine.Engine.GetGameTime();",
-                                "local delta = currentGameTime - previousGameTime;",
-                                "previousGameTime = currentGameTime;",
-                                "",
-                                "-- Performing a translation from one position to another over a 5",
-                                "-- second period.",
-                                "self:SetLeft( self.startLeft + ( self.endLeft - self.StartLeft ) * ( delta / 5 ) );"                
+                                "        local currentGameTime = Turbine.Engine.GetGameTime();",
+                                "        local delta = currentGameTime - previousGameTime;",
+                                "        previousGameTime = currentGameTime;",
+                                "     ",
+                                "        -- Performing a translation from one position to another over a 5",
+                                "        -- second period.",
+                                "        self:SetLeft( self.startLeft + ( self.endLeft - self.StartLeft ) * ( delta / 5 ) );"
                             ]
                         },
                         "See Also": [
