@@ -24,6 +24,7 @@ function myFunction(id) {
 
 function addChildren(table, parent, childParent){
     $.each(table, (key, value) => {
+        if (key == "Description"){ return }
         if (parent != "Events" ? $.inArray(key, BlackList) < 0 : true){
             li = $(`<li title='`+key+`' id='`+key+`'>
                 <span id="link">
