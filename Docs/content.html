@@ -383,17 +383,6 @@
                         }
                     })
                 })
-                
-                if (info.Title){
-                    $("#Title").text(info.Title)
-                }else if (["Enumerations", "Events", "Methods"].includes(parent)){
-                    parent = parent.substring(0, parent.length-1)
-                    $("#Title").text(type + " " + parent)
-                } else if (["Events", "Methods"].includes(type)){
-                    $("#Title").text(parent + " " + type)
-                } else {
-                    $("#Title").text(type + " " + parent)
-                }
 
                 function Packages(data, parent){
                     var element = $("#body-content #"+parent+" .children")
@@ -551,7 +540,6 @@
 
                 }
 
-
                 function SeeAlso(data, parent){
                     var element = $("#body-content #"+parent+" .children")
                     element.empty()
@@ -614,8 +602,31 @@
                     info[type] = info
                 }
 
+                subLinks = $("#SubLinks")
+                subLinks.empty()
+
+                if (parent != "Class"){
+                    subLinks.append(`
+                        <a href='?type=`+parent+`' style="
+                        color: blue; 
+                        border-right: 1px solid black;
+                        padding-right: 1vw;">`+parent+`</a>
+                    `)
+                }
+
                 $.each(info, (key, value) =>{
+
+                    if (["See Also", "Methods", "Classes", "Events", "Fields", "Packages", "Enumerations"].includes(key)){
+                        subLinks.append(`
+                            <a href='#`+key.replace(" ", "")+`' style="
+                            color: blue; 
+                            border-right: 1px solid black;
+                            padding-right: 1vw;">`+key+`</a>
+                        `)
+                    }
+
                     key = key.replace(" ", "")
+                    
 
                     if (value.constructor == Object){
                         $.each(value, (key, cvalue) =>{
@@ -720,9 +731,19 @@
                         default:
                             break;
                     }
+                
                 })
                 
-                
+                if (info.Title){
+                    $("#Title").text(info.Title)
+                }else if (["Enumerations", "Events", "Methods"].includes(parent)){
+                    parent = parent.substring(0, parent.length-1)
+                    $("#Title").text(type + " " + parent)
+                } else if (["Events", "Methods", "Enumerations"].includes(type)){
+                    $("#Title").text(parent + " " + type)
+                } else {
+                    $("#Title").text(type + " " + parent)
+                }
             }
 
 

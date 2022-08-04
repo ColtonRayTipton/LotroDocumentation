@@ -278,9 +278,10 @@ table {
     margin-left: auto;
     margin-right: auto;
     display: block;
+    max-height: 16px;
 }
 
-#body > table table tr td:first-child {width: 25px;}
+#body > table table tr td:first-child {width: 25px;padding: 0;}
 #body > table table tr th:first-child {
     width: 25px;
     padding: 5px;
@@ -372,11 +373,23 @@ table {
 }
 
 .icon-two tr td:nth-child(1) {
-    text-indent: 0;
+     text-indent: 0;
 }
 
 .icon-two tr td img {
     display: inline-block !important;
+    margin-left: 1vw !important;
+}
+
+
+.icon-two tr td img:nth-child(1){
+    max-width: 12px;
+}
+
+
+.icon-two tr td img:nth-child(2){
+    margin-left: 2px !important;
+    max-width: 12px;
 }
 
 #Parameters li#Parameter{
