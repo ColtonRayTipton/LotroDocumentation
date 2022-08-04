@@ -7,13 +7,10 @@ var BlackList = [
 ]
 
 function addTreeNode(grandparent, parent, key, iconType="collapsed", data){
-    data = JSON.stringify(data)
     var node = `
         <li title='`+key+`' class='tree-node' id='`+parent+`-`+key+`'>
             <a class='tree-icon-button icon-tree icon-`+iconType+` icon'></a>
-            <a class='tree-button' 
-            data-parent="`+parent+`" 
-            data-child="`+key+`">`+key+`</a>
+            <a class='tree-button' data-parent='`+parent+`' data-child='`+key+`'>`+key+`</a>
             <ul class='tree-children'></ul>
         </li>
     `
@@ -33,10 +30,10 @@ function addChildren(table, parent, grandparent, greatgrandparent){
                     if (parent == "Enumerations"){
                         addTreeNode(greatgrandparent, grandparent, key, "blackbox")
                     }else{
-                        addTreeNode(greatgrandparent, grandparent, key, value)
+                        addTreeNode(greatgrandparent, grandparent, key)
                     }
-                }else if (!['Methods', 'Events', 'Enumerations'].includes(parent)){
-                    addTreeNode(greatgrandparent, parent, key, value)
+                }else if (![grandparent+'-Methods', grandparent+'-Events', 'Enumerations'].includes(parent)){
+                    addTreeNode(greatgrandparent, parent, key)
                 }else{
                     addTreeNode(grandparent, parent, key, "blackbox")
                 }

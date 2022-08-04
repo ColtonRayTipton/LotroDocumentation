@@ -85,7 +85,7 @@ var data = `{
             "Chat": {
                 "Description": "This class provides events for when messages are received through the game. This includes player chat, tells, in game messages, and announcements.",
                 "Remarks": "This is a class used to get messages",
-                "Chat Events": {
+                "Chat-Events": {
                     "Description": "This class provides events for when messages are received through the game. This includes player chat, tells, in game messages, and announcements.",
                     "Received": {
                         "Description": "This event is fired whenever a chat message is received.",
@@ -124,7 +124,7 @@ var data = `{
             "Engine": {
                 "Description": "Provides engine level information to user plugins.",
                 "Remarks": "The engine class provides information about the current state of the game engine.",
-                "Engine Methods": {
+                "Engine-Methods": {
                     "Description": "Provides engine level information to user plugins.",
                     "GetCallStack": {
                         "Description": "Gets the current callstack",
@@ -283,7 +283,7 @@ var data = `{
             "LotroPluginManager": {
                 "Description": "Provides access to plugin management methods.",
                 "Remarks": "The plugin manager class allows scripts to obtain information about the set of available and loaded plugins. It also provides methods for dynamically loading and unloading plugins as well as obtain.There is a slight disconnect in the method used to load and unload plugins. Plugins are loaded by their plugin name but are unloaded by the script state they are loaded into. Multiple plugins can be loaded into the same script state and by doing this those plugins have the ability to share code and interact with each other whereas plugins loaded into separate script states will be forced to create copies of any loaded library and will not have the ability to access each other.During unload, an entire script state gets unloaded which will unload all of the plugins that have been loaded into that script state. It is important to keep in mind this disconnect.",
-                "LotroPluginManager Methods": {
+                "LotroPluginManager-Methods": {
                     "GetAvailablePlugins": {
                         "Description": "Gets the plugins that are currently available.",
                         "Syntax": {

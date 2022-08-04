@@ -26,10 +26,6 @@ var params = new URLSearchParams(query)
 
 var type = params.get('type')
 var parentType = params.get('parent')
-var grandparentType = params.get('grandparent')
-var greatgrandparentType = params.get('greatgrandparent')
-
-console.log(greatgrandparentType, grandparentType, parentType, type)
 
 var Parent=""
 
