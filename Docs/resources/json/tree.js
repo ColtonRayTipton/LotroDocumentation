@@ -13,6 +13,17 @@ var data = `{
         "Title": "Turbine Package",
         "Description": "The core Turbine API package.",
         "Remarks": "The Turbine package provides access to core game functionality.",
+        "Classes": {
+            "Chat": "This class provides events for when messages are received through the game. This includes player chat, tells, in game messages, and announcements.",
+            "Engine": "Provides engine level information to user plugins.",
+            "LotroPluginManager": "Provides access to plugin management methods.",
+            "Object": "The base object class for API classes.",
+            "Plugin": "Provides information about a specific plugin that has been loaded.",
+            "PluginData": "Provides the ability to save and load plugin data.",
+            "PluginManager": "Provides access to plugin management methods.",
+            "Shell": "Provides programmer extensibility to the chat window.",
+            "ShellCommand": "A command that can be register for use in the chat window."
+        },
         "Enumerations": {
             "ChatType": {
                 "Description": "Defines the type of chat data.",
@@ -81,7 +92,7 @@ var data = `{
                 ]     
             }
         },
-        "Classes": {
+        "Children": {
             "Chat": {
                 "Description": "This class provides events for when messages are received through the game. This includes player chat, tells, in game messages, and announcements.",
                 "Remarks": "This is a class used to get messages",
@@ -197,6 +208,80 @@ var data = `{
                             "Engine",
                             "Turbine"
                         ]
+                    },
+                    "GetLanguage": {
+                        "Description": "Gets the language the client is using",
+                        "Syntax": {
+                            "Function": "function Turbine.Engine.GetLanguage();",
+                            "Returns": [
+                                "number",
+                                "The language the client is using"
+                            ]
+                        },
+                        "See Also": [
+                            "Engine",
+                            "Turbine"
+                        ]
+                    },
+                    "GetLocale": {
+                        "Description": "Gets a string to identify the locale the application is set to.",
+                        "Syntax": {
+                            "Function": "function Turbine.Engine.GetLocale();",
+                            "Returns": [
+                                "string",
+                                "The locale identifier"
+                            ]
+                        },
+                        "See Also": [
+                            "Engine",
+                            "Turbine"
+                        ]
+                    },
+                    "GetLocalTime": {
+                        "Description": "Gets the number of seconds since Jan. 1, 1970",
+                        "Syntax": {
+                            "Function": "function Turbine.Engine.GetLocalTime();",
+                            "Returns": [
+                                "number",
+                                "The number of seconds since Jan. 1, 1970"
+                            ]
+                        },
+                        "See Also": [
+                            "Engine",
+                            "Turbine"
+                        ]
+                    },
+                    "GetScriptVersion": {
+                        "Description": "Gets the major and minor versions numbers for the Lua script system",
+                        "Remarks": "This method returns as a major and minor version number. This number is not tied to the client build number and is only updated when changes to the API are made. These changes may include the addition of new APIs, the removal, changes to the functionality, or bug fixes. A new version does not necessarily mean incompatibility.",
+                        "Syntax": {
+                            "Function": "function Turbine.Engine.GetScriptVersion();",
+                            "Returns": [
+                                "number, number",
+                                ""
+                            ]
+                        },
+                        "See Also": [
+                            "Engine",
+                            "Turbine"
+                        ]
+                    },
+                    "ScriptLog": {
+                        "Description": "Logs a message to the script log.",
+                        "Remarks": "Logs a message to the script log. This is a shared log for all scripts that can be used to write information for a running script.",
+                        "Syntax": {
+                            "Function": "function Turbine.Engine.ScriptLog();",
+                            "Parameters": {
+                                "message": {
+                                    "Type": "string",
+                                    "Description": "The message to send to the log"
+                                }
+                            }
+                        },
+                        "See Also": [
+                            "Engine",
+                            "Turbine"
+                        ]
                     }
                 },
                 "Inheritance Hierarchy": [
@@ -206,51 +291,30 @@ var data = `{
                     "Turbine.Gameplay.Backpack"
                 ]
             },
-            "Example": {
-                "Description": "The core Turbine API package.",
-                "Remarks": "The Turbine package provides access to core game functionality.",
-                "Classes": {
-                    "Name": "Description"
-                },
-                "Enumerations": {
-                    "Name": "Description"
-                },
-                "Fields": {
-                    "Name": "Description"
-                },
-                "Inheritance Hierarchy": [
-                    {"Spaces": "Parent.Child"},
-                    {"1": "Turbine.Object"},
-                    {"2": "Turbine.Chat"},
-                    {"2": "Turbine.Gameplay.Backpack"}
-                ],
-                "Syntax": {
-                    "Returns": [
-                        "Type",
-                        "Description"
-                    ],
-                    "Parameters": {
-                        "sender": [
-                            "Type",
-                            "Description"
+            "LotroPluginManager": {
+                "Description": "Provides access to plugin management methods.",
+                "Remarks": "The plugin manager class allows scripts to obtain information about the set of available and loaded plugins. It also provides methods for dynamically loading and unloading plugins as well as obtain.There is a slight disconnect in the method used to load and unload plugins. Plugins are loaded by their plugin name but are unloaded by the script state they are loaded into. Multiple plugins can be loaded into the same script state and by doing this those plugins have the ability to share code and interact with each other whereas plugins loaded into separate script states will be forced to create copies of any loaded library and will not have the ability to access each other.During unload, an entire script state gets unloaded which will unload all of the plugins that have been loaded into that script state. It is important to keep in mind this disconnect.",
+                "Methods": {
+                    "GetAvailablePlugins": {
+                        "Description": "Gets the plugins that are currently available.",
+                        "Syntax": {
+                            "Function": "function PluginManager.GetAvailablePlugins();",
+                            "Returns": [
+                                "Type: Object",
+                                "Returns a table container the plugins that are currently available"
+                            ]
+                        },
+                        "See Also": [
+                            "LotroPluginManager",
+                            "Turbine"
                         ]
                     }
                 },
-                "Examples": {
-                    "Description": "This example demonstrates using GetGameTime to calculate the delta time over multiple updates for performing animations.",
-                    "Title": "Calculating Delta Time",
-                    "Code": [
-                        "local currentGameTime = Turbine.Engine.GetGameTime();",
-                        "local delta = currentGameTime - previousGameTime;",
-                        "previousGameTime = currentGameTime;",
-                        "",
-                        "-- Performing a translation from one position to another over a 5",
-                        "-- second period.",
-                        "self:SetLeft( self.startLeft + ( self.endLeft - self.StartLeft ) * ( delta / 5 ) );"                
-                    ]
-                },
+                "Inheritance Hierarchy": [
+                    "Turbine.PluginManager",
+                    "Turbine.LotroPluginManager"
+                ],
                 "See Also": [
-                    "Chat",
                     "Turbine"
                 ]
             }
