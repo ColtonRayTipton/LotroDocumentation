@@ -238,7 +238,7 @@
                                 <a class='header icon'>Examples</a>
                                 <table class="children">
                                     <tr>
-                                        <td id="Description" style="background-color: transparent; border: 0; padding-left: 14px;">Description</td>
+                                        <td id="Description" style="background-color: transparent; border: 0;">Description</td>
                                     </tr>
                                     <tr>
                                         <td id="Title" style="font-weight: bold; background-color: #EFEFF7;"><span>Title</span> <a id="copyToClipboard" class="icon icon-copy">Copy Code</a></td>
@@ -609,8 +609,7 @@
                     subLinks.append(`
                         <a href='?type=`+parent+`' style="
                         color: blue; 
-                        border-right: 1px solid black;
-                        padding-right: 1vw;">`+parent+`</a>
+                        ">`+parent+`</a>
                     `)
                 }
 
@@ -618,12 +617,15 @@
 
                     if (["See Also", "Methods", "Classes", "Events", "Fields", "Packages", "Enumerations"].includes(key)){
                         subLinks.append(`
-                            <a href='#`+key.replace(" ", "")+`' style="
-                            color: blue; 
-                            border-right: 1px solid black;
-                            padding-right: 1vw;">`+key+`</a>
+                        <a href='#`+key+`' style="
+                        color: blue; 
+                        "> - `+key+`</a>
                         `)
                     }
+
+                    sublink = $("#SubLinks a:nth-child(1)")
+                    sublinktext = sublink.text().replace("-", "")
+                    sublink.text(sublinktext)
 
                     key = key.replace(" ", "")
                     
@@ -696,15 +698,13 @@
                             copystring = ``
 
                             for (i=0; i<value.Code.length; i++){
-                                codestring += value.Code[i]+"\\n"
+                                codestring += value.Code[i]+"\n"
                             }
                             for (i=0; i<value.Code.length; i++){
                                 copystring += value.Code[i]+"\r"
                             }
 
-                            code.append(`<code id="Code">`+Prism.highlight(codestring, Prism.languages['lua'])+`</code>`)
-                            replace = code.html().replaceAll('\\n', '<br>')
-                            code.html(replace)
+                            code.append(`<code>`+Prism.highlight(codestring, Prism.languages['lua'])+`</code>`)
 
                             copyBtn = $(pId + "#Title #copyToClipboard")
 

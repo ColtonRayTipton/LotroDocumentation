@@ -7,6 +7,18 @@ body {
     color: #000000;
 }
 
+code {
+    white-space: break-spaces;
+}
+
+#body #Code {
+    padding: 1vw;
+}
+
+td#Title {
+    padding: .5vw !important;
+}
+
 a {
     text-decoration: none;
     color: black;
@@ -209,6 +221,7 @@ table {
 .subheader {
     font-size: 12px !important;
     font-weight: bold;
+    padding-top: 1vh;
 }
 
 .CollapseContent .icon {
@@ -398,6 +411,10 @@ table {
 
 #body #Returns td {
     padding-left: 0 !important;
+}
+
+#body #Returns ul li:nth-child(3){
+    padding-top: 0 !important;
 }
 
 #Syntax li:not(:nth-child(1)){
