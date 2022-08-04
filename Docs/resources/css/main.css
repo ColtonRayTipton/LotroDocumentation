@@ -27,7 +27,28 @@ ul {
     padding: 0;
 }
 
-/************ INDEX.HTML ************/
+table {
+    /* border-collapse: separate; */
+    border-spacing: none;
+}
+
+.title {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.subtitle {
+    font-size: 22px;
+    font-weight: 500;
+    font-family: Arial;
+}
+
+.subtitle2 {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/*************** INDEX.HTML ***************/
 .frameset {
     width: 100%;
     height: 100vh;
@@ -57,22 +78,13 @@ ul {
 	background: #aaa;
 }
 
-/************************************/
+/*******************************************/
 
 
-/** ICON STYLE **/
-.icon {
-    position: relative;
-}
+/*************** ICON STYLE ****************/
 
-.icon span {
-    display: inline-block;
-}
-
-.icon-selectall {
-    margin-left: 15px;
+.icon-selectall:before {
     width: 10px;
-    display: inline-block;
     height: 10px;
 }
 
@@ -82,25 +94,32 @@ ul {
 
 .icon-blackbox:before {
     background: url('../Icons/Item.gif') !important;
-    pointer-events: none;
 }
 
 .icon-blackbox:hover {
     cursor: default;
 }
 
+.icon-copy {
+    pointer-events: none;
+}
+
 .icon-copy:before {
     background: url('../Icons/copycode.gif') !important;
     height: 15px !important;
     width: 15px !important;
-    margin: -2px 0 0 -18px !important;
+    margin-right: 3px;
+}
+
+.icon-copy:hover {
+    cursor: default;
 }
 
 .icon:before {
     content: '';
     background: url('../Icons/Expanded.gif');
-    max-width: 12px;
-    max-height: 16px;
+    height: 9px;
+    width: 9px;
     display: inline-block;
 }
 
@@ -109,7 +128,7 @@ ul {
     width: 9px;
 }
 
-/************************************/
+/*******************************************/
 
 .tree {
     width: max-content;
@@ -124,15 +143,11 @@ ul {
     cursor: default;
 }
 
-.tree-node-name {
+.tree-button {
     display: inline-block;
 }
 
-.tree-node-name:hover {
-    cursor: default;
-}
-
-/********** TREE VIEW ***************/
+/**************** TREE VIEW *****************/
 
 .nested {
     display: none;
@@ -140,276 +155,182 @@ ul {
 
 
 
-/************************************/
+/********************************************/
 
-/********* CONTENT.HTML ************/
+/*************** CONTENT.HTML ***************/
 
-.content-body {
-
-}
-
-
-table {
-    border-spacing: 0;
-}
-.mainContainer {
+.content {
     width: 100%;
     height: 100%;
-}
-
-.mainContainer tr {
     vertical-align: top;
 }
 
-.mainContainer #head {
+.content tr:nth-child(2){
+    vertical-align: top;
+}
+
+.content tr:nth-child(1) {
+    height: 4em;
+}
+
+.content tr > td {
+    vertical-align: top;
+}
+
+/****** .HEAD ******/
+.head {
     width: 100%;
     height: 8vh;
+    vertical-align: top;
+    padding-left: 1vw;
     box-shadow: 0px -16px 10px -20px rgb(0 0 0 / 75%) inset;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
 }
 
-.mainContainer #body {
-    background: white;
-    padding: 15px;
+.head tr {
+    height: 4vh;
+    vertical-align: top;
 }
 
-#head > table {
-    height: 100%;
-    width: calc(100% - 1vw);
-    margin-left: 1vw;
+.head tr:not(:nth-child(1)) td {
+    padding-left: 4vw;
+}
+
+.head-links a {
+    padding-right: 1vw;
+}
+
+.head .head-title {
+    height: 0;
+}
+
+/*******************/
+
+/****** .BODY *****/
+
+.body {
+    width: calc(100% - 20px - 2vw);
+    border-spacing: 2px 3px;
     border-collapse: collapse;
-    white-space: nowrap;
-    margin-top: .5vw;
+    margin-left: 10px;
+    margin-top: 3em;
 }
 
-#head .icon {
-    margin-left: 1vw;
+.body tr td{
+    padding-bottom: 2em;
 }
 
-#head tr:nth-child(2) td {
-    padding-left: 5vw;
-    padding-top: 2vw;
+.body tr:nth-child(1) td {
+    padding-bottom: 14px;
+    padding-left: 1.5em;
 }
 
-#head tr:nth-child(3) td {
-    padding-left: 5vw;
-    padding-bottom: 1.5vw;
-}
-
-.header {
-    font-size: 16px !important;
-    font-weight: bold;
-}
-
-.subheader {
-    font-size: 12px !important;
-    font-weight: bold;
-    padding-top: 1vh;
-}
-
-.CollapseContent .icon {
-    margin-left: 0;
-}
-
-.CollapseContent .icon:before {position: absolute;}
-
-/** #BODY DIV **/
-
-#body table {
-    width: 100%;
-}
-
-#body .icon {
-    width: 100%;
-    margin-left: 0;
-    height: max-content;
-}
-
-#body .icon:before {
-    margin-right: 8px;
-    margin-bottom: 1px;
-}
-
-#body .Tree {
-    min-width: auto;
-    margin-left: 0;
-    width: min-content;
-}
-
-#body .Tree a {
-    padding-left: 0;
-    width: min-content;
-    text-decoration: initial;
-    color: initial;
-}
-
-#body > table tr {width: 100%;}
-
-#body > table > tbody > tr {
-    display: table;
-    padding-bottom: 4vh;
-}
-
-#body .children {
-    padding-top: 1vh;
-    width: calc(100% - 2vw);
-    padding-left: 2vw;
-}
-
-#body > table table {
-    width: calc(100% - 4vw);
+.body table {
+    width: calc(100vw - 60px);
     text-align: left;
-    border: none;
-    box-sizing: border-box;
-    border-spacing: 2px;
-    border-collapse: separate;
+    padding-left: 12px;
+    padding-top: 10px;
 }
 
-#body > table table tr {
+.body table tr td {
+    background-color: #F7F7FF;
+    border-bottom: 1px solid #D5D5D3;
+    border-left: 1px none #D5D5D3;
+    padding: 1em 1em .75em 1em;
     vertical-align: middle;
-    padding-left: 2vw;
 }
 
-#body > table table tr img {
+.body table tr td:nth-child(2) {width: 40%;}
+
+.body table tr th {
+    background-color: #EFEFF7;
+    border-bottom: 1px solid #D5D5D3;
+    border-left: 1px none #D5D5D3;
+    padding: 1em 1em .75em 1em;
+}
+
+.body table tr td:nth-child(1) {
+    width: 38px;
+    padding-left: initial;
+    padding-right: initial;
+}
+
+.body .icon-two tr td {
+    padding: 1em 1em .75em 1em !important;
+}
+
+.body .icon-two tr th:nth-child(2) {
+    min-width: 34%;
+}
+
+.body .icon-two tr td:nth-child(2) {
+    width: calc(40vw - 76px);
+}
+
+.body .icon-two-adjust tr td img:nth-child(2) {
+    padding-left: 5px;
+}
+
+.body table img {
     margin-left: auto;
     margin-right: auto;
     display: block;
-    max-height: 16px;
 }
 
-#body > table table tr td:first-child {width: 25px;padding: 0;}
-#body > table table tr th:first-child {
-    width: 25px;
-    padding: 5px;
+.body .icon-two img {
+    display: inline-block;
 }
 
-#body > table table tr th {
-    height: 15px;
-    border-bottom: 1px solid #D5D5D3;
-    border-left: 1px none #D5D5D3;
-    background-color: #F7F7FF;
-    padding-left: 2vw;
-    padding-right: 2vw;
+/*******************/
+
+/****** .BODY SYNTAX *****/
+
+.body .syntax tr td:nth-child(1) {
+    width: auto;
+    padding: 1em 0 .75em 1em !important;
 }
 
-#body > table table tr td {
-    border-bottom: 1px solid #D5D5D3;
-    border-left: 1px none #D5D5D3;
-    background-color: #F7F7FF;
-    padding: 5px;
-    padding-left: 2vw;
-    padding-right: 2vw;
+.body .syntax tr th:nth-child(1) span {
+    vertical-align: middle;
 }
 
-#body #Syntax table tr:nth-child(1) td:nth-child(1){
-    background-color: #EFEFF7;
-    font-weight: bold;
-}
-
-#body #Returns td, #body #Parameters td {
-    background-color: transparent;
-    border: none;
-}
-
-#body #Parameters td {
-    padding-top: 3vh;
-    padding-left: 0;
-}
-
-#body #Returns li:nth-child(2), #body #Returns li:nth-child(3){
-    margin-left: 5px;
-    margin-top: 5px;
-}
-
-#body #see-also ul{
-    margin: 5px;
-}
-
-#body #see-also a {
-    width: 100%;
-    height: max-content;
-}
-
-#body #see-also .icon:before {
-    margin-right: 0;
-    margin-bottom: 0;
-}
-
-#body #SeeAlso .children {
-    padding: 0vh 0px 0px 2vh !important;
-    background: transparent !important;
-    border: 0 !important;
-}
-
-#body #InheritanceHierarchy .children {
-    padding-top: 1vh !important;
-    background: transparent !important;
-    border: 0 !important;
-    padding-left: 2px;
-}
-
-#body #InheritanceHierarchy .Tree-Children {
-    padding-left: 2vw;
-}
-
-#body #InheritanceHierarchy .Tree ul:first-child {
-    padding-left: 0;
-}
-
-
-#body-content > tbody > tr:nth-child(1) {
-    height: min-content;
-    width: 100%;
-    line-height: 10vh;
-    padding-bottom: 0;
-}
-
-.icon-two:first-child, .icon-two th:first-child {
-    text-indent: 0; width: 40px !important;
-}
-
-.icon-two tr td:nth-child(1) {
-     text-indent: 0;
-}
-
-.icon-two tr td img {
-    display: inline-block !important;
-    margin-left: 1vw !important;
-}
-
-
-.icon-two tr td img:nth-child(1){
-    max-width: 12px;
-}
-
-
-.icon-two tr td img:nth-child(2){
-    margin-left: 2px !important;
-    max-width: 12px;
-}
-
-#Parameters li#Parameter{
-    padding-top: 5px;
-}
-
-#body #Returns td {
-    padding-left: 0 !important;
-}
-
-#body #Returns ul li:nth-child(3){
-    padding-top: 0 !important;
-}
-
-#Syntax li:not(:nth-child(1)){
-    padding-left: 1vw;
-}
-
-#Examples #Title a {
+/** COPY CODE **/
+.body .syntax tr th:nth-child(1) span:nth-child(2) {
     float: right;
-    width: max-content !important;
 }
 
-#body-content #Description {
-    line-height: normal;
-    padding-top: 2vh !important;
-    padding-bottom: 2vh !important;
+.body .syntax tr th:nth-child(1) span:nth-child(2) a {
+    vertical-align: middle;
 }
+
+.body .syntax tr:not(:nth-child(1),:nth-child(2)) td {
+    background-color: transparent;
+    border: 0;
+    padding-left: 0;
+}
+
+.body .syntax code {
+    width: 100%;
+    height: 100%;
+}
+
+.body .body-list td > ul {
+    padding: 0 0 0 14px;
+}
+
+.body .body-list ul {
+    padding-left: .75em;
+}
+
+.body .body-list ul li {
+    padding-left: 0;
+}
+
+.body #Description {
+    vertical-align: top;
+}
+
+/*************************/
+
+/*******************************************************************/

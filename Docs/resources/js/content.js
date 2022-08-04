@@ -21,28 +21,36 @@ jQuery.fn.selectText = function(){
 };
 
 var data = JSON.parse(data)
-query = window.location.search
-params = new URLSearchParams(query)
+var query = window.location.search
+var params = new URLSearchParams(query)
 
-type = params.get('type')
+var type = params.get('type')
+var parentType = params.get('parent')
+var grandparentType = params.get('grandparent')
+var greatgrandparentType = params.get('greatgrandparent')
 
-function getValueFromKey(table, Name, newParent){
+console.log(greatgrandparentType, grandparentType, parentType, type)
+
+var Parent=""
+
+function getValueFromKey(table, Name){
     if (!Name){ return }
-    parent=""
-    parentTable={}
-    t = {}
+    
+    var t = {}
     var found = false
+    
+
     function recursive(table, Name){
-        
+
         for (var Key in table){
-            Value = table[Key]
-            if (Key == Name && table[Key].constructor == Object){
+            var Value = table[Key]
+            if (Key == Name && Parent == parentType && table[Key].constructor == Object){
                 found = true
                 t = Value
 
             }else if (table[Key].constructor == Object && !found){
-                if (Value[Name]){
-                    parent = Key
+                if (Key == parentType){
+                    Parent = Key
                 }
                 t = recursive(Value, Name)
             }
@@ -50,18 +58,34 @@ function getValueFromKey(table, Name, newParent){
 
         return t
     }
-    return parent, recursive(table, Name)
+    
+    return recursive(table, Name)
 }
 
-parent, info = getValueFromKey(data, type)            
-keyIsParent = false
+var info = getValueFromKey(data, type)            
+var keyIsParent = false
+
+if (!parentType){
+    parentType = Parent
+}
 
 if (info && info.constructor == Object){
 
-    parent = parent == "Children" ? "Class" : parent
+    parentType = parentType == "Turbine" ? "Class" : parentType
 
-    $("#body-content > tbody > tr").each((index, value)=>{
-        element = $(value)
+    if (info.Title){
+        $("#Title").text(info.Title)
+    }else if (["Enumerations", "Events", "Methods"].includes(parentType)){
+        var parentTypeString = parentType.substring(0, parentType.length-1)
+        $("#Title").text(type + " " + parentTypeString)
+    } else if (["Events", "Methods", "Enumerations"].includes(type)){
+        $("#Title").text(parentType + " " + type)
+    } else {
+        $("#Title").text(type + " " + parentType)
+    }
+
+    $(".body > tbody > tr").each((index, value)=>{
+        var element = $(value)
         element.hide()
 
         $.each(info, (key, value)=>{
@@ -77,7 +101,7 @@ if (info && info.constructor == Object){
     })
 
     function Packages(data, parent){
-        var element = $("#body-content #"+parent+" .children")
+        var element = $(".body #"+parent+" .children")
         element.empty()
         element.append(`
             <tr>
@@ -87,7 +111,7 @@ if (info && info.constructor == Object){
             </tr>
         `)
         
-        insertHtml = function(key, value){
+        var insertHtml = function(key, value){
             if (key == "Description" || key == "Title" || key == type){
                 return ''
             }
@@ -104,7 +128,7 @@ if (info && info.constructor == Object){
     }
 
     function Classes(data, parent){
-        var element = $("#body-content #"+parent+" .children")
+        var element = $(".body #"+parent+" .children")
         element.empty()
         element.append(`
             <tr>
@@ -113,12 +137,12 @@ if (info && info.constructor == Object){
                 <th title="Description">Description</th>
             </tr>
         `)
-        insertHtml = function(key, value){
+        var insertHtml = function(key, value){
             return element.append(`
                 <tr>
                     <td><img title="Class" src="resources/Icons/pubclass.gif"></td>
                     <td><a href='?type=`+key+`'>`+key+`</a></td>
-                    <td>`+value+`</td>
+                    <td>`+value.Description+`</td>
                 </tr>
                 `)
         }
@@ -128,7 +152,7 @@ if (info && info.constructor == Object){
     }
 
     function Fields(data, parent){
-        var element = $("#body-content #"+parent+" .children")
+        var element = $(".body #"+parent+" .children")
         element.empty()
         element.append(`
             <tr>
@@ -137,7 +161,7 @@ if (info && info.constructor == Object){
                 <th title="Description">Description</th>
             </tr>
         `)
-        insertHtml = function(key, value){
+        var insertHtml = function(key, value){
             return element.append(`
                 <tr>
                     <td><img title="Class" src="resources/Icons/pubfield.gif"></td>
@@ -152,7 +176,7 @@ if (info && info.constructor == Object){
     }
     
     function Methods(data, parent){
-        var element = $("#body-content #"+parent+" .children")
+        var element = $(".body #"+parent+" .children")
         element.empty()
         element.append(`
             <tr>
@@ -161,7 +185,7 @@ if (info && info.constructor == Object){
                 <th title="Description">Description</th>
             </tr>
         `)
-        insertHtml = function(key, value){
+        var insertHtml = function(key, value){
             if (key == "Description" || key == type){
                 return ''
             }
@@ -182,7 +206,7 @@ if (info && info.constructor == Object){
     }
 
     function Events(data, parent){
-        var element = $("#body-content #"+parent+" .children")
+        var element = $(".body #"+parent+" .children")
         element.empty()
         element.append(`
             <tr>
@@ -191,7 +215,7 @@ if (info && info.constructor == Object){
                 <th title="Description">Description</th>
             </tr>
         `)
-        insertHtml = function(key, value){
+        var insertHtml = function(key, value){
             if (key == "Description" || key == type){
                 return ''
             }
@@ -212,7 +236,7 @@ if (info && info.constructor == Object){
     }
 
     function Enumerations(data, parent){
-        var element = $("#body-content #"+parent+" .children")
+        var element = $(".body #"+parent+" .children")
         element.empty()
         element.append(`
             <tr>
@@ -221,7 +245,7 @@ if (info && info.constructor == Object){
                 <th title="Description">Description</th>
             </tr>
         `)
-        insertHtml = function(key, value){
+        var insertHtml = function(key, value){
             return element.append(`
                 <tr>
                     <td><img title="Class" src="resources/Icons/pubenum.gif"></td>
@@ -236,20 +260,19 @@ if (info && info.constructor == Object){
     }
 
     function SeeAlso(data, parent){
-        var element = $("#body-content #"+parent+" .children")
+        var element = $(".body #"+parent+" td > ul")
         element.empty()
-        prevElement = element
-        count = 0
-        insertHtml = function(key){
+        var prevElement = element
+        var count = 0
+        var insertHtml = function(key){
             count = count + 1
-            htmlData = `
-            <ul id="Id`+count+`">
-                <li title='`+key+`'>
-                    <span id="link">
-                        <a href='?type=`+key+`' class='Children icon icon-blackbox'>`+key+`</a>
-                    </span>
-                </li>
-            </ul>
+            var htmlData = `
+                <ul class=""children" id="Id`+count+`">
+                    <li class='tree-node' title='`+key+`'>
+                        <a class='Children icon icon-blackbox'></a>
+                        <span><a href='?type=`+key+`'>`+key+`</a></span>
+                    </li>
+                </ul>
                 `
 
             prevElement.append(htmlData)
@@ -259,24 +282,24 @@ if (info && info.constructor == Object){
 
         }
 
-        for (i = 0; i < data.length; i++){
+        for (var i = 0; i < data.length; i++){
             insertHtml(data[i])
         }
 
     }
 
     function InheritanceHierarchy(data, parent){
-        var element = $("#body-content #"+parent+" .children")
+        var element = $(".body #"+parent+" .children")
         element.empty()
-        prevElement = element
-        count = 0
-        insertHtml = function(key){
+        var prevElement = element
+        var count = 0
+        var insertHtml = function(key){
             count = count + 1
-            htmlData = `
+            var htmlData = `
             <ul id="InhId`+count+`" class='Tree-Children'>
                 <li title='Turbine'>
                     <span>
-                        <a href='?type=`+key+`' class='Children'>`+key+`</a>
+                        <a href='?type=`+key+`&parent=`+parentType+`' class='Children'>`+key+`</a>
                     </span>
                 </li>
             </ul>
@@ -287,7 +310,7 @@ if (info && info.constructor == Object){
 
         }
 
-        for (i = 0; i < data.length; i++){
+        for (var i = 0; i < data.length; i++){
             insertHtml(data[i])
         }
 
@@ -299,14 +322,14 @@ if (info && info.constructor == Object){
         }
     }
 
-    subLinks = $("#SubLinks")
+    var subLinks = $("#SubLinks")
     subLinks.empty()
 
-    if (parent != "Class" && type != "Packages"){
+    if (parentType != "Class" && type != "Packages"){
         subLinks.append(`
-            <a href='?type=`+parent+`' style="
+            <a href='?type=`+parentType+`' style="
             color: blue; 
-            ">`+parent+`</a>
+            ">`+parentType+`</a>
         `)
     }
 
@@ -320,8 +343,8 @@ if (info && info.constructor == Object){
             `)
         }
 
-        sublink = $("#SubLinks a:nth-child(1)")
-        sublinktext = sublink.text().replace("-", "")
+        var sublink = $("#SubLinks a:nth-child(1)")
+        var sublinktext = sublink.text().replace("-", "")
         sublink.text(sublinktext)
 
         key = key.replace(" ", "")
@@ -337,7 +360,7 @@ if (info && info.constructor == Object){
 
         switch(key){
             case "Description":
-                $("#body-content #"+key+" td").text(info["Description"])
+                $(".body #"+key+" td span").text(info["Description"])
                 break;
             case "Classes":
                 Classes(value, key)
@@ -358,7 +381,7 @@ if (info && info.constructor == Object){
                 Fields(value, key)
                 break;
             case "Syntax":
-                code = Prism.highlight(value.Function, Prism.languages['lua']);
+                var code = Prism.highlight(value.Function, Prism.languages['lua']);
                 $("#"+key+" #Code").append(code)
                 $("#"+key+" #Parameters").hide()
                 $("#"+key+" #Returns").hide()
@@ -368,7 +391,7 @@ if (info && info.constructor == Object){
                     $("#"+key+" #Parameters ul").append(`<li id="Title" class="subheader">Parameters</li>`)
                     $.each(value.Parameters, (Name, value) => {
 
-                        content = `
+                        var content = `
                             <li id="Parameter" style="font-style: italic;">`+Name+`</li>
                             <li id="Type" id="type">Type: `+value.Type+`</li>
                             <li id="Description">`+value.Description+`</li>
@@ -386,28 +409,28 @@ if (info && info.constructor == Object){
 
                 break;
             case "Examples":
-                pId = "#body-content #"+key+ " "
+                var pId = ".body #"+key+ " "
 
-                desc = $(pId + "#Description")
-                title = $(pId + "#Title span")
-                code = $(pId + "#Code")
+                var desc = $(pId + "#Description")
+                var title = $(pId + "#Title span")
+                var code = $(pId + "#Code")
                 code.empty()
 
                 desc.text(value.Description)
                 title.text(value.Title)
-                codestring = ``
-                copystring = ``
+                var codestring = ``
+                var copystring = ``
 
-                for (i=0; i<value.Code.length; i++){
+                for (var i=0; i<value.Code.length; i++){
                     codestring += value.Code[i]+"\n"
                 }
-                for (i=0; i<value.Code.length; i++){
+                for (var i=0; i<value.Code.length; i++){
                     copystring += value.Code[i]+"\r"
                 }
 
                 code.append(`<code>`+Prism.highlight(codestring, Prism.languages['lua'])+`</code>`)
 
-                copyBtn = $(pId + "#Title #copyToClipboard")
+                var copyBtn = $(pId + "#Title #copyToClipboard")
 
                 copyBtn.click(async function(){
                     await navigator.clipboard.writeText(copystring)
@@ -424,7 +447,7 @@ if (info && info.constructor == Object){
                 InheritanceHierarchy(value, key)
                 break;
             case "Remarks":
-                $("#body-content #"+key+" li").text(info["Remarks"])
+                $(".body #"+key+" li").text(info["Remarks"])
                 break;
             case "SeeAlso":
                 SeeAlso(value, key)
@@ -435,17 +458,6 @@ if (info && info.constructor == Object){
     
     })
 
-    if (info.Title){
-        $("#Title").text(info.Title)
-    }else if (["Enumerations", "Events", "Methods"].includes(parent)){
-        parent = parent.substring(0, parent.length-1)
-        $("#Title").text(type + " " + parent)
-    } else if (["Events", "Methods", "Enumerations"].includes(type)){
-        $("#Title").text(parent + " " + type)
-    } else {
-        $("#Title").text(type + " " + parent)
-    }
-
 }
 
 
@@ -454,46 +466,20 @@ if (info && info.constructor == Object){
 
 // SELECT ALL AND BUTTON HANDLER
 
-var buttons = document.getElementsByClassName("icon");
-var SelectAll = document.getElementById("CollapseAll")
+var buttons = $(".icon")
+var SelectAll = $(".head #CollapseAll")
 
-
-function collapseButtons(button){
-    button.classList.add("icon-Children")
-    var children = button.parentElement.parentElement.querySelector(".children")
-    if (children){
-        children.classList.add('nested')
-    }
-}
-
-function expandButtons(button){
-    button.classList.remove("icon-Children")
-    var children = button.parentElement.parentElement.querySelector(".children")
-    if (children){
-        children.classList.remove('nested')
-    }
-}
-
-SelectAll.addEventListener('click', function(){
-    SelectAll.classList.toggle("icon-Children")
-    for (i=0; i < buttons.length; i++){
-        if ($(SelectAll).text() == "Collapse All"){
-            collapseButtons(buttons[i])
-        }else if ($(SelectAll).text() == "Expand All"){
-            expandButtons(buttons[i])
-        }
-    }
-    $(SelectAll).text($(this).text() == "Collapse All" ? "Expand All" : "Collapse All")
+var hide = false
+SelectAll.click(function(){
+    console.log('click')
+    $('.body .children').toggle()
+    $(this).toggleClass('icon-collapsed')
+    hide = !hide
 })
 
-
-for (i=0; i < buttons.length; i++){
-    buttons[i].addEventListener('click', function(){
-        this.classList.toggle("icon-Children")
-        var children = this.parentElement.parentElement.querySelector(".children")
-        if (children){
-            children.classList.toggle('nested')
-        }
-        
-    })
-}
+$(".icon").click(function(){
+    if ($(this).text() == $("#CollapseAll").text()){ return }
+    //console.log('click')
+    $(this).toggleClass('icon-collapsed')
+    $(this).parent().children('.children').toggle()
+})

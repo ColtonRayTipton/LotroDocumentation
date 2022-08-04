@@ -13,17 +13,6 @@ var data = `{
         "Title": "Turbine Package",
         "Description": "The core Turbine API package.",
         "Remarks": "The Turbine package provides access to core game functionality.",
-        "Classes": {
-            "Chat": "This class provides events for when messages are received through the game. This includes player chat, tells, in game messages, and announcements.",
-            "Engine": "Provides engine level information to user plugins.",
-            "LotroPluginManager": "Provides access to plugin management methods.",
-            "Object": "The base object class for API classes.",
-            "Plugin": "Provides information about a specific plugin that has been loaded.",
-            "PluginData": "Provides the ability to save and load plugin data.",
-            "PluginManager": "Provides access to plugin management methods.",
-            "Shell": "Provides programmer extensibility to the chat window.",
-            "ShellCommand": "A command that can be register for use in the chat window."
-        },
         "Enumerations": {
             "ChatType": {
                 "Description": "Defines the type of chat data.",
@@ -92,11 +81,11 @@ var data = `{
                 ]     
             }
         },
-        "Children": {
+        "Classes": {
             "Chat": {
                 "Description": "This class provides events for when messages are received through the game. This includes player chat, tells, in game messages, and announcements.",
                 "Remarks": "This is a class used to get messages",
-                "Events": {
+                "Chat Events": {
                     "Description": "This class provides events for when messages are received through the game. This includes player chat, tells, in game messages, and announcements.",
                     "Received": {
                         "Description": "This event is fired whenever a chat message is received.",
@@ -135,7 +124,7 @@ var data = `{
             "Engine": {
                 "Description": "Provides engine level information to user plugins.",
                 "Remarks": "The engine class provides information about the current state of the game engine.",
-                "Methods": {
+                "Engine Methods": {
                     "Description": "Provides engine level information to user plugins.",
                     "GetCallStack": {
                         "Description": "Gets the current callstack",
@@ -294,7 +283,7 @@ var data = `{
             "LotroPluginManager": {
                 "Description": "Provides access to plugin management methods.",
                 "Remarks": "The plugin manager class allows scripts to obtain information about the set of available and loaded plugins. It also provides methods for dynamically loading and unloading plugins as well as obtain.There is a slight disconnect in the method used to load and unload plugins. Plugins are loaded by their plugin name but are unloaded by the script state they are loaded into. Multiple plugins can be loaded into the same script state and by doing this those plugins have the ability to share code and interact with each other whereas plugins loaded into separate script states will be forced to create copies of any loaded library and will not have the ability to access each other.During unload, an entire script state gets unloaded which will unload all of the plugins that have been loaded into that script state. It is important to keep in mind this disconnect.",
-                "Methods": {
+                "LotroPluginManager Methods": {
                     "GetAvailablePlugins": {
                         "Description": "Gets the plugins that are currently available.",
                         "Syntax": {
@@ -309,7 +298,7 @@ var data = `{
                             "Turbine"
                         ]
                     }
-                },
+                }, 
                 "Inheritance Hierarchy": [
                     "Turbine.PluginManager",
                     "Turbine.LotroPluginManager"
