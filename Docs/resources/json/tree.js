@@ -13,17 +13,6 @@ var data = `{
         "Title": "Turbine Package",
         "Description": "The core Turbine API package.",
         "Remarks": "The Turbine package provides access to core game functionality.",
-        "Classes": {
-            "Chat": "This class provides events for when messages are received through the game. This includes player chat, tells, in game messages, and announcements.",
-            "Engine": "Provides engine level information to user plugins.",
-            "LotroPluginManager": "Provides access to plugin management methods.",
-            "Object": "The base object class for API classes.",
-            "Plugin": "Provides information about a specific plugin that has been loaded.",
-            "PluginData": "Provides the ability to save and load plugin data.",
-            "PluginManager": "Provides access to plugin management methods.",
-            "Shell": "Provides programmer extensibility to the chat window.",
-            "ShellCommand": "A command that can be register for use in the chat window."
-        },
         "Enumerations": {
             "ChatType": {
                 "Description": "Defines the type of chat data.",
@@ -92,7 +81,7 @@ var data = `{
                 ]     
             }
         },
-        "Children": {
+        "Classes": {
             "Chat": {
                 "Description": "This class provides events for when messages are received through the game. This includes player chat, tells, in game messages, and announcements.",
                 "Remarks": "This is a class used to get messages",

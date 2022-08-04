@@ -1,80 +1,55 @@
-var data = JSON.parse(data)
-    
+var data = JSON.parse(data)    
 var BlackList = [
-    "Packages",
-    "Title",
-    "Remarks",
+    "Example",
     "Classes",
     "Enumerations",
-    "Example",
-    "Inheritance Hierarchy",
-    "See Also",
-    "Received",
-    "Description",
-    "Fields",
-    "Parameters",
-    "Syntax",
-    "Returns",
-    "Children",
+    "Examples",
 ]
 
 function myFunction(id) {
     $("#content").attr('src', 'content.html?type='+id)
 }
 
-function addChildren(table, parent, childParent){
+function addTreeNode(grandparent, parent, key, iconType="collapsed"){
+    var node = `
+        <li title='`+key+`' class='tree-node' id='`+parent+`-`+key+`'>
+            <a class='tree-button icon-tree icon-`+iconType+` icon'></a>
+            <span class='tree-node-name'>`+key+`</span>
+            <ul class='tree-children'></ul>
+        </li>
+    `
+    //console.log(`#`+grandparent+`-`+parent)
+    $(`#`+grandparent+`-`+parent+' > .tree-children').append(node)
+    $(`#`+grandparent+`-`+parent+' > .tree-children > .tree-node > .tree-children').hide()
+}
+
+var loop = 1
+var oldloop = 0
+function addChildren(table, parent, grandparent, greatgrandparent){
+    if (loop == oldloop){ return } // Keep it from re-looping itself
     $.each(table, (key, value) => {
-        if (key == "Description"){ return }
-        if (parent != "Events" ? $.inArray(key, BlackList) < 0 : true){
-            li = $(`<li title='`+key+`' id='`+key+`'>
-                <span id="link">
-                    <a class='Children icon icon-Children' onclick='myFunction("`+key+`")'> `+key+`</a>
-                </span>
-                <ul id="`+key+`-children" class="children nested"></ul>
-            </li>`)
-
-            li2 = $(`<li title='`+key+`' id='`+key+`'>
-                <span id="link">
-                    <a class='Children icon icon-blackbox' onclick='myFunction("`+key+`")'> `+key+`</a>
-                </span>
-            </li>`)
-
-            if (parent == key){
-                $(".Tree").append(li)
-                var child = document.getElementById(key)
-                child.childNodes[3].classList.remove("nested")
-                child.childNodes[1].childNodes[1].classList.toggle("icon-Children")
-                addChildren(value, key)
-            }else if (value.constructor == Object && parent != "Enumerations" && parent != "Methods" && parent != "Events"){
-                $("#"+parent+"-children").append(li)
-                addChildren(value, key)
-            } else if (childParent) {
-                $("#"+childParent+"-children").append(li2)
-            } else {
-                $("#"+parent+"-children").append(li2)
+        if (value.constructor == Object){
+            if (!BlackList.includes(key)){
+                if (parent == 'Classes'){
+                    addTreeNode(greatgrandparent, grandparent, key)
+                }else if (!['Methods', 'Events', 'Enumerations'].includes(parent)){
+                    addTreeNode(greatgrandparent, parent, key)
+                }else{
+                    addTreeNode(grandparent, parent, key, "blackbox")
+                }
             }
-        }
-
-        if (key == "Children" || key == "Events"){
-            addChildren(value, parent, key)
-        }
-        if (key == "Enumerations"){
-            addChildren(value, key, parent)
+            addChildren(value, key, parent, grandparent)
         }
     })
+    oldloop = loop
+    loop++
+    //console.log("Done with loop: " + loop)
 }
 
-addChildren(data, "Turbine")
+addTreeNode("Tree", "Tree", "Turbine")
+addChildren(data.Turbine, "Turbine", "Tree")
 
-var buttons = document.getElementsByClassName("icon");
-
-for (i=0; i < buttons.length; i++){
-    buttons[i].addEventListener('click', function(){
-        this.classList.toggle("icon-Children")
-        var children = this.parentElement.parentElement.querySelector(".children")
-        if (children){
-            children.classList.toggle('nested')
-        }
-        
-    })
-}
+$(".tree-button").click(function(){
+    $(this).toggleClass('icon-collapsed')
+    $(this).parent().children('.tree-children').toggle()
+})
