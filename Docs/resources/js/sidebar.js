@@ -56,7 +56,6 @@ function addChildren(table, parent, childParent){
         }
 
         if (key == "Children" || key == "Events"){
-            //console.log(key, value)
             addChildren(value, parent, key)
         }
         if (key == "Enumerations"){
