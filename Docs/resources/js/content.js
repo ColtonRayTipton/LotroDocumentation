@@ -361,6 +361,7 @@ if (info && info.constructor == Object){
                 code = Prism.highlight(value.Function, Prism.languages['lua']);
                 $("#"+key+" #Code").append(code)
                 $("#"+key+" #Parameters").hide()
+                $("#"+key+" #Returns").hide()
                 if (value.Parameters){
                     $("#"+key+" #Parameters").show()
                     $("#"+key+" #Parameters ul").empty()
@@ -376,6 +377,9 @@ if (info && info.constructor == Object){
                         $("#"+key+" #Parameters ul").append(content)
                         
                     })
+                }
+                if (value.Returns) {
+                    $("#"+key+" #Returns").show()
                     $("#"+key+" #Returns #Type").text("Type: " + value.Returns[0])
                     $("#"+key+" #Returns #Description").text(value.Returns[1])
                 }

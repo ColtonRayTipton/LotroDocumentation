@@ -102,14 +102,24 @@ var data = `{
                         "Description": "This event is fired whenever a chat message is received.",
                         "Remarks": "This event is fired whenever any chat message is received from the game or other users. The arguments for this event will contain a combination of a Sender, a ChatType, and the Message itself. The ChatType enumeration can be used to determine what kind of message was received.",
                         "Syntax": {
-                            "Function": "function Turbine.Engine.GetGameTime();",
+                            "Function": "function Turbine.Chat:Recieved(sender, args);",
+                            "Parameters": {
+                                "sender": {
+                                    "Type": "table",
+                                    "Description": "The event sender"
+                                },
+                                "args": {
+                                    "Type": "table",
+                                    "Description": "The event arguments"
+                                }
+                            },
                             "Returns": [
                                 "number",
                                 "Returns a relative game time in seconds."
                             ]
                         },
                         "See Also": [
-                            "Engine",
+                            "Chat",
                             "Turbine"
                         ]
                     }
@@ -120,10 +130,7 @@ var data = `{
                 ],
                 "See Also": [
                     "Turbine"
-                ],
-                "Children": {
-                    
-                }
+                ]
             },
             "Engine": {
                 "Description": "Provides engine level information to user plugins.",
