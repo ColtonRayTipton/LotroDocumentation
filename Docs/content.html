@@ -315,7 +315,6 @@
                 });
                 var doc = document;
                 var element = this[0];
-                console.log(this, element);
                 if (doc.body.createTextRange) {
                     var range = document.body.createTextRange();
                     range.moveToElementText(element);
@@ -338,6 +337,7 @@
             function getValueFromKey(table, Name, newParent){
                 if (!Name){ return }
                 parent=""
+                parentTable={}
                 t = {}
                 var found = false
                 function recursive(table, Name){
@@ -362,6 +362,7 @@
             }
 
             parent, info = getValueFromKey(data, type)            
+            keyIsParent = false
 
             if (info && info.constructor == Object){
 
@@ -373,7 +374,11 @@
 
                     $.each(info, (key, value)=>{
                         key = key.replace(" ", "")
-                        if (key == element.attr('id') || type == element.attr('id')){
+                        if (key == element.attr('id')){
+                            element.show()
+                        }
+                        if (type == element.attr('id')){
+                            keyIsParent = true
                             element.show()
                         }
                     })
@@ -473,6 +478,9 @@
                         </tr>
                     `)
                     insertHtml = function(key, value){
+                        if (key == "Description" || key == type){
+                            return ''
+                        }
                         return element.append(`
                             <tr>
                                 <td>
@@ -500,6 +508,9 @@
                         </tr>
                     `)
                     insertHtml = function(key, value){
+                        if (key == "Description" || key == type){
+                            return ''
+                        }
                         return element.append(`
                             <tr>
                                 <td>
@@ -579,7 +590,7 @@
                     insertHtml = function(key){
                         count = count + 1
                         htmlData = `
-                        <ul id="InhId`+count+` class='Tree-Children'">
+                        <ul id="InhId`+count+`" class='Tree-Children'>
                             <li title='Turbine'>
                                 <span>
                                     <a href='?type=`+key+`' class='Children'>`+key+`</a>
@@ -598,9 +609,22 @@
                     }
 
                 }
-                
+
+                if (keyIsParent){
+                    info[type] = info
+                }
+
                 $.each(info, (key, value) =>{
                     key = key.replace(" ", "")
+
+                    if (value.constructor == Object){
+                        $.each(value, (key, cvalue) =>{
+                            if (typeof cvalue == "string"){
+                                value[key] = cvalue.replace('[key]', (key).toLowerCase())
+                            }
+                        })
+                    }
+
                     switch(key){
                         case "Description":
                             $("#body-content #"+key+" td").text(info["Description"])
@@ -642,7 +666,6 @@
                                     $("#"+key+" #Parameters ul").append(content)
                                     
                                 })
-                                console.log(value.Parameters)
                                 $("#"+key+" #Returns #Type").text("Type: " + value.Returns[0])
                                 $("#"+key+" #Returns #Description").text(value.Returns[1])
                             }

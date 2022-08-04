@@ -351,8 +351,17 @@ table {
     padding-left: 2px;
 }
 
+#body #InheritanceHierarchy .Tree-Children {
+    padding-left: 2vw;
+}
+
+#body #InheritanceHierarchy .Tree ul:first-child {
+    padding-left: 0;
+}
+
+
 #body-content > tbody > tr:nth-child(1) {
-    height: 100%;
+    height: min-content;
     width: 100%;
     line-height: 10vh;
     padding-bottom: 0;
@@ -385,4 +394,10 @@ table {
 #Examples #Title a {
     float: right;
     width: max-content !important;
+}
+
+#body-content #Description {
+    line-height: normal;
+    padding-top: 2vh !important;
+    padding-bottom: 2vh !important;
 }

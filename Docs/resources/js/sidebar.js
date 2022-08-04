@@ -27,14 +27,14 @@ function addChildren(table, parent, childParent){
         if (parent != "Events" ? $.inArray(key, BlackList) < 0 : true){
             li = $(`<li title='`+key+`' id='`+key+`'>
                 <span id="link">
-                    <a class='Children icon icon-Children' onclick='myFunction("`+key+`")'>`+key+`</a>
+                    <a class='Children icon icon-Children' onclick='myFunction("`+key+`")'> `+key+`</a>
                 </span>
                 <ul id="`+key+`-children" class="children nested"></ul>
             </li>`)
 
             li2 = $(`<li title='`+key+`' id='`+key+`'>
                 <span id="link">
-                    <a class='Children icon icon-blackbox' onclick='myFunction("`+key+`")'>`+key+`</a>
+                    <a class='Children icon icon-blackbox' onclick='myFunction("`+key+`")'> `+key+`</a>
                 </span>
             </li>`)
 
