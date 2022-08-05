@@ -32,7 +32,7 @@ function addChildren(table, parent, grandparent, greatgrandparent){
                     }else{
                         addTreeNode(greatgrandparent, grandparent, key)
                     }
-                }else if (![grandparent+'-Methods', grandparent+'-Events', 'Enumerations'].includes(parent)){
+                }else if (!['Methods', 'Events', 'Enumerations'].includes(parent)){
                     addTreeNode(greatgrandparent, parent, key)
                 }else{
                     addTreeNode(grandparent, parent, key, "blackbox")

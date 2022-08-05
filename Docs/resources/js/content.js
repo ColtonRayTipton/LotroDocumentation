@@ -61,6 +61,10 @@ function getValueFromKey(table, Name){
 var info = getValueFromKey(data, type)            
 var keyIsParent = false
 
+if (type == "Turbine"){
+    info = data.Turbine
+}
+
 if (!parentType){
     parentType = Parent
 }
@@ -285,25 +289,27 @@ if (info && info.constructor == Object){
     }
 
     function InheritanceHierarchy(data, parent){
-        var element = $(".body #"+parent+" .children")
+        var element = $(".body #"+parent+" td > ul")
         element.empty()
         var prevElement = element
         var count = 0
         var insertHtml = function(key){
+            var parents = key.match(/\w+/g).reverse()
+            var key = parents[0]
+            var keyParent = parents[1]
+            console.log(parents)
             count = count + 1
             var htmlData = `
-            <ul id="InhId`+count+`" class='Tree-Children'>
-                <li title='Turbine'>
-                    <span>
-                        <a href='?type=`+key+`&parent=`+parentType+`' class='Children'>`+key+`</a>
-                    </span>
-                </li>
-            </ul>
+                <ul class=""children" id="InhId`+count+`">
+                    <li class='tree-node' title='`+key+`'>
+                        <a class='Children icon icon-blackbox'></a>
+                        <span><a href='?type=`+key+`&parent=`+keyParent+`'>`+String(parents.reverse()).replaceAll(',','.')+`</a></span>
+                    </li>
+                </ul>
                 `
 
             prevElement.append(htmlData)
             prevElement = $('#InhId'+count)
-
         }
 
         for (var i = 0; i < data.length; i++){
