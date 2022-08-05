@@ -26,7 +26,6 @@ var params = new URLSearchParams(query)
 
 var type = params.get('type')
 var parentType = params.get('parent')
-
 var Parent=""
 
 function getValueFromKey(table, Name){
@@ -61,8 +60,8 @@ function getValueFromKey(table, Name){
 var info = getValueFromKey(data, type)            
 var keyIsParent = false
 
-if (type == "Turbine"){
-    info = data.Turbine
+if (parentType == "Tree"){
+    info = data[type]
 }
 
 if (!parentType){
