@@ -405,7 +405,7 @@ if (info && info.constructor == Object){
             $.each(value, (key, cvalue) =>{
                 if (typeof cvalue == "string"){
                     value[key] = cvalue.replace('[key]', (key).toLowerCase())
-                    value[key] = cvalue.replace('[parent]', (type))
+                    value[key] = cvalue.replace('[parent]', type)
                 }
             })
         }

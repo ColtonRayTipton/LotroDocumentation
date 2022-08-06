@@ -69,12 +69,12 @@ var data=`{
             "Language": {
                 "Description": "Defines the client languages.",
                 "Fields": {
-                    "English": "[key]",
+                    "English": "English",
                     "EnglishGB": "English GB",
-                    "French": "[key]",
-                    "German": "[key]",
-                    "Invalid": "[key]",
-                    "Russian": "[key] (deprecated)"
+                    "French": "French",
+                    "German": "German",
+                    "Invalid": "Invalid",
+                    "Russian": "Russian (deprecated)"
                 },
                 "See Also": [
                     "Turbine"
