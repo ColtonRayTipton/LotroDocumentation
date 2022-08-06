@@ -53,7 +53,7 @@ var data=`{
                 },
                 "See Also": [
                     "Turbine"
-                ]     
+                ]
             },
             "DataScope": {
                 "Description": "Defines the scope of plugin data.",
@@ -64,7 +64,7 @@ var data=`{
                 },
                 "See Also": [
                     "Turbine"
-                ]     
+                ]
             },
             "Language": {
                 "Description": "Defines the client languages.",
@@ -78,7 +78,7 @@ var data=`{
                 },
                 "See Also": [
                     "Turbine"
-                ]     
+                ]
             }
         },
         "Classes": {
@@ -121,7 +121,7 @@ var data=`{
                 "See Also": [
                     "Turbine"
                 ]
-            }, 
+            },
             "Chat": {
                 "Description": "This class provides events for when messages are received through the game. This includes player chat, tells, in game messages, and announcements.",
                 "Remarks": "This is a class used to get messages",
@@ -337,7 +337,7 @@ var data=`{
                             "Plugin"
                         ]
                     },
-                    "GetConfiguration":{
+                    "GetConfiguration": {
                         "Description": "Gets the plugin configuration information.",
                         "Remarks": "This method returns a structure of information mapped out of the plugin information file under the configuration element.",
                         "Syntax": {
@@ -352,7 +352,7 @@ var data=`{
                             "Plugin"
                         ]
                     },
-                    "GetName":{
+                    "GetName": {
                         "Description": "Gets the name of the plugin.",
                         "Remarks": "This method gets the name of the plugin that was specified in the plugin information file.",
                         "Syntax": {
@@ -367,7 +367,7 @@ var data=`{
                             "Plugin"
                         ]
                     },
-                    "GetVersion":{
+                    "GetVersion": {
                         "Description": "Gets the version of the plugin.",
                         "Remarks": "This method gets the version of the plugin that was specified in the plugin information file.",
                         "Syntax": {
@@ -604,7 +604,7 @@ var data=`{
                             "Turbine"
                         ]
                     }
-                }, 
+                },
                 "Inheritance Hierarchy": [
                     "Turbine",
                     "Turbine.PluginManager"
@@ -814,18 +814,18 @@ var data=`{
                     "Chicken": "Chicken class.",
                     "Defiler": "Defiler class.",
                     "Guardian": "Guardian class.",
-                    "Hunter":  "Hunter class.",
+                    "Hunter": "Hunter class.",
                     "LoreMaster": "Lore Master class.",
                     "Minstrel": "Minstrel class.",
-                    "Ranger":  "Ranger class.",
-                    "Reaver":  "Reaver class.",
+                    "Ranger": "Ranger class.",
+                    "Reaver": "Reaver class.",
                     "RuneKeeper": "Rune-Keeper class.",
                     "Stalker": "Stalker class.",
-                    "Troll":   "Troll class.",
+                    "Troll": "Troll class.",
                     "Undefined": "An undefined Class.",
-                    "Warden":  "Warden class.",
+                    "Warden": "Warden class.",
                     "WarLeader": "WarLeader class.",
-                    "Weaver":  "Weaver class."
+                    "Weaver": "Weaver class."
                 },
                 "See Also": [
                     "Turbine.Gameplay"
@@ -834,16 +834,16 @@ var data=`{
             "CraftTier": {
                 "Description": "A crafting tier",
                 "Fields": {
-                    "Apprentice":	"Apprentice level.",
-                    "Artisan":	    "Artisan level.",
-                    "Eastemnet":	"Eastemnet level.",
-                    "Expert":	    "Expert level.",
-                    "Journeyman":	"Journeyman level.",
-                    "Master":	    "Master level.",
-                    "Supreme":	    "Supreme level.",
-                    "Westemnet":	"Westemnet level.",
-                    "Westfold":	    "Westfold level.",
-                    "Undefined":	"An undefined profession."
+                    "Apprentice": "Apprentice level.",
+                    "Artisan": "Artisan level.",
+                    "Eastemnet": "Eastemnet level.",
+                    "Expert": "Expert level.",
+                    "Journeyman": "Journeyman level.",
+                    "Master": "Master level.",
+                    "Supreme": "Supreme level.",
+                    "Westemnet": "Westemnet level.",
+                    "Westfold": "Westfold level.",
+                    "Undefined": "An undefined profession."
                 },
                 "See Also": [
                     "Turbine.Gameplay"
@@ -852,107 +852,357 @@ var data=`{
             "EffectCategory": {
                 "Description": "Describes the category of an effect.",
                 "Fields": {
-                    "Corruption":	"A corruption effect.",
-                    "Cry":	        "A cry effect.",
-                    "Disease":	    "A disease effect.",
-                    "Dispellable":	"A dispellable effect.",
-                    "Elemental":	"An elemental effect.",
-                    "Fear":	        "A fear effect.",
-                    "Physical":	    "A physical effect.",
-                    "Poison":	    "A poison effect.",
-                    "Song":	        "A song effect.",
-                    "Undefined":	"An undefined category.",
-                    "Wound":	    "A wound effect."
+                    "Corruption": "A corruption effect.",
+                    "Cry": "A cry effect.",
+                    "Disease": "A disease effect.",
+                    "Dispellable": "A dispellable effect.",
+                    "Elemental": "An elemental effect.",
+                    "Fear": "A fear effect.",
+                    "Physical": "A physical effect.",
+                    "Poison": "A poison effect.",
+                    "Song": "A song effect.",
+                    "Undefined": "An undefined category.",
+                    "Wound": "A wound effect."
                 },
                 "See Also": [
                     "Turbine.Gameplay"
                 ]
             },
             "EquipmentSlot": {
-                "Description": "",
+                "Description": "The equipment slot in the player's equipment.",
                 "Fields": {
-
+                    "Back": "The back equipment slot.",
+                    "Boots": "The boots equipment slot.",
+                    "Bracelet1": "The bracelet 1 equipment slot.",
+                    "Bracelet2": "The bacelet 2 equipment slot.",
+                    "Chest": "The chest equipment slot.",
+                    "Class": "The class equipment slot.",
+                    "CraftTool": "The craft tool equipment slot.",
+                    "Earring1": "The earring 1 equipment slot.",
+                    "Earring2": "The earring 2 equipment slot.",
+                    "Gloves": "The gloves equipment slot.",
+                    "Head": "The head equipment slot.",
+                    "Instrument": "The instrument equipment slot.",
+                    "Legs": "The legs equipment slot.",
+                    "Necklace": "The necklace equipment slot.",
+                    "Pocket": "The pocket equipment slot.",
+                    "PrimaryWeapon": "The primary weapon equipment slot.",
+                    "RangedWeapon": "The ranged weapon equipment slot.",
+                    "Ring1": "The ring 1 equipment slot.",
+                    "Ring2": "The ring 2 equipment slot.",
+                    "SecondaryWeapon": "The secondary weapon equipment slot.",
+                    "Shield": "The shield equipment slot.",
+                    "Shoulder": "The shoulder equipment slot.",
+                    "Undefined": "An undefined equipment slot."
                 },
                 "See Also": [
                     "Turbine.Gameplay"
                 ]
             },
             "ItemCategory": {
-                "Description": "",
+                "Description": "Describes the category of an item.",
                 "Fields": {
-
+                    "ApprenticeCookScroll":	    "Category for an apprentice cook scroll.",
+                    "ApprenticeFarmerScroll":	    "Category for an apprentice farmer scroll.",
+                    "ApprenticeForestryScroll":	"Category for an apprentice forestry scroll.",
+                    "ApprenticeJewellerScroll":	"Category for an apprentice jeweller scroll.",
+                    "ApprenticeMetalworkScroll":	"Category for an apprentice metalwork scroll.",
+                    "ApprenticeProspectingScroll":	"Category for an apprentice prospecting scroll.",
+                    "ApprenticeScholarScroll":	    "Category for an apprentice scholar scroll.",
+                    "ApprenticeTailorScroll":	    "Category for an apprentice tailor scroll.",
+                    "ApprenticeWeaponsmithScroll":	    "Category for an apprentice weaponsmith scroll.",
+                    "ApprenticeWoodworkScroll":	    "Category for an apprentice woodwork scroll.",
+                    "Armor":	    "Category for an armor item.",
+                    "ArtisanCookScroll":	    "Category for an artisan cook scroll.",
+                    "ArtisanFarmerScroll":	    "Category for an artisan farmer scroll.",
+                    "ArtisanForestryScroll":	    "Category for an artisan forestry scroll.",
+                    "ArtisanJewellerScroll":	    "Category for an artisan jeweller scroll.",
+                    "ArtisanMetalworkScroll":	    "Category for an artisan metalwork scroll.",
+                    "ArtisanProspectingScroll":	    "Category for an artisan prospecting scroll.",
+                    "ArtisanScholarScroll":	    "Category for an artisan scholar scroll.",
+                    "ArtisanTailorScroll":	    "Category for an artisan tailor scroll.",
+                    "ArtisanWeaponsmithScroll":	    "Category for an artisan weaponsmith scroll.",
+                    "ArtisanWoodworkScroll":	    "Category for an artisan woodwork scroll.",
+                    "Axe":	"Category for an axe.",
+                    "Back":	    "Category for equipment for the back.",
+                    "Barter":	    "Category for a barter item.",
+                    "Book":	    "Category for a book.",
+                    "Bow":	    "Category for a bow.",
+                    "Burglar":	    "Category for a burglar item.",
+                    "Captain":	    "Category for a captain item.",
+                    "CeilingDecoration":	    "Category for ceiling decorations.",
+                    "Champion":	    "Category for a champion item.",
+                    "Chest":	    "Category for a chest.",
+                    "Clothing":	    "Category for clothing.",
+                    "Club":	    "Category for a club.",
+                    "Component":	    "Category for a recipe component.",
+                    "CosmeticBack":	    "Category for cosmetic equipment for the back.",
+                    "CosmeticChest":	    "Category for cosmetic equipment for the chest.",
+                    "CosmeticClass":	    "Category for cosmetic equipment for a class.",
+                    "CosmeticFeet":	    "Category for cosmetic equipment for the feet.",
+                    "CosmeticHands":	    "Category for cosmetic equipment for the hands.",
+                    "CosmeticHead":	    "Category for cosmetic equipment for the head.",
+                    "CosmeticHeld":	    "Category for cosmetic held items.",
+                    "CosmeticLegs":	    "Category for cosmetic equipment for the legs.",
+                    "CosmeticShoulders":	    "Category for cosmetic equipment for the shoulders.",
+                    "Crafting":	    "Category for a crafting item.",
+                    "CraftingTrophy":	    "Category for a crafting trophy.",
+                    "Crossbow":	    "Category for a crossbow.",
+                    "Dagger":	    "Category for a dagger.",
+                    "Deconstructable":	    "Category for a deconstructable item.",
+                    "Decoration":	    "Category for a decoration.",
+                    "Device":	    "Category for a device.",
+                    "Dye":	    "Category for a dye.",
+                    "Effect":	    "Category for an effect.",
+                    "ExpertCookScroll":	    "Category for an expert cook scroll.",
+                    "ExpertFarmerScroll":	    "Category for an expert farmer scroll.",
+                    "ExpertForestryScroll":	    "Category for an expert forestry scroll.",
+                    "ExpertJewellerScroll":	    "Category for an expert jeweller scroll.",
+                    "ExpertMetalworkScroll":	    "Category for an expert metalwork scroll.",
+                    "ExpertProspectingScroll":	    "Category for an expert prospecting scroll.",
+                    "ExpertScholarScroll":	    "Category for an expert scholar scroll.",
+                    "ExpertTailorScroll":	    "Category for an expert tailor scroll.",
+                    "ExpertWeaponsmithScroll":	    "Category for an expert weaponsmith scroll.",
+                    "ExpertWoodworkScroll":	    "Category for an expert woodwork scroll.",
+                    "Feet":	    "Category for foot equipment.",
+                    "Festival":	    "Category for a festival item.",
+                    "Fish":	    "Category for a fish.",
+                    "FishingBait":	    "Category for fishing bait.",
+                    "FishingOther":	    "Category for other fishing items.",
+                    "FishingPole":	    "Category for a fishing pole.",
+                    "FloorDecoration":	    "Category for floor decorations.",
+                    "Food":	    "Category for food.",
+                    "FurnitureDecoration":	    "Category for furniture decorations.",
+                    "Guardian":	    "Category for a guardian item.",
+                    "GuardianBelt":	    "Category for a guardian belt.",
+                    "Halberd":	    "Category for a halberd.",
+                    "Hammer":	    "Category for a hammer.",
+                    "Hands":	    "Category for equipment for the hands.",
+                    "Head":	    "Category for equipment for the head.",
+                    "Healing":	    "Category for a healing item.",
+                    "Horn":	    "Category for a horn.",
+                    "Hunter":	    "Category for a hunter item.",
+                    "Implement":	    "Category for an implement.",
+                    "Ingredient":	    "Category for an ingredient.",
+                    "Instrument":	    "Category for an instrument.",
+                    "Javelin":	    "Category for a javelin.",
+                    "Jewelry":	    "Category for a Jewelry item.",
+                    "JourneymanCookScroll":	    "Category for a journeyman cook scroll.",
+                    "JourneymanFarmerScroll":	    "Category for a journeyman farmer scroll.",
+                    "JourneymanForestryScroll":	    "Category for a journeyman forestry scroll.",
+                    "JourneymanJewellerScroll":	    "Category for a journeyman jeweller scroll.",
+                    "JourneymanMetalworkScroll":	    "Category for a journeyman metalwork scroll.",
+                    "JourneymanProspectingScroll":	    "Category for a journeyman prospecting scroll.",
+                    "JourneymanScholarScroll":	    "Category for a journeyman scholar scroll.",
+                    "JourneymanTailorScroll":	    "Category for a journeyman tailor scroll.",
+                    "JourneymanWeaponsmithScroll":	    "Category for a journeyman weaponsmith scroll.",
+                    "JourneymanWoodworkScroll":	   " Category for a journeyman woodwork scroll.",
+                    "Key":	    "Category for a key.",
+                    "KinshipCharter":	    "Category for a kinship charter.",
+                    "LegendaryWeaponAddLegacy":	    "Category for a legendary weapon add legacy item.",
+                    "LegendaryWeaponExperience":	    "Category for a legendary weapon experience item.",
+                    "LegendaryWeaponIncreaseItemLevel":	    "Category for a legendary weapon increase item level item.",
+                    "LegendaryWeaponIncreaseMaxLevel":	    "Category for a legendary weapon increase max level item.",
+                    "LegendaryWeaponLegacyReveal":	    "Category for a legendary weapon legacy reveal item.",
+                    "LegendaryWeaponReplaceLegacy":	    "Category for a legendary weapon replace legacy item.",
+                    "LegendaryWeaponReset":	    "Category for a legendary weapon reset item.",
+                    "LegendaryWeaponUnslotRelics":	    "Category for a legendary weapon unslot relics item.",
+                    "LegendaryWeaponUpgradeLegacy":	    "Category for a legendary weapon upgrade legacy item.",
+                    "Legs":	   " Category for equipment for the legs.",
+                    "Loremaster":	    "Category for a loremaster item.",
+                    "LoremasterFood":	   " Category for loremaster food items.",
+                    "Mace":	   " Category for a mace.",
+                    "Map":	    "Category for a map.",
+                    "MasterCookScroll":	    "Category for a master cook scroll.",
+                    "MasterFarmerScroll":	    "Category for a master farmer scroll.",
+                    "MasterForestryScroll":	    "Category for a master forestry scroll.",
+                    "MasterJewellerScroll":	    "Category for a master jeweller scroll.",
+                    "MasterMetalworkScroll":	    "Category for a master metalwork scroll.",
+                    "MasterProspectingScroll":	    "Category for a master prospecting scroll.",
+                    "MasterScholarScroll":	    "Category for a master scholar scroll.",
+                    "MasterTailorScroll":	    "Category for a master tailor scroll.",
+                    "MasterWeaponsmithScroll":	    "Category for a master weaponsmith scroll.",
+                    "MasterWoodworkScroll":	    "Category for a master woodwork scroll.",
+                    "Minstrel":	    "Category for a minstrel item.",
+                    "MinstrelBook":	    "Category for a minstrel book.",
+                    "Misc":	    "Category for a misc item.",
+                    "Mounts":	    "Category for mounts.",
+                    "MusicDecoration":	    "Category for a music decoration item.",
+                    "NonInventory":	    "Category for a non-inventory item.",
+                    "Oil":	    "Category for an oil.",
+                    "OptionalIngredient":	    "Category for an optional ingredient.",
+                    "Orb":	    "Category for an orb.",
+                    "Pennant":	    "Category for a pennant.",
+                    "Perk":	    "Category for a perk.",
+                    "Potion":	    "Category for a potion.",
+                    "Quest":	    "Category for a quest item.",
+                    "Relic":	    "Category for a relic.",
+                    "Reputation":	    "Category for a reputation item.",
+                    "Resource":	    "Category for a resource.",
+                    "Runekeeper":	    "Category for a runekeeper item.",
+                    "Scroll":	    "Category for a scroll.",
+                    "Shield":	    "Category for a shield.",
+                    "Shieldspike":	    "Category for a shieldspike.",
+                    "Shoulders":	    "Category for shoulder equipment.",
+                    "Skirmish":	    "Category for a skirmish item.",
+                    "Social":	    "Category for a social item.",
+                    "Spear":	    "Category for a spear.",
+                    "Special":	    "Category for special item.",
+                    "SpecialDecoration":	    "Category for special decorations.",
+                    "SpecialTrophy":	    "Category for a special trophy.",
+                    "Staff":	    "Category for a staff.",
+                    "SupremeCookScroll":	    "Category for a supreme cook scroll.",
+                    "SupremeFarmerScroll":	    "Category for a supreme farmer scroll.",
+                    "SupremeForestryScroll":	    "Category for a supreme forestry scroll.",
+                    "SupremeJewellerScroll":	    "Category for a supreme jeweller scroll.",
+                    "SupremeMetalworkScroll":	    "Category for a supreme metalwork scroll.",
+                    "SupremeProspectingScroll":	    "Category for a supreme prospecting scroll.",
+                    "SupremeScholarScroll":	    "Category for a supreme scholar scroll.",
+                    "SupremeTailorScroll":	    "Category for a supreme tailor scroll.",
+                    "SupremeWeaponsmithScroll":	    "Category for a supreme weaponsmith scroll.",
+                    "SupremeWoodworkScroll":	    "Category for a supreme woodwork scroll.",
+                    "SurfacePaintDecoration":	    "Category for a surface paint decoration.",
+                    "Sword":	    "Category for a sword.",
+                    "Thrown":	    "Category for a thrown item.",
+                    "Tome":	    "Category for a tome.",
+                    "Tool":	    "Category for a tool.",
+                    "Trap":	    "Category for a trap.",
+                    "Travel":	    "Category for a travel.",
+                    "Treasure":	    "Category for a treasure.",
+                    "Trophy":	    "Category for a trophy.",
+                    "TrophyDecoration":	    "Category for a trophy decoration.",
+                    "WallDecoration":	    "Category for a wall decoration.",
+                    "Warden":	    "Category for a warden item.",
+                    "Weapon":	    "Category for a weapon.",
+                    "WestfoldCookScroll":	    "Category for a Westfold cook scroll.",
+                    "WestfoldFarmerScroll":	    "Category for a Westfold farmer scroll.",
+                    "WestfoldForestryScroll":	    "Category for a Westfold forestry scroll.",
+                    "WestfoldJewellerScroll":	    "Category for a Westfold jeweller scroll.",
+                    "WestfoldMetalworkScroll":	    "Category for a Westfold metalwork scroll.",
+                    "WestfoldProspectingScroll":	    "Category for a Westfold prospecting scroll.",
+                    "WestfoldScholarScroll":	    "Category for a Westfold scholar scroll.",
+                    "WestfoldTailorScroll":	    "Category for a Westfold tailor scroll.",
+                    "WestfoldWeaponsmithScroll":	    "Category for a Westfold weaponsmith scroll.",
+                    "WestfoldWoodworkScroll":	    "Category for a Westfold woodwork scroll.",
+                    "YardDecoration":	    "Category for a yard decoration.",
+                    "Undefined":	    "An undefined category."
                 },
                 "See Also": [
                     "Turbine.Gameplay"
                 ]
             },
             "ItemDurability": {
-                "Description": "",
+                "Description": "Describes the durability of an item.",
                 "Fields": {
-
+                    "Brittle":	        "An item that is of brittle durability.",
+                    "Flimsy":	        "An item that is flimsy durability.",
+                    "Indestructible":	"An item that is indestructible.",
+                    "Normal":	        "An item that is of average durability.",
+                    "Substantial":	    "An item that is of substantial durability.",
+                    "Tough":	        "An item that is of tough durability.",
+                    "Undefined":	    "An undefined durability.",
+                    "Weak":	            "An item that is durability."
                 },
                 "See Also": [
                     "Turbine.Gameplay"
                 ]
             },
             "ItemQuality": {
-                "Description": "",
+                "Description": "Describes the quality of an item.",
                 "Fields": {
-
+                    "Common":	"An item that is common.",
+                    "Incomparable":	"An item that is incomparable.",
+                    "Legendary":	"An item that is legendary.",
+                    "Rare":	"An item that is rare.",
+                    "Uncommon":	"An item that is uncommon.",
+                    "Undefined":	"An item with no defined quality."
                 },
                 "See Also": [
                     "Turbine.Gameplay"
                 ]
             },
             "ItemWearState": {
-                "Description": "",
+                "Description": "Describes the current wear state of an item.",
                 "Fields": {
-
+                    "Common":	    "An item that is common.",
+                    "Incomparable": "An item that is incomparable.",
+                    "Legendary":	"An item that is legendary.",
+                    "Rare":	        "An item that is rare.",
+                    "Uncommon":	    "An item that is uncommon.",
+                    "Undefined":	"An item with no defined quality."
                 },
                 "See Also": [
                     "Turbine.Gameplay"
                 ]
             },
             "Profession": {
-                "Description": "",
+                "Description": "A profession a free people player can have.",
                 "Fields": {
-
+                    "Cook":	        "A cook.",
+                    "Farmer":	    "A farmer.",
+                    "Forester":	    "A forester.",
+                    "Jeweller":	    "A jeweller.",
+                    "Metalsmith":	"A metalsmith.",
+                    "Prospector":	"A propspector.",
+                    "Scholar":	    "A scholar.",
+                    "Tailor":	    "A tailor.",
+                    "Weaponsmith":	"A weaponsmith.",
+                    "Woodworker":	"A woodworker.",
+                    "Undefined":	"An undefined profession."
                 },
                 "See Also": [
                     "Turbine.Gameplay"
                 ]
             },
             "Race": {
-                "Description": "",
+                "Description": "The Race of a player.",
                 "Fields": {
-
+                    "Beorning":	    "Beorning race.",
+                    "Dwarf":	    "Dwarf race.",
+                    "Elf":	        "Elf race.",
+                    "HighElf":	    "High Elf race.",
+                    "Hobbit":	    "Hobbit race.",
+                    "Man":	        "Man race.",
+                    "StoutAxe":	    "Dwarf Stout-axe race.",
+                    "Undefined":	"An undefined Race."
                 },
                 "See Also": [
                     "Turbine.Gameplay"
                 ]
             },
             "ReadyState": {
-                "Description": "",
+                "Description": "The ready state of a player.",
                 "Fields": {
-
+                    "NotReady":    "Not ready state.",
+                    "Ready":	    "Ready state.",
+                    "Unset":	    "An unset set."
                 },
                 "See Also": [
                     "Turbine.Gameplay"
                 ]
             },
             "SkillType": {
-                "Description": "",
+                "Description": "A type of skill.",
                 "Fields": {
-
+                    "Gambit":	"A gambit skill.",
+                    "Mount":	"A mount skill.",
+                    "Normal":	"A standard skill."
                 },
                 "See Also": [
                     "Turbine.Gameplay"
                 ]
             },
             "Vocation": {
-                "Description": "",
+                "Description": "The vocation of a free people player.",
                 "Fields": {
-
+                    "Armorer":	    "An armorer.",
+                    "Armsman":	    "An armsman.",
+                    "Explorer":	    "An explorer.",
+                    "Historian":	"A historian.",
+                    "None":	        "No vocation.",
+                    "Tinker":	    "A tinker.",
+                    "Woodsman":	    "A woodsman.",
+                    "Yeoman":	    "A yeoman."
                 },
                 "See Also": [
                     "Turbine.Gameplay"
@@ -960,41 +1210,542 @@ var data=`{
             }
         },
         "Classes": {
-            "ActiveSkill": {},
-            "Actor": {},
-            "Attributes": {},
-            "Backpack": {},
-            "Bank": {},
-            "BasicMount": {},
-            "ClassAttributes": {},
-            "CombatMount": {},
-            "Effect": {},
-            "EffectList": {},
-            "Entity": {},
-            "EntityReference": {},
-            "Equipment": {},
-            "GambitSkill": {},
-            "GambitSkillInfo": {},
-            "Item": {},
-            "ItemInfo": {},
-            "LocalPlayer": {},
-            "Mount": {},
-            "Party": {},
-            "PartyMember": {},
-            "Pet": {},
-            "Player": {},
-            "ProfessionInfo": {},
-            "PropertyHandler": {},
-            "Recipe": {},
-            "RecipeIngredient": {},
-            "SharedStorage": {},
-            "Skill": {},
-            "SkillInfo": {},
-            "SkillList": {},
-            "UntrainedSkill": {},
-            "Vault": {},
-            "Wallet": {},
-            "WalletItem": {}
+            "ActiveSkill": {
+                "Description": "Information about an active player's skill",
+                "Methods": {
+
+                },
+                "Events": {
+
+                },
+                "Inheritance Hierarchy": [
+                    "Turbine.Object",
+                    "Turbine.Gameplay.Skill",
+                    "Turbine.Gameplay.ActiveSkill"
+                ],
+                "See Also": [
+                    "Turbine.Gameplay"
+                ]
+            },
+            "Actor": {
+                "Description": "Base class for any entity that interacts in the world.",
+                "Remarks": "Actors include things from players to NPCs to monsters, anything that can interact with other parts of the world.",
+                "Methods": {
+
+                },
+                "Events": {
+
+                },
+                "Inheritance Hierarchy": [
+                    "Turbine.Object",
+                    "Turbine.Gameplay.EntityReference",
+                    "Turbine.Gameplay.PropertyHandler",
+                    "Turbine.Gameplay.Entity",
+                    "Turbine.Gameplay.Actor",
+                    "Turbine.Gameplay.Pet",
+                    "Turbine.Gameplay.Player"
+                ],
+                "See Also": [
+                    "Turbine.Gameplay"
+                ]
+            },
+            "Attributes": {
+                "Description": "Represents a collection of information about an entity.",
+                "Remarks": "Attributes are used to encapsulate common groups of information for different types of entities. Attributes can include basic information such as Free People player stats, specific class information, information about an Actor's race, and other such information.",
+                "Methods": {
+
+                },
+                "Events": {
+
+                },
+                "Inheritance Hierarchy": [
+                    "Turbine.Object",
+                    "Turbine.Gameplay.EntityReference",
+                    "Turbine.Gameplay.PropertyHandler",
+                    "Turbine.Gameplay.Attributes",
+                    "Turbine.Gameplay.Attributes.DwarfAttributes",
+                    "Turbine.Gameplay.Attributes.ElfAttributes",
+                    "Turbine.Gameplay.Attributes.FreePeopleAttributes",
+                    "Turbine.Gameplay.Attributes.HighElfAttributes",
+                    "Turbine.Gameplay.Attributes.HobbitAttributes",
+                    "Turbine.Gameplay.Attributes.ManAttributes",
+                    "Turbine.Gameplay.Attributes.MonsterPlayerAttributes",
+                    "Turbine.Gameplay.Attributes.StoutAxeAttributes",
+                    "Turbine.Gameplay.ClassAttributes"
+                ],
+                "See Also": [
+                    "Turbine.Gameplay"
+                ]
+            },
+            "Backpack": {
+                "Description": "Provides access to a player's backpack.",
+                "Remarks": "The backpack holds all the items that a player is carrying. This class can be used to get the size of the backpack and to access any specific item contained within.",
+                "Methods": {},
+                "Events": {},
+                "Inheritance Hierarchy": [
+                    "Turbine.Object",
+                    "Turbine.Gameplay.Backpack"
+                ],
+                "See Also": [
+                    "Turbine.Gameplay"
+                ]
+            },
+            "Bank": {
+                "Description": "A container of items that are only accessible at designated bank locations.",
+                "Remarks": "A container of items that are only accessible at designated bank locations. The contents of a bank can only be used while interacting with a banker. When a banker is not available the various methods will return default values and the items will not be available.",
+                "Methods": {},
+                "Events": {},
+                "Inheritance Hierarchy": [
+                    "Turbine.Object",
+                    "Turbine.Gameplay.Bank",
+                    "Turbine.Gameplay.SharedStorage",
+                    "Turbine.Gameplay.Vault"
+                ],
+                "See Also": [
+                    "Turbine.Gameplay"
+                ]
+            },
+            "BasicMount": {
+                "Description": "A basic mount.",
+                "Methods": {},
+                "Events": {},
+                "Inheritance Hierarchy": [
+                    "Turbine.Object",
+                    "Turbine.Gameplay.EntityReference",
+                    "Turbine.Gameplay.PropertyHandler",
+                    "Turbine.Gameplay.Entity",
+                    "Turbine.Gameplay.Mount",
+                    "Turbine.Gameplay.BasicMount"
+                ],
+                "See Also": [
+                    "Turbine.Gameplay"
+                ]
+            },
+            "ClassAttributes": {
+                "Description": "Base class for class information.",
+                "Methods": {},
+                "Events": {},
+                "Inheritance Hierarchy": [
+                    "Turbine.Object",
+                    "Turbine.Gameplay.EntityReference",
+                    "Turbine.Gameplay.PropertyHandler",
+                    "Turbine.Gameplay.Attributes",
+                    "Turbine.Gameplay.ClassAttributes",
+                    "Turbine.Gameplay.Attributes.BeorningAttributes",
+                    "Turbine.Gameplay.Attributes.BlackArrowAttributes",
+                    "Turbine.Gameplay.Attributes.BurglarAttributes",
+                    "Turbine.Gameplay.Attributes.CaptainAttributes",
+                    "Turbine.Gameplay.Attributes.ChampionAttributes",
+                    "Turbine.Gameplay.Attributes.ChickenAttributes",
+                    "Turbine.Gameplay.Attributes.DefilerAttributes",
+                    "Turbine.Gameplay.Attributes.GuardianAttributes",
+                    "Turbine.Gameplay.Attributes.HunterAttributes",
+                    "Turbine.Gameplay.Attributes.LoreMasterAttributes",
+                    "Turbine.Gameplay.Attributes.MinstrelAttributes",
+                    "Turbine.Gameplay.Attributes.RangerAttributes",
+                    "Turbine.Gameplay.Attributes.ReaverAttributes",
+                    "Turbine.Gameplay.Attributes.RuneKeeperAttributes",
+                    "Turbine.Gameplay.Attributes.StalkerAttributes",
+                    "Turbine.Gameplay.Attributes.TrollAttributes",
+                    "Turbine.Gameplay.Attributes.WardenAttributes",
+                    "Turbine.Gameplay.Attributes.WarLeaderAttributes",
+                    "Turbine.Gameplay.Attributes.WeaverAttributes"
+                ],
+                "See Also": [
+                    "Turbine.Gameplay"
+                ]
+            },
+            "CombatMount": {
+                "Description": "A mount that can be used in combat.",
+                "Methods": {},
+                "Events": {},
+                "Inheritance Hierarchy": [
+                    "Turbine.Object",
+                    "Turbine.Gameplay.EntityReference",
+                    "Turbine.Gameplay.PropertyHandler",
+                    "Turbine.Gameplay.Entity",
+                    "Turbine.Gameplay.Mount",
+                    "Turbine.Gameplay.CombatMount"
+                ],
+                "See Also": [
+                    "Turbine.Gameplay"
+                ]
+            },
+            "Effect": {
+                "Description": "Represents an effect that can be applied to an entity.",
+                "Remarks": "Effects are buffs or debuffs that have been applied to an entity through the environment, by other actors, or other game events.",
+                "Methods": {},
+                "Events": {},
+                "Inheritance Hierarchy": [
+                    "Turbine.Object",
+                    "Turbine.Gameplay.Effect"
+                ],
+                "See Also": [
+                    "Turbine.Gameplay"
+                ]
+            },
+            "EffectList": {
+                "Description": "A utility class used by Actors to hold the list of effects.",
+                "Remarks": "This utility class stores the list of effects that have been applied to a player.",
+                "Methods": {},
+                "Events": {},
+                "Inheritance Hierarchy": [
+                    "Turbine.Object",
+                    "Turbine.Gameplay.EffectList"
+                ],
+                "See Also": [
+                    "Turbine.Gameplay"
+                ]
+            },
+            "Entity": {
+                "Description": "Base class for any entity in the game.",
+                "Methods": {},
+                "Events": {},
+                "Inheritance Hierarchy": [
+                    "Turbine.Object",
+                    "Turbine.Gameplay.EntityReference",
+                    "Turbine.Gameplay.PropertyHandler",
+                    "Turbine.Gameplay.Entity",
+                    "Turbine.Gameplay.Actor",
+                    "Turbine.Gameplay.Item",
+                    "Turbine.Gameplay.Mount"
+                ],
+                "See Also": [
+                    "Turbine.Gameplay"
+                ]
+            },
+            "EntityReference": {
+                "Description": "",
+                "Inheritance Hierarchy": [
+                    "Turbine.Object",
+                    "Turbine.Gameplay.EntityReference",
+                    "Turbine.Gameplay.PropertyHandler"
+                ],
+                "See Also": [
+                    "Turbine.Gameplay"
+                ]
+            },
+            "Equipment": {
+                "Description": "Provides access to a player's equipment.",
+                "Remarks": "The equipment is the set of items the player is currently wearing. These items are accessed like an array with specific indices corresponding to specific inventory slots.",
+                "Methods": {},
+                "Events": {},
+                "Inheritance Hierarchy": [
+                    "Turbine.Object",
+                    "Turbine.Gameplay.Equipment"
+                ],
+                "See Also": [
+                    "Turbine.Gameplay"
+                ]
+            },
+            "GambitSkill": {
+                "Description": "Information about a gambit skill.",
+                "Remarks": "",
+                "Methods": {},
+                "Events": {},
+                "Inheritance Hierarchy": [
+                    "Turbine.Object",
+                    "Turbine.Gameplay.Skill",
+                    "Turbine.Gameplay.GambitSkill"
+                ],
+                "See Also": [
+                    "Turbine.Gameplay"
+                ]
+            },
+            "GambitSkillInfo": {
+                "Description": "Information about a gambit skill.",
+                "Remarks": "",
+                "Methods": {},
+                "Inheritance Hierarchy": [
+                    "Turbine.Object",
+                    "Turbine.Gameplay.Skill",
+                    "Turbine.Gameplay.GambitSkillInfo"
+                ],
+                "See Also": [
+                    "Turbine.Gameplay"
+                ]
+            },
+            "Item": {
+                "Description": "An item that a user can have.",
+                "Remarks": "This class represents an in-game item that can be obtained and stored in inventory.",
+                "Methods": {},
+                "Events": {},
+                "Inheritance Hierarchy": [
+                    "Turbine.Object",
+                    "Turbine.Gameplay.EntityReference",
+                    "Turbine.Gameplay.PropertyHandler",
+                    "Turbine.Gameplay.Entity",
+                    "Turbine.Gameplay.Item"
+                ],
+                "See Also": [
+                    "Turbine.Gameplay"
+                ]
+            },
+            "ItemInfo": {
+                "Description": "Container for various item information.",
+                "Methods": {},
+                "Events": {},
+                "Inheritance Hierarchy": [
+                    "Turbine.Object",
+                    "Turbine.Gameplay.ItemInfo"
+                ],
+                "See Also": [
+                    "Turbine.Gameplay"
+                ]
+            },
+            "LocalPlayer": {
+                "Description": "A class that represents the local player.",
+                "Remarks": "This class represents the Local Player in the world. The local player is the player logged into the world on the client which a script using this class is running.A Local Player has access to information beyond just a player, providing the ability to access the player's backpack.",
+                "Methods": {},
+                "Events": {},
+                "Inheritance Hierarchy": [
+                    "Turbine.Object",
+                    "Turbine.Gameplay.EntityReference",
+                    "Turbine.Gameplay.PropertyHandler",
+                    "Turbine.Gameplay.Entity",
+                    "Turbine.Gameplay.Actor",
+                    "Turbine.Gameplay.Player",
+                    "Turbine.Gameplay.LocalPlayer"
+                ],
+                "See Also": [
+                    "Turbine.Gameplay"
+                ]
+            },
+            "Mount": {
+                "Description": "Class representing an in game mount.",
+                "Remarks": "This is the base class for the different types of mounts available in the game.",
+                "Methods": {},
+                "Events": {},
+                "Inheritance Hierarchy": [
+                    "Turbine.Object",
+                    "Turbine.Gameplay.EntityReference",
+                    "Turbine.Gameplay.PropertyHandler",
+                    "Turbine.Gameplay.Entity",
+                    "Turbine.Gameplay.Mount",
+                    "Turbine.Gameplay.BasicMount",
+                    "Turbine.Gameplay.CombatMount"
+                ],
+                "See Also": [
+                    "Turbine.Gameplay"
+                ]
+            },
+            "Party": {
+                "Description": "This class provides access to party information. This is either your fellowship or your tribe depending on your alliance.",
+                "Methods": {},
+                "Events": {},
+                "Inheritance Hierarchy": [
+                    "Turbine.Object",
+                    "Turbine.Gameplay.Party"
+                ],
+                "See Also": [
+                    "Turbine.Gameplay"
+                ]
+            },
+            "PartyMember": {
+                "Description": "A class that represents a party member.",
+                "Remarks": "",
+                "Methods": {},
+                "Events": {},
+                "Inheritance Hierarchy": [
+                    "Turbine.Object",
+                    "Turbine.Gameplay.EntityReference",
+                    "Turbine.Gameplay.PropertyHandler",
+                    "Turbine.Gameplay.Entity",
+                    "Turbine.Gameplay.Actor",
+                    "Turbine.Gameplay.Player",
+                    "Turbine.Gameplay.PartyMember"
+                ],
+                "See Also": [
+                    "Turbine.Gameplay"
+                ]
+            },
+            "Pet": {
+                "Description": "A pet is an actor that a player owns and controls.",
+                "Remarks": "A pet is an actor that a player owns and controls.",
+                "Methods": {},
+                "Events": {},
+                "Inheritance Hierarchy": [
+                    "Turbine.Object",
+                    "Turbine.Gameplay.EntityReference",
+                    "Turbine.Gameplay.PropertyHandler",
+                    "Turbine.Gameplay.Entity",
+                    "Turbine.Gameplay.Actor",
+                    "Turbine.Gameplay.Pet"
+                ],
+                "See Also": [
+                    "Turbine.Gameplay"
+                ]
+            },
+            "Player": {
+                "Description": "A class that represents a player in the game.",
+                "Remarks": "This class is the base for any player in the world. It provides additional player information beyond an Actor.",
+                "Methods": {},
+                "Events": {},
+                "Inheritance Hierarchy": [
+                    "Turbine.Object",
+                    "Turbine.Gameplay.EntityReference",
+                    "Turbine.Gameplay.PropertyHandler",
+                    "Turbine.Gameplay.Entity",
+                    "Turbine.Gameplay.Actor",
+                    "Turbine.Gameplay.Player",
+                    "Turbine.Gameplay.LocalPlayer",
+                    "Turbine.Gameplay.PartyMember"
+                ],
+                "See Also": [
+                    "Turbine.Gameplay"
+                ]
+            },
+            "ProfessionInfo": {
+                "Description": "Information about a profession.",
+                "Methods": {},
+                "Events": {},
+                "Inheritance Hierarchy": [
+                    "Turbine.Object",
+                    "Turbine.Gameplay.ProfessionInfo"
+                ],
+                "See Also": [
+                    "Turbine.Gameplay"
+                ]
+            },
+            "PropertyHandler": {
+                "Description": "",
+                "Inheritance Hierarchy": [
+                    "Turbine.Object",
+                    "Turbine.Gameplay.EntityReference",
+                    "Turbine.Gameplay.PropertyHandler",
+                    "Turbine.Gameplay.Attributes",
+                    "Turbine.Gameplay.Entity"
+                ],
+                "See Also": [
+                    "Turbine.Gameplay"
+                ]
+            },
+            "Recipe": {
+                "Description": "Information about a recipe.",
+                "Methods": {},
+                "Inheritance Hierarchy": [
+                    "Turbine.Object",
+                    "Turbine.Gameplay.Recipe"
+                ],
+                "See Also": [
+                    "Turbine.Gameplay"
+                ]
+            },
+            "RecipeIngredient": {
+                "Description": "Information about a recipe ingredient.",
+                "Methods": {},
+                "Inheritance Hierarchy": [
+                    "Turbine.Object",
+                    "Turbine.Gameplay.RecipeIngredient"
+                ],
+                "See Also": [
+                    "Turbine.Gameplay"
+                ]
+            },
+            "SharedStorage": {
+                "Description": "A bank that represents the player's shared storage. This storage is available to all characters on the same account.",
+                "Methods": {},
+                "Events": {},
+                "Inheritance Hierarchy": [
+                    "Turbine.Object",
+                    "Turbine.Gameplay.Bank",
+                    "Turbine.Gameplay.SharedStorage"
+                ],
+                "See Also": [
+                    "Turbine.Gameplay"
+                ]
+            },
+            "Skill": {
+                "Description": "Information about a skill.",
+                "Events": {},
+                "Inheritance Hierarchy": [
+                    "Turbine.Object",
+                    "Turbine.Gameplay.Skill",
+                    "Turbine.Gameplay.ActiveSkill",
+                    "Turbine.Gameplay.GambitSkill",
+                    "Turbine.Gameplay.UntrainedSkill"
+                ],
+                "See Also": [
+                    "Turbine.Gameplay"
+                ]
+            },
+            "SkillInfo": {
+                "Description": "Information about a skill.",
+                "Remarks": "",
+                "Methods": {},
+                "Events": {},
+                "Inheritance Hierarchy": [
+                    "Turbine.Object",
+                    "Turbine.Gameplay.SkillInfo",
+                    "Turbine.Gameplay.GambitSkillInfo"
+                ],
+                "See Also": [
+                    "Turbine.Gameplay"
+                ]
+            },
+            "SkillList": {
+                "Description": "A list of skills.",
+                "Methods": {},
+                "Inheritance Hierarchy": [
+
+                ],
+                "See Also": [
+                    "Turbine.Gameplay",
+                    "Turbine.Gameplay.SkillList"
+                ]
+            },
+            "UntrainedSkill": {
+                "Description": "Information about a skill the player has not trained yet.",
+                "Methods": {},
+                "Inheritance Hierarchy": [
+                    "Turbine.Object",
+                    "Turbine.Gameplay.Skill",
+                    "Turbine.Gameplay.UntrainedSkill"
+                ],
+                "See Also": [
+                    "Turbine.Gameplay"
+                ]
+            },
+            "Vault": {
+                "Description": "A bank that represents the player's vault storage. This storage is only available to the current logged in character.",
+                "Methods": {},
+                "Events": {},
+                "Inheritance Hierarchy": [
+                    "Turbine.Object",
+                    "Turbine.Gameplay.Bank",
+                    "Turbine.Gameplay.Vault"
+                ],
+                "See Also": [
+                    "Turbine.Gameplay"
+                ]
+            },
+            "Wallet": {
+                "Description": "Provides access to a player's wallet.",
+                "Remarks": "The wallet is a container for various currency based items.",
+                "Methods": {},
+                "Events": {},
+                "Inheritance Hierarchy": [
+                    "Turbine.Object",
+                    "Turbine.Gameplay.Bank",
+                    "Turbine.Gameplay.Wallet"
+                ],
+                "See Also": [
+                    "Turbine.Gameplay"
+                ]
+            },
+            "WalletItem": {
+                "Description": "An item that is contained in a user's wallet.",
+                "Remarks": "This class represents an in-game wallet item that can be obtained and stored in a player's wallet.",
+                "Methods": {},
+                "Events": {},
+                "Inheritance Hierarchy": [
+                    "Turbine.Object",
+                    "Turbine.Gameplay.WalletItem"
+                ],
+                "See Also": [
+                    "Turbine.Gameplay"
+                ]
+            }
         }
     }
 }`

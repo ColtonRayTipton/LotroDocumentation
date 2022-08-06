@@ -157,10 +157,11 @@ if (info && info.constructor == Object){
             if (key == "Description" || key == "Title" || key == type){
                 return ''
             }
+            var typestring = key.replace(".", "dot")
             return element.append(`
                 <tr>
                     <td></td>
-                    <td><a href='?type=`+key+`&parent=Tree'>`+key+`</a></td>
+                    <td><a href='?type=`+typestring+`&parent=Tree'>`+key+`</a></td>
                     <td>`+value+`</td>
                 </tr>
                 `)
