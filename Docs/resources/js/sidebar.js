@@ -4,6 +4,7 @@ var BlackList = [
     "Classes",
     "Enumerations",
     "Examples",
+    "Object"
 ]
 
 function addTreeNode(grandparent, parent, key, iconType="collapsed", data){

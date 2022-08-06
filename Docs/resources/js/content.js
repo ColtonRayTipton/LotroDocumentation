@@ -26,17 +26,17 @@ var params = new URLSearchParams(query)
 
 var type = params.get('type')
 var parentType = params.get('parent')
-var Parent=""
+
+parentType = parentType == "Turbine" ? data[parentType]["Enumerations"][type] ? "Enumerations" : "Classes" : parentType
 
 function getValueFromKey(table, Name){
     if (!Name){ return }
     
     var t = {}
     var found = false
-    
-
+    var Parent=""
     function recursive(table, Name){
-
+        
         for (var Key in table){
             var Value = table[Key]
             if (Key == Name && Parent == parentType && table[Key].constructor == Object){
@@ -44,6 +44,9 @@ function getValueFromKey(table, Name){
                 t = Value
 
             }else if (table[Key].constructor == Object && !found){
+                if (Value[Name]){
+                    Parent = Key
+                }
                 if (Key == parentType){
                     Parent = Key
                 }
@@ -54,23 +57,32 @@ function getValueFromKey(table, Name){
         return t
     }
     
-    return recursive(table, Name)
+    t = recursive(table, Name)
+
+    return {
+        Parent: Parent,
+        info: t
+    }
 }
 
-var info = getValueFromKey(data, type)            
+var newData = getValueFromKey(data, type)
+var info = newData?.info
+var Parent = newData?.Parent
+
 var keyIsParent = false
+
+//console.log(type, Parent)
+if (!parentType){
+    parentType = Parent
+}
 
 if (parentType == "Tree"){
     info = data[type]
 }
 
-if (!parentType){
-    parentType = Parent
-}
-
 if (info && info.constructor == Object){
 
-    parentType = parentType == "Turbine" ? "Class" : parentType
+    parentType = parentType == "Classes" ? "Class" : parentType
 
     if (info.Title){
         $("#Title").text(info.Title)
@@ -117,7 +129,7 @@ if (info && info.constructor == Object){
             return element.append(`
                 <tr>
                     <td></td>
-                    <td><a href='?type=`+key+`'>`+key+`</a></td>
+                    <td><a href='?type=`+key+`&parent=Tree'>`+key+`</a></td>
                     <td>`+value+`</td>
                 </tr>
                 `)
@@ -140,7 +152,7 @@ if (info && info.constructor == Object){
             return element.append(`
                 <tr>
                     <td><img title="Class" src="resources/Icons/pubclass.gif"></td>
-                    <td><a href='?type=`+key+`'>`+key+`</a></td>
+                    <td><a href='?type=`+key+`&parent=Classes'>`+key+`</a></td>
                     <td>`+value.Description+`</td>
                 </tr>
                 `)
@@ -194,7 +206,7 @@ if (info && info.constructor == Object){
                         <img title="Static" src="resources/Icons/static.gif">
                         <img title="Method" src="resources/Icons/pubmethod.gif">
                     </td>
-                    <td><a href='?type=`+key+`'>`+key+`</a></td>
+                    <td><a href='?type=`+key+`&parent=Methods'>`+key+`</a></td>
                     <td>`+value.Description+`</td>
                 </tr>
                 `)
@@ -258,31 +270,53 @@ if (info && info.constructor == Object){
 
     }
 
-    function SeeAlso(data, parent){
-        var element = $(".body #"+parent+" td > ul")
+    function SeeAlso(newdata, parent){
+        var element = $(".body #"+parent+" .children")
         element.empty()
         var prevElement = element
         var count = 0
+
+        var getParentFromKey = function(key){
+
+            var result = ""
+
+            function recursive(table, name){
+                $.each(table, function(key, value){
+                    if (value[name]){
+                        result = key
+                    }
+                    if (value.constructor == Object){
+                        recursive(value, name)
+                    }
+                })
+            }
+
+            recursive(data, key)
+
+            return result
+
+        }
+
         var insertHtml = function(key){
+            var newParent = getParentFromKey(key)
+            console.log(newParent)
             count = count + 1
             var htmlData = `
-                <ul class=""children" id="Id`+count+`">
+                <ul id="Id`+count+`">
                     <li class='tree-node' title='`+key+`'>
                         <a class='Children icon icon-blackbox'></a>
-                        <span><a href='?type=`+key+`'>`+key+`</a></span>
+                        <span><a href='?type=`+key+`&parent=`+newParent+`'>`+key+`</a></span>
                     </li>
                 </ul>
                 `
 
             prevElement.append(htmlData)
             prevElement = $('#Id'+count)
-            
-
 
         }
 
-        for (var i = 0; i < data.length; i++){
-            insertHtml(data[i])
+        for (var i = 0; i < newdata.length; i++){
+            insertHtml(newdata[i])
         }
 
     }
@@ -296,12 +330,10 @@ if (info && info.constructor == Object){
             var parents = key.match(/\w+/g).reverse()
             var key = parents[0]
             var keyParent = parents[1]
-            console.log(parents)
             count = count + 1
             var htmlData = `
-                <ul class=""children" id="InhId`+count+`">
-                    <li class='tree-node' title='`+key+`'>
-                        <a class='Children icon icon-blackbox'></a>
+                <ul class="children" id="InhId`+count+`">
+                    <li title='`+key+`'>
                         <span><a href='?type=`+key+`&parent=`+keyParent+`'>`+String(parents.reverse()).replaceAll(',','.')+`</a></span>
                     </li>
                 </ul>
@@ -326,7 +358,7 @@ if (info && info.constructor == Object){
     var subLinks = $("#SubLinks")
     subLinks.empty()
 
-    if (parentType != "Class" && type != "Packages"){
+    if (parentType != "Class" && type != "Packages" && parentType != "Tree"){
         subLinks.append(`
             <a href='?type=`+parentType+`' style="
             color: blue; 
@@ -347,7 +379,7 @@ if (info && info.constructor == Object){
         var sublink = $("#SubLinks a:nth-child(1)")
         var sublinktext = sublink.text().replace("-", "")
         sublink.text(sublinktext)
-
+        
         key = key.replace(" ", "")
         
 
