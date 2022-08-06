@@ -25,6 +25,11 @@ function addTreeNode(grandparent, parent, key, actualparent, iconType="collapsed
         key = "Tree"
     }
 
+
+    if (parent == "Turbine.Gameplay"){
+        console.log(grandparent, parent)
+        console.log("Length:", $('#Tree-Turbine.Gameplay').length)
+    }
     $(`#`+grandparent+`-`+parent+' > .tree-children').append(node)
     $(`#`+grandparent+`-`+parent+' > .tree-children > .tree-node > .tree-children').hide()
 }
@@ -64,6 +69,11 @@ function addChildren(table, parent, grandparent, greatgrandparent , ggparent){
 
 addChildren(data)
 
+$.each($(".tree-button"), function(){
+    var child = $(this)
+    child.text(child.text().replace('dot', '.'))
+})
+
 $(".tree-button").click(function(){
     $("#content").attr('src', 
     'content.html?type='
@@ -79,6 +89,3 @@ $(".tree-icon-button").click(function(){
     $(this).toggleClass('icon-collapsed')
     $(this).parent().children('.tree-children').toggle()
 })
-
-$("#Tree-Turbine > .tree-icon-button").removeClass("icon-collapsed")
-$("#Tree-Turbine > .tree-children").show()

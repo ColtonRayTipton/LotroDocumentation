@@ -314,11 +314,14 @@ if (info && info.constructor == Object){
         var insertHtml = function(key){
             var [newParent, actualParent] = getParentFromKey(key)
             count = count + 1
+            var typestring = key.replace(".", "dot")
+            newParent = "Packages" ? "Tree" : newParent
+            actualParent = "Packages" ? "Tree" : actualParent
             var htmlData = `
                 <ul id="Id`+count+`">
                     <li class='tree-node' title='`+key+`'>
                         <a class='Children icon icon-blackbox'></a>
-                        <span><a href='?type=`+key+`&parent=`+newParent+`&actualparent=`+actualParent+`'>`+key+`</a></span>
+                        <span><a href='?type=`+typestring+`&parent=`+newParent+`&actualparent=`+actualParent+`'>`+key+`</a></span>
                     </li>
                 </ul>
                 `
@@ -343,11 +346,12 @@ if (info && info.constructor == Object){
             var parents = key.match(/\w+/g).reverse()
             var key = parents[0]
             var keyParent = parents[1]
+            var typestring = key.replace(".", "dot")
             count = count + 1
             var htmlData = `
                 <ul id="InhId`+count+`">
                     <li title='`+key+`'>
-                        <span><a href='?type=`+key+`&parent=`+keyParent+`&actualparent=Classes'>`+String(parents.reverse()).replaceAll(',','.')+`</a></span>
+                        <span><a href='?type=`+typestring+`&parent=`+keyParent+`&actualparent=Classes'>`+String(parents.reverse()).replaceAll(',','.')+`</a></span>
                     </li>
                 </ul>
                 `
@@ -435,7 +439,7 @@ if (info && info.constructor == Object){
                 if (value.Parameters){
                     $("#"+key+" #Parameters").show()
                     $("#"+key+" #Parameters ul").empty()
-                    $("#"+key+" #Parameters ul").append(`<li id="Title" class="subheader">Parameters</li>`)
+                    $("#"+key+" #Parameters ul").append(`<li id="Title" class="subtitle2">Parameters</li>`)
                     $.each(value.Parameters, (Name, value) => {
                         var content = `
                             <li id="Parameter" style="font-style: italic;">`+Name+`</li>

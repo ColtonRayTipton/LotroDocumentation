@@ -1,4 +1,4 @@
-var data = `{
+var data=`{
     "Packages": {
         "Title": "Packages List",
         "Packages": {
@@ -618,19 +618,103 @@ var data = `{
                 "Remarks": "This class enables plugins to access the chat window shell, allowing them to register their own commands and query the list of commands available. The ability to execute commands is protected and not available to user mods.",
                 "Methods": {
                     "AddCommand": {
-
+                        "Description": "Adds a command that can be executed",
+                        "Remarks": "This method will attempt to register the shell command specified for each of the names specified in the semicolon separated list of names passed into the name argument.The return value indicates how many of the names were successful registered. This may be less than the number of names specified if some of the names are already bound to other commands in the shell.",
+                        "Syntax": {
+                            "Function": "function Shell.[parent](name, shellCommand)",
+                            "Parameters": {
+                                "name": [
+                                    "string",
+                                    "The name of the command that can be executed. Multiple names can be specified by sperating them using a semicolon ';'"
+                                ],
+                                "shellCommand": [
+                                    "ShellCommand",
+                                    "The shell command to bind to the names"
+                                ]
+                            },
+                            "Returns": [
+                                "number",
+                                "The number of names from the name argument that were successfully registered"
+                            ]
+                        },
+                        "See Also": [
+                            "Turbine",
+                            "Shell"
+                        ]
                     },
                     "GetCommands": {
-
+                        "Description": "Gets the list of commands available by the shell.",
+                        "Remarks": "This method will return a list of strings that identifies all the commands that can be executed from a user's chat window. This list includes all aliases for commands as well.",
+                        "Syntax": {
+                            "Function": "function Shell.[parent]()",
+                            "Returns": [
+                                "string",
+                                "The list of available commands that can be executed."
+                            ]
+                        },
+                        "See Also": [
+                            "Turbine",
+                            "Shell"
+                        ]
                     },
                     "IsCommand": {
-
+                        "Description": "Gets the list of commands available by the shell.",
+                        "Remarks": "This method can be used to see if a shell command already exists. Attempts to add a shell command when there is already a command registered will fail to register.",
+                        "Syntax": {
+                            "Function": "function Shell.[parent](name)",
+                            "Parameters": {
+                                "name": [
+                                    "string",
+                                    "The name of the command to check for the existence of"
+                                ]
+                            },
+                            "Returns": [
+                                "boolean",
+                                "True if the command is registered."
+                            ]
+                        },
+                        "See Also": [
+                            "Turbine",
+                            "Shell"
+                        ]
                     },
                     "RemoveCommand": {
-
+                        "Description": "Removes a command that has been added using AddCommand.",
+                        "Remarks": "This method will remove all the references to the shell command that were registered using AddCommand.",
+                        "Syntax": {
+                            "Function": "function Shell.[parent](shellCommand)",
+                            "Parameters": {
+                                "shellCommand": [
+                                    "ShellCommand",
+                                    "The shell command to unregister. This removes the registration from all the names that use the shell command."
+                                ]
+                            },
+                            "Returns": [
+                                "boolean",
+                                "True if the command is registered."
+                            ]
+                        },
+                        "See Also": [
+                            "Turbine",
+                            "Shell"
+                        ]
                     },
                     "WriteLine": {
-
+                        "Description": "Writes a line of text to the chat window.",
+                        "Remarks": "This method takes in a string and displays the text in the chat window. This text is marked as standard text for chat filtering purposes.",
+                        "Syntax": {
+                            "Function": "function Shell.[parent](text)",
+                            "Parameters": {
+                                "text": [
+                                    "string",
+                                    "The text to display"
+                                ]
+                            }
+                        },
+                        "See Also": [
+                            "Turbine",
+                            "Shell"
+                        ]
                     }
                 },
                 "Examples": {
@@ -650,13 +734,51 @@ var data = `{
                 "Remarks": "This class provides the ability to define custom chat window commands in a lua script. Commands are registers using the LuaShell class.",
                 "Methods": {
                     "Execute": {
-
+                        "Description": "Executes the command",
+                        "Remarks": "This method is called either by a script or execute when a user types a chat command registered for this shell command.",
+                        "Syntax": {
+                            "Function": "function ShellCommand.[parent](argumentText)",
+                            "Parameters": {
+                                "argumentText": [
+                                    "string",
+                                    "The arguments string passed along with the command."
+                                ]
+                            }
+                        },
+                        "See Also": [
+                            "Turbine",
+                            "ShellCommand"
+                        ]
                     },
                     "GetHelp": {
-
+                        "Description": "Gets the help information for the command.",
+                        "Remarks": "This method gets the extended help information for the command. It is suitable for this help text to contain newlines.",
+                        "Syntax": {
+                            "Function": "function ShellCommand.[parent]()",
+                            "Returns": [
+                                "string",
+                                "The help information for the command."
+                            ]
+                        },
+                        "See Also": [
+                            "Turbine",
+                            "ShellCommand"
+                        ]
                     },
                     "GetShortHelp": {
-
+                        "Description": "Gets a short help string for the command.",
+                        "Remarks": "The short help text is the text display when a play displays the entire list of commands.",
+                        "Syntax": {
+                            "Function": "function ShellCommand.[parent]()",
+                            "Returns": [
+                                "string",
+                                "A short help string for the command."
+                            ]
+                        },
+                        "See Also": [
+                            "Turbine",
+                            "ShellCommand"
+                        ]
                     }
                 },
                 "See Also": [
@@ -664,30 +786,215 @@ var data = `{
                 ]
             }
         }
+    },
+    "TurbinedotGameplay": {
+        "Title": "Turbine.Gameplay Package",
+        "Description": "Provides classes for accessing game related information.",
+        "Remarks": "This package is used to access various information about the game that is available to a player.",
+        "Enumerations": {
+            "Alignment": {
+                "Description": "The alignment of a player",
+                "Fields": {
+                    "FreePeople": "A player aligned with the Free people",
+                    "MonsterPlay": "A monster player",
+                    "Undefined": "An undefined alignment"
+                },
+                "See Also": [
+                    "Turbine.Gameplay"
+                ]
+            },
+            "Class": {
+                "Description": "The Class of a player",
+                "Fields": {
+                    "Beorning": "Beorning class.",
+                    "BlackArrow": "Black Arrow class.",
+                    "Burglar": "Burglar class.",
+                    "Captain": "Captain class.",
+                    "Champion": "Champion class.",
+                    "Chicken": "Chicken class.",
+                    "Defiler": "Defiler class.",
+                    "Guardian": "Guardian class.",
+                    "Hunter":  "Hunter class.",
+                    "LoreMaster": "Lore Master class.",
+                    "Minstrel": "Minstrel class.",
+                    "Ranger":  "Ranger class.",
+                    "Reaver":  "Reaver class.",
+                    "RuneKeeper": "Rune-Keeper class.",
+                    "Stalker": "Stalker class.",
+                    "Troll":   "Troll class.",
+                    "Undefined": "An undefined Class.",
+                    "Warden":  "Warden class.",
+                    "WarLeader": "WarLeader class.",
+                    "Weaver":  "Weaver class."
+                },
+                "See Also": [
+                    "Turbine.Gameplay"
+                ]
+            },
+            "CraftTier": {
+                "Description": "A crafting tier",
+                "Fields": {
+                    "Apprentice":	"Apprentice level.",
+                    "Artisan":	    "Artisan level.",
+                    "Eastemnet":	"Eastemnet level.",
+                    "Expert":	    "Expert level.",
+                    "Journeyman":	"Journeyman level.",
+                    "Master":	    "Master level.",
+                    "Supreme":	    "Supreme level.",
+                    "Westemnet":	"Westemnet level.",
+                    "Westfold":	    "Westfold level.",
+                    "Undefined":	"An undefined profession."
+                },
+                "See Also": [
+                    "Turbine.Gameplay"
+                ]
+            },
+            "EffectCategory": {
+                "Description": "Describes the category of an effect.",
+                "Fields": {
+                    "Corruption":	"A corruption effect.",
+                    "Cry":	        "A cry effect.",
+                    "Disease":	    "A disease effect.",
+                    "Dispellable":	"A dispellable effect.",
+                    "Elemental":	"An elemental effect.",
+                    "Fear":	        "A fear effect.",
+                    "Physical":	    "A physical effect.",
+                    "Poison":	    "A poison effect.",
+                    "Song":	        "A song effect.",
+                    "Undefined":	"An undefined category.",
+                    "Wound":	    "A wound effect."
+                },
+                "See Also": [
+                    "Turbine.Gameplay"
+                ]
+            },
+            "EquipmentSlot": {
+                "Description": "",
+                "Fields": {
+
+                },
+                "See Also": [
+                    "Turbine.Gameplay"
+                ]
+            },
+            "ItemCategory": {
+                "Description": "",
+                "Fields": {
+
+                },
+                "See Also": [
+                    "Turbine.Gameplay"
+                ]
+            },
+            "ItemDurability": {
+                "Description": "",
+                "Fields": {
+
+                },
+                "See Also": [
+                    "Turbine.Gameplay"
+                ]
+            },
+            "ItemQuality": {
+                "Description": "",
+                "Fields": {
+
+                },
+                "See Also": [
+                    "Turbine.Gameplay"
+                ]
+            },
+            "ItemWearState": {
+                "Description": "",
+                "Fields": {
+
+                },
+                "See Also": [
+                    "Turbine.Gameplay"
+                ]
+            },
+            "Profession": {
+                "Description": "",
+                "Fields": {
+
+                },
+                "See Also": [
+                    "Turbine.Gameplay"
+                ]
+            },
+            "Race": {
+                "Description": "",
+                "Fields": {
+
+                },
+                "See Also": [
+                    "Turbine.Gameplay"
+                ]
+            },
+            "ReadyState": {
+                "Description": "",
+                "Fields": {
+
+                },
+                "See Also": [
+                    "Turbine.Gameplay"
+                ]
+            },
+            "SkillType": {
+                "Description": "",
+                "Fields": {
+
+                },
+                "See Also": [
+                    "Turbine.Gameplay"
+                ]
+            },
+            "Vocation": {
+                "Description": "",
+                "Fields": {
+
+                },
+                "See Also": [
+                    "Turbine.Gameplay"
+                ]
+            }
+        },
+        "Classes": {
+            "ActiveSkill": {},
+            "Actor": {},
+            "Attributes": {},
+            "Backpack": {},
+            "Bank": {},
+            "BasicMount": {},
+            "ClassAttributes": {},
+            "CombatMount": {},
+            "Effect": {},
+            "EffectList": {},
+            "Entity": {},
+            "EntityReference": {},
+            "Equipment": {},
+            "GambitSkill": {},
+            "GambitSkillInfo": {},
+            "Item": {},
+            "ItemInfo": {},
+            "LocalPlayer": {},
+            "Mount": {},
+            "Party": {},
+            "PartyMember": {},
+            "Pet": {},
+            "Player": {},
+            "ProfessionInfo": {},
+            "PropertyHandler": {},
+            "Recipe": {},
+            "RecipeIngredient": {},
+            "SharedStorage": {},
+            "Skill": {},
+            "SkillInfo": {},
+            "SkillList": {},
+            "UntrainedSkill": {},
+            "Vault": {},
+            "Wallet": {},
+            "WalletItem": {}
+        }
     }
 }`
-
-/**
-METHOD TEMPLATE
-"Load": {
-    "Description": "",
-    "Remarks": "",
-    "Syntax": {
-        "Function": "",
-        "Parameters": {
-            "dataScope": [
-                "type",
-                "desc"
-            ]
-        },
-        "Returns": [
-            "type",
-            "desc"
-        ]
-    },
-    "See Also": [
-        "Turbine",
-        "PluginData"
-    ]
-}
-**/
