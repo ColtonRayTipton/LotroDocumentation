@@ -61,7 +61,7 @@ function addChildren(table, parent, grandparent, greatgrandparent , ggparent){
     loop++
 }
 
-//addTreeNode("Tree", "Tree", "Turbine")
+
 addChildren(data)
 
 $(".tree-button").click(function(){
@@ -79,3 +79,6 @@ $(".tree-icon-button").click(function(){
     $(this).toggleClass('icon-collapsed')
     $(this).parent().children('.tree-children').toggle()
 })
+
+$("#Tree-Turbine > .tree-icon-button").removeClass("icon-collapsed")
+$("#Tree-Turbine > .tree-children").show()
