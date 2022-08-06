@@ -1,5 +1,6 @@
 var data = JSON.parse(data)    
 var BlackList = [
+    "Packages",
     "Example",
     "Classes",
     "Enumerations",
@@ -7,14 +8,22 @@ var BlackList = [
     "Object"
 ]
 
-function addTreeNode(grandparent, parent, key, iconType="collapsed", data){
+function addTreeNode(grandparent, parent, key, actualparent, iconType="collapsed"){
     var node = `
         <li title='`+key+`' class='tree-node' id='`+parent+`-`+key+`'>
             <a class='tree-icon-button icon-tree icon-`+iconType+` icon'></a>
-            <a class='tree-button' data-parent='`+parent+`' data-child='`+key+`'>`+key+`</a>
+            <a class='tree-button' 
+            data-grandparent='`+grandparent+`'
+            data-parent='`+parent+`' 
+            data-child='`+key+`'
+            data-actualparent='`+actualparent+`'
+            >`+key+`</a>
             <ul class='tree-children'></ul>
         </li>
     `
+    if (parent == "Tree"){
+        key = "Tree"
+    }
 
     $(`#`+grandparent+`-`+parent+' > .tree-children').append(node)
     $(`#`+grandparent+`-`+parent+' > .tree-children > .tree-node > .tree-children').hide()
@@ -22,35 +31,48 @@ function addTreeNode(grandparent, parent, key, iconType="collapsed", data){
 
 var loop = 1
 var oldloop = 0
-function addChildren(table, parent, grandparent, greatgrandparent){
+function addChildren(table, parent, grandparent, greatgrandparent , ggparent){
     if (loop == oldloop){ return } // Keep it from re-looping itself
+    parent = !parent ? "Tree" : parent
+    grandparent = !grandparent ? "Tree" : grandparent
+    greatgrandparent = !greatgrandparent ? "Tree" : greatgrandparent
+
     $.each(table, (key, value) => {
         if (value.constructor == Object){
             if (!BlackList.includes(key)){
-                if (parent == 'Classes' || parent == "Enumerations"){
-                    if (parent == "Enumerations"){
-                        addTreeNode(greatgrandparent, grandparent, key, "blackbox")
-                    }else{
-                        addTreeNode(greatgrandparent, grandparent, key)
-                    }
-                }else if (!['Methods', 'Events', 'Enumerations'].includes(parent)){
-                    addTreeNode(greatgrandparent, parent, key)
-                }else{
-                    addTreeNode(grandparent, parent, key, "blackbox")
+                if (["Methods", "Events"].includes(key)){
+                    addTreeNode(greatgrandparent, parent, key, parent)
                 }
+                if (["Enumerations"].includes(parent)){
+                    addTreeNode(ggparent, grandparent, key, parent, "blackbox") 
+                }else if(["Classes"].includes(parent)){
+                    addTreeNode(ggparent, grandparent, key, parent)
+                }else if (["Methods", "Events"].includes(parent)){
+                    addTreeNode(grandparent, parent, key, parent, "blackbox")
+                }else{
+                    addTreeNode(grandparent, parent, key, parent)
+                }
+                
             }
-            addChildren(value, key, parent, grandparent)
+            addChildren(value, key, parent, grandparent, greatgrandparent)
         }
     })
     oldloop = loop
     loop++
 }
 
-addTreeNode("Tree", "Tree", "Turbine")
-addChildren(data.Turbine, "Turbine", "Tree")
+//addTreeNode("Tree", "Tree", "Turbine")
+addChildren(data)
 
 $(".tree-button").click(function(){
-    $("#content").attr('src', 'content.html?type='+$(this).data('child')+'&parent='+$(this).data('parent'))
+    $("#content").attr('src', 
+    'content.html?type='
+    +$(this).data('child')+'&parent='
+    +$(this).data('parent')
+    +'&actualparent='
+    +$(this).data('actualparent')
+    +'&grandparent='+$(this).data('grandparent')
+    )
 })
 
 $(".tree-icon-button").click(function(){

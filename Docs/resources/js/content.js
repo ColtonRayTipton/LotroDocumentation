@@ -25,9 +25,9 @@ var query = window.location.search
 var params = new URLSearchParams(query)
 
 var type = params.get('type')
+var grandparent = params.get('grandparent')
 var parentType = params.get('parent')
-
-parentType = parentType == "Turbine" ? data[parentType]["Enumerations"][type] ? "Enumerations" : "Classes" : parentType
+var actualParent = params.get('actualparent')
 
 function getValueFromKey(table, Name){
     if (!Name){ return }
@@ -36,24 +36,25 @@ function getValueFromKey(table, Name){
     var found = false
     var Parent=""
     function recursive(table, Name){
-        
-        for (var Key in table){
-            var Value = table[Key]
-            if (Key == Name && Parent == parentType && table[Key].constructor == Object){
-                found = true
-                t = Value
-
-            }else if (table[Key].constructor == Object && !found){
-                if (Value[Name]){
-                    Parent = Key
+        $.each(table, function(key, value){
+            if (key == grandparent){
+                if (value.hasOwnProperty(actualParent)){
+                    if (value[actualParent].hasOwnProperty(Name)){
+                        var newvalue = value[actualParent][Name]
+                        t = newvalue
+                        return
+                    }
                 }
-                if (Key == parentType){
-                    Parent = Key
+            }else if(key == actualParent){
+                if (value.hasOwnProperty(Name)){
+                    var newvalue = value[Name]
+                    t = newvalue
                 }
-                t = recursive(Value, Name)
             }
-        }
-
+            if (value.constructor == Object){
+                t = recursive(value, Name)
+            }
+        })
         return t
     }
     
@@ -65,13 +66,42 @@ function getValueFromKey(table, Name){
     }
 }
 
+var getParentFromKey = function(key){
+
+    var result = ""
+    var actualparent = ""
+
+    function recursive(table, name, parent="Tree"){
+        $.each(table, function(key, value){
+            if (value[name]){
+                result = parent
+                actualparent = key
+                return
+            }
+            if (table[name]){
+                result = parent
+                actualparent = parent
+                return
+            }
+            if (value.constructor == Object){
+                recursive(value, name, key)
+            }
+        })
+    }
+
+    recursive(data, key)
+
+    return [result, actualparent]
+
+}
+
 var newData = getValueFromKey(data, type)
 var info = newData?.info
 var Parent = newData?.Parent
 
 var keyIsParent = false
 
-//console.log(type, Parent)
+
 if (!parentType){
     parentType = Parent
 }
@@ -82,6 +112,7 @@ if (parentType == "Tree"){
 
 if (info && info.constructor == Object){
 
+    parentType = actualParent
     parentType = parentType == "Classes" ? "Class" : parentType
 
     if (info.Title){
@@ -149,10 +180,11 @@ if (info && info.constructor == Object){
             </tr>
         `)
         var insertHtml = function(key, value){
+            var [Parent, actualParent] = getParentFromKey(key)
             return element.append(`
                 <tr>
                     <td><img title="Class" src="resources/Icons/pubclass.gif"></td>
-                    <td><a href='?type=`+key+`&parent=Classes'>`+key+`</a></td>
+                    <td><a href='?type=`+key+`&parent=`+Parent+`&actualparent=Classes'>`+key+`</a></td>
                     <td>`+value.Description+`</td>
                 </tr>
                 `)
@@ -175,7 +207,7 @@ if (info && info.constructor == Object){
         var insertHtml = function(key, value){
             return element.append(`
                 <tr>
-                    <td><img title="Class" src="resources/Icons/pubfield.gif"></td>
+                    <td><img title="Field" src="resources/Icons/pubfield.gif"></td>
                     <td>`+key+`</td>
                     <td>`+value+`</td>
                 </tr>
@@ -197,6 +229,7 @@ if (info && info.constructor == Object){
             </tr>
         `)
         var insertHtml = function(key, value){
+            var [Parent, actualParent] = getParentFromKey(key)
             if (key == "Description" || key == type){
                 return ''
             }
@@ -206,7 +239,7 @@ if (info && info.constructor == Object){
                         <img title="Static" src="resources/Icons/static.gif">
                         <img title="Method" src="resources/Icons/pubmethod.gif">
                     </td>
-                    <td><a href='?type=`+key+`&parent=Methods'>`+key+`</a></td>
+                    <td><a href='?type=`+key+`&parent=`+Parent+`&actualparent=Methods'>`+key+`</a></td>
                     <td>`+value.Description+`</td>
                 </tr>
                 `)
@@ -227,6 +260,7 @@ if (info && info.constructor == Object){
             </tr>
         `)
         var insertHtml = function(key, value){
+            var [Parent, actualParent] = getParentFromKey(key)
             if (key == "Description" || key == type){
                 return ''
             }
@@ -234,9 +268,9 @@ if (info && info.constructor == Object){
                 <tr>
                     <td>
                         <img title="Static" src="resources/Icons/static.gif">
-                        <img title="Method" src="resources/Icons/pubevent.gif">
+                        <img title="Event" src="resources/Icons/pubevent.gif">
                     </td>
-                    <td><a href='?type=`+key+`'>`+key+`</a></td>
+                    <td><a href='?type=`+key+`&parent=`+Parent+`&actualparent=Events'>`+key+`</a></td>
                     <td>`+value.Description+`</td>
                 </tr>
                 `)
@@ -257,10 +291,11 @@ if (info && info.constructor == Object){
             </tr>
         `)
         var insertHtml = function(key, value){
+            var [Parent, actualParent] = getParentFromKey(key)
             return element.append(`
                 <tr>
-                    <td><img title="Class" src="resources/Icons/pubenum.gif"></td>
-                    <td><a href='?type=`+key+`'>`+key+`</a></td>
+                    <td><img title="Enumeration" src="resources/Icons/pubenum.gif"></td>
+                    <td><a href='?type=`+key+`&parent=`+Parent+`&actualparent=Enumerations'>`+key+`</a></td>
                     <td>`+value.Description+`</td>
                 </tr>
                 `)
@@ -276,36 +311,14 @@ if (info && info.constructor == Object){
         var prevElement = element
         var count = 0
 
-        var getParentFromKey = function(key){
-
-            var result = ""
-
-            function recursive(table, name){
-                $.each(table, function(key, value){
-                    if (value[name]){
-                        result = key
-                    }
-                    if (value.constructor == Object){
-                        recursive(value, name)
-                    }
-                })
-            }
-
-            recursive(data, key)
-
-            return result
-
-        }
-
         var insertHtml = function(key){
-            var newParent = getParentFromKey(key)
-            console.log(newParent)
+            var [newParent, actualParent] = getParentFromKey(key)
             count = count + 1
             var htmlData = `
                 <ul id="Id`+count+`">
                     <li class='tree-node' title='`+key+`'>
                         <a class='Children icon icon-blackbox'></a>
-                        <span><a href='?type=`+key+`&parent=`+newParent+`'>`+key+`</a></span>
+                        <span><a href='?type=`+key+`&parent=`+newParent+`&actualparent=`+actualParent+`'>`+key+`</a></span>
                     </li>
                 </ul>
                 `
@@ -334,7 +347,7 @@ if (info && info.constructor == Object){
             var htmlData = `
                 <ul class="children" id="InhId`+count+`">
                     <li title='`+key+`'>
-                        <span><a href='?type=`+key+`&parent=`+keyParent+`'>`+String(parents.reverse()).replaceAll(',','.')+`</a></span>
+                        <span><a href='?type=`+key+`&parent=`+keyParent+`&actualparent=Classes'>`+String(parents.reverse()).replaceAll(',','.')+`</a></span>
                     </li>
                 </ul>
                 `
@@ -504,7 +517,6 @@ var SelectAll = $(".head #CollapseAll")
 
 var hide = false
 SelectAll.click(function(){
-    console.log('click')
     $('.body .children').toggle()
     $(this).toggleClass('icon-collapsed')
     hide = !hide
@@ -512,7 +524,6 @@ SelectAll.click(function(){
 
 $(".icon").click(function(){
     if ($(this).text() == $("#CollapseAll").text()){ return }
-    //console.log('click')
     $(this).toggleClass('icon-collapsed')
     $(this).parent().children('.children').toggle()
 })

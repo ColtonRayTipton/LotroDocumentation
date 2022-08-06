@@ -316,9 +316,39 @@ var data = `{
                     "Turbine.Engine"
                 ]
             },
-            "LotroPluginManager": {
+            "PluginManager": {
                 "Description": "Provides access to plugin management methods.",
                 "Remarks": "The plugin manager class allows scripts to obtain information about the set of available and loaded plugins. It also provides methods for dynamically loading and unloading plugins as well as obtain.There is a slight disconnect in the method used to load and unload plugins. Plugins are loaded by their plugin name but are unloaded by the script state they are loaded into. Multiple plugins can be loaded into the same script state and by doing this those plugins have the ability to share code and interact with each other whereas plugins loaded into separate script states will be forced to create copies of any loaded library and will not have the ability to access each other.During unload, an entire script state gets unloaded which will unload all of the plugins that have been loaded into that script state. It is important to keep in mind this disconnect.",
+                "Classes": {
+                    "LotroPluginManager": {
+                        "Methods": {
+                            "ShowOptions": {
+                                "Description": "Displays the options panel for the specified plugin.",
+                                "Remarks": "Displays the options panel for the specified plugin.",
+                                "Syntax": {
+                                    "Function": "function LotroPluginManager.ShowOptions(plugin);",
+                                    "Parameters": {
+                                        "plugin": {
+                                            "Type": "plugin",
+                                            "Description": ""
+                                        }
+                                    }
+                                },
+                                "See Also": [
+                                    "Turbine",
+                                    "LotroPluginManager"
+                                ]
+                            }
+                        },
+                        "Inheritance Hierarchy": [
+                            "Turbine.PluginManager",
+                            "Turbine.LotroPluginManager"
+                        ],
+                        "See Also": [
+                            "Turbine"
+                        ]
+                    }
+                },
                 "Methods": {
                     "GetAvailablePlugins": {
                         "Description": "Gets the plugins that are currently available.",
@@ -326,18 +356,76 @@ var data = `{
                             "Function": "function PluginManager.GetAvailablePlugins();",
                             "Returns": [
                                 "Type: Object",
-                                "Returns a table container the plugins that are currently available"
+                                "Returns a table containing the plugins that are currently available"
                             ]
                         },
                         "See Also": [
-                            "LotroPluginManager",
+                            "PluginManager",
+                            "Turbine"
+                        ]
+                    },
+                    "GetLoadedPlugins": {
+                        "Description": "Gets the plugins that are currently loaded.",
+                        "Syntax": {
+                            "Function": "function PluginManager.GetLoadedPlugins();",
+                            "Returns": [
+                                "Type: Object",
+                                "Returns a table containing the currently loaded plugins"
+                            ]
+                        },
+                        "See Also": [
+                            "PluginManager",
+                            "Turbine"
+                        ]
+                    },
+                    "LoadPlugin": {
+                        "Description": "Loads the plugin that is requested if it is available",
+                        "Syntax": {
+                            "Function": "function PluginManager.LoadPlugin(pluginName);",
+                            "Parameters": {
+                                "pluginName": {
+                                    "Type": "string",
+                                    "Description": "The name of the plugin to load as specified in its plugin definition file"
+                                }
+                            }
+                        },
+                        "See Also": [
+                            "PluginManager",
+                            "Turbine"
+                        ]
+                    },
+                    "RefreshAvailablePlugins": {
+                        "Description": "Refreshes the list of available plugins.",
+                        "Remarks": "Refreshes the list of available plugins from disk. This does not force the unload of any plugins whose plugin definition file has been removed, but plugins whose plugin definition file has been removed will no longer be visible in the list of available plugins.",
+                        "Syntax": {
+                            "Function": "function PluginManager.RefreshAvailablePlugins();"
+                        },
+                        "See Also": [
+                            "PluginManager",
+                            "Turbine"
+                        ]
+                    },
+                    "UnloadScriptState": {
+                        "Description": "Unloads the script state specified.",
+                        "Remarks": "Unloads the script state that is specified. Unloading a script state results in the unloading of every plugin that was loaded into that script state.The script state that is used to invoke this method cannot unload itself.",
+                        "Syntax": {
+                            "Function": "function PluginManager.UnloadScriptState(scriptState);",
+                            "Parameters": {
+                                "pluginName": {
+                                    "Type": "string",
+                                    "Description": "The name of the script state to be unloaded."
+                                }
+                            }
+                        },
+                        "See Also": [
+                            "PluginManager",
                             "Turbine"
                         ]
                     }
                 }, 
                 "Inheritance Hierarchy": [
                     "Turbine",
-                    "Turbine.LotroPluginManager"
+                    "Turbine.PluginManager"
                 ],
                 "See Also": [
                     "Turbine"
