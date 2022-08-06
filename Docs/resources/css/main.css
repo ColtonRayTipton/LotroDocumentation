@@ -13,7 +13,7 @@ code {
 
 a {
     text-decoration: none;
-    color: black;
+    color: blue;
 }
 
 a:hover {
@@ -145,6 +145,7 @@ table {
 
 .tree-button {
     display: inline-block;
+    color: black;
 }
 
 /**************** TREE VIEW *****************/
