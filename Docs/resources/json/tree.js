@@ -83,9 +83,11 @@ var data = `{
         },
         "Classes": {
             "Object": {
+                "Icon": "blackbox",
                 "Description": "The base object class for API classes.",
                 "Remarks": "This is an internal class used by the API classes as a foundation.",
                 "Inheritance Hierarchy": [
+                    "Turbine.Object",
                     "Turbine.Chat",
                     "Turbine.Plugin",
                     "Turbine.Gameplay.Backpack",
@@ -119,7 +121,7 @@ var data = `{
                 "See Also": [
                     "Turbine"
                 ]
-            },
+            }, 
             "Chat": {
                 "Description": "This class provides events for when messages are received through the game. This includes player chat, tells, in game messages, and announcements.",
                 "Remarks": "This is a class used to get messages",
@@ -131,14 +133,14 @@ var data = `{
                         "Syntax": {
                             "Function": "function Turbine.Chat:Recieved(sender, args);",
                             "Parameters": {
-                                "sender": {
-                                    "Type": "table",
-                                    "Description": "The event sender"
-                                },
-                                "args": {
-                                    "Type": "table",
-                                    "Description": "The event arguments"
-                                }
+                                "sender": [
+                                    "table",
+                                    "The event sender"
+                                ],
+                                "args": [
+                                    "table",
+                                    "The event arguments"
+                                ]
                             },
                             "Returns": [
                                 "number",
@@ -170,18 +172,18 @@ var data = `{
                         "Syntax": {
                             "Function": "function Turbine.Engine.GetCallStack([thread,][message [, level]])",
                             "Parameters": {
-                                "thread": {
-                                    "Type": "thread",
-                                    "Description": "The thread which get call stack"
-                                },
-                                "message": {
-                                    "Type": "string",
-                                    "Description": "An optional *message* string that is appended at the beginning of the traceback"
-                                },
-                                "level": {
-                                    "Type": "integer",
-                                    "Description": "An optional *level* number tells at which level to start the traceback (default is 1, the function calling *traceback*"
-                                }
+                                "thread": [
+                                    "thread",
+                                    "The thread which get call stack"
+                                ],
+                                "message": [
+                                    "string",
+                                    "An optional *message* string that is appended at the beginning of the traceback"
+                                ],
+                                "level": [
+                                    "integer",
+                                    "An optional *level* number tells at which level to start the traceback (default is 1, the function calling *traceback*"
+                                ]
                             },
                             "Returns": [
                                 "string",
@@ -299,10 +301,10 @@ var data = `{
                         "Syntax": {
                             "Function": "function Turbine.Engine.ScriptLog();",
                             "Parameters": {
-                                "message": {
-                                    "Type": "string",
-                                    "Description": "The message to send to the log"
-                                }
+                                "message": [
+                                    "string",
+                                    "The message to send to the log"
+                                ]
                             }
                         },
                         "See Also": [
@@ -314,6 +316,186 @@ var data = `{
                 "Inheritance Hierarchy": [
                     "Turbine",
                     "Turbine.Engine"
+                ]
+            },
+            "Plugin": {
+                "Description": "Provides information about a specific plugin that has been loaded.",
+                "Remarks": "A plugin class is created for every plugin that has been loaded. Plugins are registered into the global __plugins table by their name. To query all the plugins that are loaded, just iterate over that table.",
+                "Methods": {
+                    "GetAuthor": {
+                        "Description": "Gets the author of the plugin",
+                        "Remarks": "This method gets the author of the plugin that was specified in the plugin information file",
+                        "Syntax": {
+                            "Function": "function Plugin:[parent]();",
+                            "Returns": [
+                                "string",
+                                "The author of the plugin"
+                            ]
+                        },
+                        "See Also": [
+                            "Turbine",
+                            "Plugin"
+                        ]
+                    },
+                    "GetConfiguration":{
+                        "Description": "Gets the plugin configuration information.",
+                        "Remarks": "This method returns a structure of information mapped out of the plugin information file under the configuration element.",
+                        "Syntax": {
+                            "Function": "function Plugin:[parent]();",
+                            "Returns": [
+                                "string",
+                                "The plugins configuration"
+                            ]
+                        },
+                        "See Also": [
+                            "Turbine",
+                            "Plugin"
+                        ]
+                    },
+                    "GetName":{
+                        "Description": "Gets the name of the plugin.",
+                        "Remarks": "This method gets the name of the plugin that was specified in the plugin information file.",
+                        "Syntax": {
+                            "Function": "function Plugin:[parent]();",
+                            "Returns": [
+                                "string",
+                                "The name of the plugin"
+                            ]
+                        },
+                        "See Also": [
+                            "Turbine",
+                            "Plugin"
+                        ]
+                    },
+                    "GetVersion":{
+                        "Description": "Gets the version of the plugin.",
+                        "Remarks": "This method gets the version of the plugin that was specified in the plugin information file.",
+                        "Syntax": {
+                            "Function": "function Plugin:[parent]();",
+                            "Returns": [
+                                "string",
+                                "The version of the plugin"
+                            ]
+                        },
+                        "See Also": [
+                            "Turbine",
+                            "Plugin"
+                        ]
+                    }
+                },
+                "Events": {
+                    "Load": {
+                        "Description": "Event fired when a plugin's main package has finished loading.",
+                        "Syntax": {
+                            "Function": "function Plugin:[parent](sender, args);",
+                            "Parameters": {
+                                "sender": [
+                                    "table",
+                                    "the event sender"
+                                ],
+                                "args": [
+                                    "table",
+                                    "the event arguments"
+                                ]
+                            }
+                        },
+                        "See Also": [
+                            "Turbine",
+                            "Plugin"
+                        ]
+                    },
+                    "Unload": {
+                        "Description": "Event fired before a plugin is unloaded.",
+                        "Syntax": {
+                            "Function": "function Plugin:[parent](sender, args);",
+                            "Returns": [
+                                "string",
+                                "The name of the plugin"
+                            ]
+                        },
+                        "See Also": [
+                            "Turbine",
+                            "Plugin"
+                        ]
+                    }
+                },
+                "Inheritance Hierarchy": [
+                    "Turbine.Object",
+                    "Turbine.Plugin"
+                ],
+                "See Also": [
+                    "Turbine"
+                ]
+            },
+            "PluginData": {
+                "Description": "Provides the ability to save and load plugin data.",
+                "Remarks": "This class provides a data store for loading and saving plugin data the is represented by a Lua table. This data can be stored to keys chosen by the plugins and then loaded later to allow a persistent store for information and settings.",
+                "Methods": {
+                    "Load": {
+                        "Description": "Loads plugin data from a given key.",
+                        "Remarks": "This method deserializes object data. If the data is immediately available it will be returned. If the data is not immediately available this will return nil and the data loaded handler will be invoked later once the data is available.",
+                        "Syntax": {
+                            "Function": "function PluginData.Load(dataScope, key [, callbackFunction]);",
+                            "Parameters": {
+                                "dataScope": [
+                                    "number",
+                                    "The scope of the data. Data scope can be specified to an Account, a Server, or to a specific Character"
+                                ],
+                                "key": [
+                                    "string",
+                                    "The key the data is stored under"
+                                ],
+                                "callbackFunction": [
+                                    "function",
+                                    "A function that is called when the data loaded."
+                                ]
+                            },
+                            "Returns": [
+                                "Object",
+                                "The loaded data. If the data does not exist, this will simply return nil."
+                            ]
+                        },
+                        "See Also": [
+                            "Turbine",
+                            "PluginData"
+                        ]
+                    },
+                    "Save": {
+                        "Description": "Saves plugin data from a given key.",
+                        "Remarks": "This method serializes the object data passed to the specified key. Any existing data is replaced with the new data.",
+                        "Syntax": {
+                            "Function": "function PluginData.Save(dataScope, key, data [, callbackFunction(succeeded, message)]);",
+                            "Parameters": {
+                                "dataScope": [
+                                    "number",
+                                    "The scope of the data. Data scope can be specified to an Account, a Server, or to a specific Character"
+                                ],
+                                "key": [
+                                    "string",
+                                    "The key the to store the data under"
+                                ],
+                                "data": [
+                                    "Object",
+                                    "The data to save."
+                                ],
+                                "callbackFunction": [
+                                    "function",
+                                    "Event handler called when the data is saved. It has two arguments, the first specifies if the save succeeded and the second is a message if it failed."
+                                ]
+                            },
+                            "Returns": [
+                                "Object",
+                                "The loaded data. If the data does not exist, this will simply return nil."
+                            ]
+                        },
+                        "See Also": [
+                            "Turbine",
+                            "PluginData"
+                        ]
+                    }
+                },
+                "See Also": [
+                    "Turbine"
                 ]
             },
             "PluginManager": {
@@ -328,10 +510,10 @@ var data = `{
                                 "Syntax": {
                                     "Function": "function LotroPluginManager.ShowOptions(plugin);",
                                     "Parameters": {
-                                        "plugin": {
-                                            "Type": "plugin",
-                                            "Description": ""
-                                        }
+                                        "plugin": [
+                                            "plugin",
+                                            ""
+                                        ]
                                     }
                                 },
                                 "See Also": [
@@ -383,10 +565,10 @@ var data = `{
                         "Syntax": {
                             "Function": "function PluginManager.LoadPlugin(pluginName);",
                             "Parameters": {
-                                "pluginName": {
-                                    "Type": "string",
-                                    "Description": "The name of the plugin to load as specified in its plugin definition file"
-                                }
+                                "pluginName": [
+                                    "string",
+                                    "The name of the plugin to load as specified in its plugin definition file"
+                                ]
                             }
                         },
                         "See Also": [
@@ -411,10 +593,10 @@ var data = `{
                         "Syntax": {
                             "Function": "function PluginManager.UnloadScriptState(scriptState);",
                             "Parameters": {
-                                "pluginName": {
-                                    "Type": "string",
-                                    "Description": "The name of the script state to be unloaded."
-                                }
+                                "pluginName": [
+                                    "string",
+                                    "The name of the script state to be unloaded."
+                                ]
                             }
                         },
                         "See Also": [
@@ -430,7 +612,82 @@ var data = `{
                 "See Also": [
                     "Turbine"
                 ]
+            },
+            "Shell": {
+                "Description": "Provides programmer extensibility to the chat window.",
+                "Remarks": "This class enables plugins to access the chat window shell, allowing them to register their own commands and query the list of commands available. The ability to execute commands is protected and not available to user mods.",
+                "Methods": {
+                    "AddCommand": {
+
+                    },
+                    "GetCommands": {
+
+                    },
+                    "IsCommand": {
+
+                    },
+                    "RemoveCommand": {
+
+                    },
+                    "WriteLine": {
+
+                    }
+                },
+                "Examples": {
+                    "Description": "This example demonstrates how to test if a command is available.",
+                    "Title": "Checking for a command",
+                    "Code": [
+                        "local canDance = Turbine.Shell.IsCommand('dance');",
+                        "Turbine.Shell.WriteLine('Does the dance command exist? ' .. canDance );"
+                    ]
+                },
+                "See Also": [
+                    "Turbine"
+                ]
+            },
+            "ShellCommand": {
+                "Description": "A command that can be register for use in the chat window.",
+                "Remarks": "This class provides the ability to define custom chat window commands in a lua script. Commands are registers using the LuaShell class.",
+                "Methods": {
+                    "Execute": {
+
+                    },
+                    "GetHelp": {
+
+                    },
+                    "GetShortHelp": {
+
+                    }
+                },
+                "See Also": [
+                    "Turbine"
+                ]
             }
         }
     }
 }`
+
+/**
+METHOD TEMPLATE
+"Load": {
+    "Description": "",
+    "Remarks": "",
+    "Syntax": {
+        "Function": "",
+        "Parameters": {
+            "dataScope": [
+                "type",
+                "desc"
+            ]
+        },
+        "Returns": [
+            "type",
+            "desc"
+        ]
+    },
+    "See Also": [
+        "Turbine",
+        "PluginData"
+    ]
+}
+**/

@@ -5,7 +5,7 @@ var BlackList = [
     "Classes",
     "Enumerations",
     "Examples",
-    "Object"
+    "Icon"
 ]
 
 function addTreeNode(grandparent, parent, key, actualparent, iconType="collapsed"){
@@ -46,7 +46,7 @@ function addChildren(table, parent, grandparent, greatgrandparent , ggparent){
                 if (["Enumerations"].includes(parent)){
                     addTreeNode(ggparent, grandparent, key, parent, "blackbox") 
                 }else if(["Classes"].includes(parent)){
-                    addTreeNode(ggparent, grandparent, key, parent)
+                    addTreeNode(ggparent, grandparent, key, parent, value.Icon)
                 }else if (["Methods", "Events"].includes(parent)){
                     addTreeNode(grandparent, parent, key, parent, "blackbox")
                 }else{

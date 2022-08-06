@@ -345,7 +345,7 @@ if (info && info.constructor == Object){
             var keyParent = parents[1]
             count = count + 1
             var htmlData = `
-                <ul class="children" id="InhId`+count+`">
+                <ul id="InhId`+count+`">
                     <li title='`+key+`'>
                         <span><a href='?type=`+key+`&parent=`+keyParent+`&actualparent=Classes'>`+String(parents.reverse()).replaceAll(',','.')+`</a></span>
                     </li>
@@ -400,6 +400,7 @@ if (info && info.constructor == Object){
             $.each(value, (key, cvalue) =>{
                 if (typeof cvalue == "string"){
                     value[key] = cvalue.replace('[key]', (key).toLowerCase())
+                    value[key] = cvalue.replace('[parent]', (type))
                 }
             })
         }
@@ -436,11 +437,10 @@ if (info && info.constructor == Object){
                     $("#"+key+" #Parameters ul").empty()
                     $("#"+key+" #Parameters ul").append(`<li id="Title" class="subheader">Parameters</li>`)
                     $.each(value.Parameters, (Name, value) => {
-
                         var content = `
                             <li id="Parameter" style="font-style: italic;">`+Name+`</li>
-                            <li id="Type" id="type">Type: `+value.Type+`</li>
-                            <li id="Description">`+value.Description+`</li>
+                            <li id="Type" id="type">Type: `+value[0]+`</li>
+                            <li id="Description">`+value[1]+`</li>
                         `
 
                         $("#"+key+" #Parameters ul").append(content)
